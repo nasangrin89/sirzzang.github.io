@@ -1,5 +1,5 @@
 ---
-title:  "[알고리즘] 정렬 알고리즘(Sort Algorithm)"
+title:  "[알고리즘] 정렬 - 버블정렬"
 excerpt:
 header:
   teaser: /assets/images/blog-Programming.jpg

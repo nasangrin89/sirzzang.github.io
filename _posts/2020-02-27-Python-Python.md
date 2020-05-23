@@ -480,7 +480,169 @@ for k, g in groupby(d, lambda x:x[0]):
 
  
 
+### 경우의 수(순열, 조합) 구하기
 
+[링크] https://docs.python.org/3.7/library/itertools.html#itertools.permutations
+
+#### 2-1. 하나의 list에서 모든 조합 계산
+
+**1)`itertools`의 `permutations` : 순열**
+
+> Return successive *r* length permutations of elements in the *iterable*.
+
+* Python documentation
+
+  Permutations are emitted in lexicographic sort order. So, if the input *iterable* is sorted, the permutation tuples will be produced in sorted order.
+
+  Elements are treated as unique based on their position, not on their value. So if the input elements are unique, there will be no repeat values in each permutation.
+
+  Roughly equivalent to:
+
+  ``` python
+  def permutations(iterable, r = None):
+      pool = tuple(iterable)
+      n = len(pool)
+      r = n if r is None else r
+      	# r을 특정하지 않거나 None이라면, r은 iterable의 길이와 같다.
+          # 따라서 가능한 가장 큰 크기의 순열이 생성된다.
+      if r > n:
+          return
+      	# 애초에 r > n이면 불가능.
+      indices = list(range(n))
+      	# index : 0, 1, 2, ..., n-1
+      cycles = list(range(n, n-r, -1))
+      	# cycle : n, n-1, n-2, ... , n-r+1
+      yield tuple(pool[i] for i in indices[:r])
+      while n:
+          for i in reversed(range(r)):
+              cycles[i] -= 1
+              if cycles[i] == 0:
+                  indices[i:] = indices[i+1:] + indices[i:i+1]
+                  cycles[i] = n - i
+              else:
+                  j = cycles[i]
+                  indices[i], indices[-j] = indices[-j], indices[i]
+                  yield tuple(pool[i] for i in indices[:r])
+                  break
+           else:
+              return
+  ```
+
+* The code for [`permutations()`](https://docs.python.org/3.7/library/itertools.html#itertools.permutations) can be also expressed as a subsequence of [`product()`](https://docs.python.org/3.7/library/itertools.html#itertools.product), filtered to exclude entries with repeated elements (those from the same position in the input pool):
+
+  ```python
+  def permutations(iterable, r = None):
+      pool = tuple(iterable)
+      n = len(pool)
+      r = n if r is None else r
+      for indices in product(range(n), repeat = r):
+          if len(set(indices)) == r:
+              yield tuple(pool[i] for i in indices)   
+  ```
+
+* The number of items returned is `n! / (n-r)!` when `0 <= r <= n` or zero when `r > n`
+
+* 사용 예시
+
+  ```python
+  items = ['1', '2', '3', '4', '5']
+  from itertools import permutations
+  list(permutations(items, 2))
+  # [('1', '2'), ('1', '3'), ('1', '4'), ('1', '5'), ('2', '1'), ('2', '3'), ('2', '4'), ('2', '5'), ('3', '1'), ('3', '2'), ('3', '4'), ('3', '5'), ('4', '1'), ('4', '2'), ('4', '3'), ('4', '5'), ('5', '1'), ('5', '2'), ('5', '3'), ('5', '4')]
+  ```
+
+
+
+**2) `itertools`의 `combinations' : 조합**
+
+> Return *r* length subsequences of elements from the input *iterable*.
+
+* Combinations are emitted in lexicographic sort order. So, if the input *iterable* is sorted, the combination tuples will be produced in sorted order.
+
+  Elements are treated as unique based on their position, not on their value. So if the input elements are unique, there will be no repeat values in each combination.
+
+  Roughly equivalent to:
+
+  ```python
+  def combinations(iterable, r):
+      pool = tuple(iterable)
+      n = len(pool)
+      if r > n:
+          return
+      indices = list(range(r))
+      yield tuple(pool[i] for i in indices)
+      while True:
+          for i in reversed(range(r)):
+              if indices[i] != i + n -r:
+                  break
+              else:
+                  return
+              indices[i] += 1
+              for j in range(i+1, r):
+                  indices[j] = indices[j-1] + 1
+              yield tuple(pool[i] for i in indices)
+  ```
+
+* The code for [`combinations()`](https://docs.python.org/3.7/library/itertools.html#itertools.combinations) can be also expressed as a subsequence of [`permutations()`](https://docs.python.org/3.7/library/itertools.html#itertools.permutations) after filtering entries where the elements are not in sorted order (according to their position in the input pool):
+
+  ```python
+  def combinations(iterable, r):
+      pool = tuple(iterable)
+      n = len(pool)
+      for indices in permutations(range(n), r):
+          if sorted(indices) == list(indices):
+              yield tuple(pool[i] for i in indices)
+  ```
+
+* The number of items returned is `n! / r! / (n-r)!` when `0 <= r <= n` or zero when `r > n`.
+
+* 사용 예시]
+
+  ``` python
+  from itertools import combinations
+  list(combinations(items, 2))
+  # [('1', '2'), ('1', '3'), ('1', '4'), ('1', '5'), ('2', '3'), ('2', '4'), ('2', '5'), ('3', '4'), ('3', '5'), ('4', '5')]
+  ```
+
+
+
+#### 2-2. 둘 이상의 list에서 모든 조합 계산
+
+> Cartesian product of input iterables.
+
+* Roughly equivalent to nested for-loops in a generator expression. For example, `product(A, B)` returns the same as `((x,y) for x in A for y in B)`.
+
+  The nested loops cycle like an odometer with the rightmost element advancing on every iteration. This pattern creates a lexicographic ordering so that if the input’s iterables are sorted, the product tuples are emitted in sorted order.
+
+  To compute the product of an iterable with itself, specify the number of repetitions with the optional *repeat* keyword argument. For example, `product(A, repeat=4)` means the same as `product(A, A, A, A)`.
+
+  This function is roughly equivalent to the following code, except that the actual implementation does not build up intermediate results in memory:
+
+  ``` python
+  def product(*args, repeat=1):
+      # product('ABCD', 'xy') --> Ax Ay Bx By Cx Cy Dx Dy
+      # product(range(2), repeat=3) --> 000 001 010 011 100 101 110 111
+      pools = [tuple(pool) for pool in args] * repeat
+      result = [[]]
+      for pool in pools:
+          result = [x+[y] for x in result for y in pool]
+      for prod in result:
+          yield tuple(prod)
+  ```
+
+  
+
+* 사용 예시
+
+  ``` python
+  from itertools import product
+  
+  items = [['a', 'b', 'c,'], ['1', '2', '3', '4'], ['!', '@', '#']]
+  list(product(*items))
+  # [('a', '1', '!'), ('a', '1', '@'), ('a', '1', '#'), ('a', '2', '!'), ('a', '2', '@'), ('a', '2', '#'), ('a', '3', '!'), ('a', '3', '@'), ('a', '3', '#'), ('a', '4', '!'), ('a', '4', '@'), ('a', '4', '#'), ('b', '1', '!'), ('b', '1', '@'), ('b', '1', '#'), ('b', '2', '!'), ('b', '2', '@'), ('b', '2', '#'), ('b', '3', '!'), ('b', '3', '@'), ('b', '3', '#'), ('b', '4', '!'), ('b', '4', '@'), ('b', '4', '#'), ('c,', '1', '!'), ('c,', '1', '@'), ('c,', '1', '#'), ('c,', '2', '!'), ('c,', '2', '@'), ('c,', '2', '#'), ('c,', '3', '!'), ('c,', '3', '@'), ('c,', '3', '#'), ('c,', '4', '!'), ('c,', '4', '@'), ('c,', '4', '#')]
+  ```
+
+  
 
 
 

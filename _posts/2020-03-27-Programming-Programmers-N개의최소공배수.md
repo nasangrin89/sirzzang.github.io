@@ -1,6 +1,6 @@
 ---
 title:  "[Programmers] N개의 최소공배수"
-excerpt: "1일 1문제풀이 9일차"
+excerpt: "1일 1문제풀이 8일차"
 header:
   teaser: /assets/images/blog-Programming.jpg
 toc: true

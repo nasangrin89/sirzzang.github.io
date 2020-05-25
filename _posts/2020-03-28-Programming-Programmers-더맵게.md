@@ -1,3 +1,19 @@
+---
+title: "[Programmers] 더 맵게"
+excerpt: 1일 1문제풀이 9일차
+header:
+  teaser: /assets/images/blog-Programming.jpg
+toc: true
+categories:
+  - Programming
+tags:
+  - Python
+  - Programming
+  - Programmers
+  - 자료구조
+  - 힙
+---
+
 
 
 
@@ -78,20 +94,18 @@ import heapq
 
 def solution(scoville, K):
 
-    # 최소힙 구현
     h = []
     for s in scoville:
-        heapq.heappush(h, (-1, s))
+        heapq.heappush(h, s)
 
     answer = 0
     try: # 가장 스코빌지수가 작은 음식이 K 이상이도록 만듦.
-        while h[0][1] < K:
-            score = heapq.heappop(h)[1] + 2*heapq.heappop(h)[1]
+        while h[0] < K:
+            score = heapq.heappop(h) + 2*heapq.heappop(h)
             answer += 1
-            heapq.heappush(h, (-1, score))
+            heapq.heappush(h, score)
     except IndexError: # 만들 수 없을 때
         answer = -1
-
 ```
 
 

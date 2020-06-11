@@ -1,6 +1,6 @@
 ---
 title: "[백준] 계단 오르기"
-excerpt: 1일 1문제풀이 15일차
+excerpt: 1일 1문제풀이 14일차
 header:
   teaser: /assets/images/blog-Programming.jpg
 toc: true
@@ -27,12 +27,6 @@ tags:
 
 
 계단 오르기 게임은 계단 아래 시작점부터 계단 꼭대기에 위치한 도착점까지 가는 게임이다. <그림 1>과 같이 각각의 계단에는 일정한 점수가 쓰여 있는데 계단을 밟으면 그 계단에 쓰여 있는 점수를 얻게 된다.
-
-![img](images/k64or2GOK1vmpEig7Ud.png)
-
-예를 들어 <그림 2>와 같이 시작점에서부터 첫 번째, 두 번째, 네 번째, 여섯 번째 계단을 밟아 도착점에 도달하면 총 점수는 10 + 20 + 25 + 20 = 75점이 된다.
-
-![img](images/f62omMF2kQYD5rDct.png)
 
 계단 오르는 데는 다음과 같은 규칙이 있다.
 

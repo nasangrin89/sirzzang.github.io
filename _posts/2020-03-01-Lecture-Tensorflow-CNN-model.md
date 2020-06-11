@@ -22,13 +22,9 @@ last_modified_at: 2020-03-01
 
 # _CNN(Convolutional Neural Network)_
 
-> 이미지 분석에 강점을 갖는 **합성곱 신경망**을 이용해 이미지를 예측하자.
 
 
-
-[노트북 파일](https://github.com/sirzzang/LECTURE/blob/master/%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%82%B0%EC%97%85-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EB%B6%84%EC%84%9D(%EB%A9%80%ED%8B%B0%EC%BA%A0%ED%8D%BC%EC%8A%A4)/%EC%A0%84%EB%B0%98%EA%B8%B0(%EB%AC%B8%EC%84%B1%ED%9B%88%20%EA%B0%95%EC%82%AC%EB%8B%98)/DL/%5B20200114%5D%20DL_CNN_MNIST.ipynb)
-
-
+[노트북 파일](https://github.com/sirzzang/LECTURE/blob/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL/[20200114] DL_CNN_MNIST.ipynb)
 
 ## 2. CNN 개념의 코드 구현 
 

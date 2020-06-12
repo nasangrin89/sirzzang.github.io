@@ -30,25 +30,24 @@ last_modified_at: 2020-06-11
 
 
 
-*  `find()`, `find_all()` 
+* find(), find_all()
+  * find_all()에서 `recursive=False` 옵션을 적절하게 활용하자.
+  * find_all()로 가져 온 태그 묶어서 가져올 때 zip 함수 써서 unpack하면 편하다!
 
-  *  `find_all`에서 `recursive=False` 옵션을 유용하게 활용하자.
+```python
+# 언패킹 예시
+for news_li, enter_li in zip(*ols):
+  news_kwd = news_li.find('span', class_='tit').text.strip()
+    enter_kwd = enter_li.find('span', class_='tit').text.strip()
+```
 
-  *  `find_all`로 가져 온 태그 묶어서 가져올 때 `zip` 함수 써서 언패킹하면 편하다.
 
-    ```python
-  # 언패킹 예시
-    for news_li, enter_li in zip(*ols):
-      news_kwd = news_li.find('span', class_='tit').text.strip()
-        enter_kwd = enter_li.find('span', class_='tit').text.strip()
-    ```
-  
-    
 
 * selector로 반환하면 굳이 `find`, `find_all`로 타고 타고 들어가지 않아도 된다.
-
   * 원래 위의 방법으로 태그 타고 타고 들어가는 방법을 썼는데, 이제 보니 selector로 선택하는 게 더 편해 보인다.
   * ` `(공백)은 하위 태그 전체, `>`는 하위 태그 중 직계 자식만을 의미한다.
+
+
 
  
 

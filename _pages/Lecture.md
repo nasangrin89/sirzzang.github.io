@@ -12,4 +12,5 @@ taxonomy: Lecture
 
 
 
-강의를 수강하며 배운 내용을 기록합니다.
+강의를 수강하며 배운 내용을 기록합니다. (참고 : [Github Repository](https://github.com/sirzzang/LECTURE) )
+

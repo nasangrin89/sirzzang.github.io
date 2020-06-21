@@ -93,7 +93,7 @@ tags:
 > 2. DP로 접근했을 때도 그 안에서 자꾸 경우를 나누려고 했다. 그럴 필요가 없다. 논리만 맞으면, 그리고 가능한 경우만 빼놓지 않고 체크했다면 그 다음 단계는 당연히 맞다.
 > 3. 초기값 설정할 때 제대로 안 해주면 런타임에러가 발생하므로 주의한다.
 
-![boj-1463-plz]({{site.url}}/assets/images/boj1463.png){: width="60%" height="60%"}{:.aligncenter}
+![boj-1463-plz]({{site.url}}/assets/images/boj1463.png)
 
 <center><sup>화려하다 증말...</sup></center>
 

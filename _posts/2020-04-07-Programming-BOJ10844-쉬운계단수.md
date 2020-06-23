@@ -216,7 +216,7 @@ print((a+b+c+d+e)%1000000000)
 
 * DP 어렵다 증말... 점화식이 단순한 점화식이 아니다.
 
-* copy, deepcopy... 지금 문제에서는 `[:]` 사용해서 shallow copy로도 초기값 문제 설정할 수 있었지만, 나중에는 배열 안에 배열 넣어서 초기값 설정해야 하는 경우도 있을 수 있다. 그냥 마음 편하게 for문을 쓰든가 하자. 
+* copy, deepcopy... 지금 문제에서는 `[:]` 사용해서 shallow copy로도 초기값 문제 해결할 수 있었지만, 나중에는 배열 안에 배열 넣어서 초기값 설정해야 하는 경우도 있을 수 있다. 그냥 마음 편하게 for문을 쓰든가 하자. 
 
   >  [참고1](https://medium.com/@daniel.tooke/variables-and-memory-addresses-in-python-6d96d672ed3d), [참고2](https://stackoverflow.com/questions/45911631/why-does-variables-address-change-in-python-when-the-variable-is-assigned-a-dif), [참고3](https://suwoni-codelab.com/python%20%EA%B8%B0%EB%B3%B8/2018/03/02/Python-Basic-copy/), [참고4](https://blueshw.github.io/2016/01/20/shallow-copy-deep-copy/), [참고5: ~~이 문제는 어디에서나 뒷목 잡게 만들 수 있다 핵공감...~~](https://hamait.tistory.com/844)
 

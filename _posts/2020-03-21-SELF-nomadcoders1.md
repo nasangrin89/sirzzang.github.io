@@ -1,6 +1,6 @@
 ---
-title:  "[NomadCoders] Making WebScrapper with Python_1"
-excerpt: "Python을 이용해 간단한 스크레이퍼를 만들어 보자."
+title:  "[NomadCoders] 간단한 Job Scrapper"
+excerpt: "Making WebScrapper with Python_1"
 header:
   teaser: /assets/images/nomad_scrapper.png
 categories:

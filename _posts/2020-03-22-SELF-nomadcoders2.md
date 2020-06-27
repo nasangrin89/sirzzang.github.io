@@ -1,6 +1,6 @@
 ---
-title:  "[NomadCoders] Making WebScrapper with Python_2.1"
-excerpt: "Django 기초 - 함수 인자 이해"
+title:  "[NomadCoders] Django 기초 - Arguments"
+excerpt: "Making WebScrapper with Python_2.1"
 header:
   teaser: /assets/images/nomad_scrapper.png
 categories:

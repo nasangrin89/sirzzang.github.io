@@ -1,6 +1,6 @@
 ---
-title:  "[NomadCoders] Making WebScrapper with Python_2.2_2"
-excerpt: "Django 기초 - OOP"
+title:  "[NomadCoders] Django 기초 - OOP_2"
+excerpt: "Making WebScrapper with Python_2.2_2"
 header:
   teaser: /assets/images/nomad_scrapper.png
 categories:

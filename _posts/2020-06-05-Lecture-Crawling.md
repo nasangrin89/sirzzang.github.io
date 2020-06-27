@@ -3,9 +3,6 @@ title:  "[Crawling] 파이썬 웹 크롤링"
 excerpt: "크롤링 팁"
 toc: true
 toc_sticky: true
-header:
-  teaser: /assets/images/blog-Lecture-Tensorflow.jpg
-
 categories:
   - Lecture
 tags:

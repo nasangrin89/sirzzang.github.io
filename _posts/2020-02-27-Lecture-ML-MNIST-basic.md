@@ -350,7 +350,7 @@ print("predict : {}".format(sess.run(tf.argmax(H,1),
 
 
 
-### 3. Kaggle Dataset 사용
+## 3. Kaggle Dataset 사용
 
 
 

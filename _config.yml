@@ -111,7 +111,7 @@ author:
   avatar           : "/assets/images/blog-profile.jpg"
   bio              : "#즐겁게 #꾸준히 #시나브로"
   location         : "Incheon, South Korea"
-  email            : sir950123@gmail.com
+  # email            : sir950123@gmail.com
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"

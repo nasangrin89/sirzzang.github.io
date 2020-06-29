@@ -55,6 +55,8 @@ last_modified_at: 2020-06-27
 
   한편 군집화 결과를 파악하기 위한 실루엣 계수는 `sklearn.metrics.silhouette_score` 클래스를 통해 계산할 수 있다. 사용법은 다음과 같다.
 
+
+
 ```python
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_samples
@@ -78,7 +80,7 @@ silhouette_vals = silhouette_samples(X_data, y_km, metric='euclidean')
 
 
 
- 코드가 좀 어려운 편이다. Tensorflow 사용법과 K-Means 알고리즘의 논리 구현이 어떻게 결합될 수 있는지 확인하는 데에 중점을 맞추자.
+ 코드가 좀 어려운 편이다. Tensorflow 사용법과 K-Means 알고리즘의 논리 구현이 어떻게 결합될 수 있는지 확인하는 데에 초점을 맞추자.
 
 
 
@@ -90,7 +92,7 @@ silhouette_vals = silhouette_samples(X_data, y_km, metric='euclidean')
 
 
 
-### 1. 모듈 불러오기 및 데이터 준비
+### 2. 1. 모듈 불러오기 및 데이터 준비
 
 ```python
 # module import
@@ -129,11 +131,11 @@ print(f"입력 데이터(좌표) 형태: {input_data.shape}")
 
 
 
-### 2. 군집화
+### 2. 2. 군집화
 
 
 
- 중첩된 `for문`을 사용해 군집화 과정을 수행한다. 일단 전체 코드를 한 번에 확인한 후, 각 단계별로 설명하도록 한다.
+ 중첩된 `for문`을 사용해 군집화 과정을 수행한다. 
 
 * `k`: 군집 개수.
 * `i` : 사이킷런에서 `n_init` 역할을 한다. 초기 중점을 몇 번 잡을 것인지 결정한다.
@@ -142,7 +144,7 @@ print(f"입력 데이터(좌표) 형태: {input_data.shape}")
 
 
 
- 앞의 개념에서 설명한 것처럼, 에러는 각 데이터와 군집 중점까지의 거리 제곱합으로 정의한다.
+ 에러는 각 데이터와 군집 중점까지의 거리 제곱합으로 정의한다.
 
 ```python
 def kmeans_tf(k, n_init, max_iter, data=input_data, tol=0.0001):
@@ -219,7 +221,7 @@ def kmeans_tf(k, n_init, max_iter, data=input_data, tol=0.0001):
 
 
 
-#### 1), 2) 초기 중점 좌표 할당
+**1), 2) 초기 중점 좌표 할당**
 
 
 
@@ -237,11 +239,11 @@ def kmeans_tf(k, n_init, max_iter, data=input_data, tol=0.0001):
 
 
 
-#### 3), 4) 중점 좌표 할당
+**3), 4) 중점 좌표 할당**
 
 
 
- 중점 좌표를 설정하기 위해 행렬의 차원을 확장하여 계산했다. 3차원 텐서로 맞춰서 계산하는데, 이 과정을 정확하게 수학적으로 이해하는 것은 그 범위를 넘는다고 생각해 다음의 강의 자료로 설명을 대체한다.
+ 중점 좌표를 설정하기 위해 행렬의 차원을 확장하여 계산했다. 3차원 텐서로 차원을 확장하여 계산하는데, 이 과정을 정확하게 수학적으로 이해하는 것은 그 범위를 넘는다고 생각해 다음의 강의 자료로 설명을 대체한다.
 
 
 
@@ -261,7 +263,7 @@ tf.Tensor(12909.11937, shape=(), dtype=float32)
 
 
 
-#### 5) 중점 할당
+**5) 중점 할당**
 
 
 
@@ -292,7 +294,7 @@ tf.Tensor([4 3 0 2 1 ... 3 0 0 2 1], shape=(1000,), dtype=int64)
 
 
 
-#### 6) 중점 평균 좌표 계산
+**6) 중점 평균 좌표 계산**
 
 
 
@@ -317,7 +319,7 @@ tf.Tensor([4 3 0 2 1 ... 3 0 0 2 1], shape=(1000,), dtype=int64)
 
 
 
-#### 7), 8), 9) 중점 좌표 업데이트
+**7), 8), 9) 중점 좌표 업데이트**
 
 
 
@@ -329,7 +331,7 @@ tf.Tensor([4 3 0 2 1 ... 3 0 0 2 1], shape=(1000,), dtype=int64)
 
 
 
-#### 10) 수렴 조건 설정
+**10) 수렴 조건 설정**
 
 
 
@@ -339,9 +341,9 @@ tf.Tensor([4 3 0 2 1 ... 3 0 0 2 1], shape=(1000,), dtype=int64)
 
  
 
+### 2. 3. 결과 확인
 
 
-### 3. 결과 확인
 
 
 

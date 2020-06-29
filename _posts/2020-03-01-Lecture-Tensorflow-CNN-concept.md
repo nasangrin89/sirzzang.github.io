@@ -31,34 +31,39 @@ last_modified_at: 2020-03-01
 
 
 
- CNN 모델은 이미지를 판단하는 데 있어 최적인 신경망 모델 알고리즘이다.
+ CNN 모델은 **이미지를 판단**하는 데 있어 최적인 신경망 모델 알고리즘이다.
 
 
 
-* 기존의 neural network는 FC layer을 이용해 학습 및 예측을 진행한다. 그런데 이 방법으로 이미지를 학습하는 경우, 다음과 같은 어려움이 있다.
+ 바꿔 말하면, 기존의 신경망 모델으로는 이미지 학습에 어려움이 있다는 말이다.
 
-  
 
-  [*참고* ] FC Layer(완전 연결 신경망, Fully Connected Layer=Dense Layer)
 
-  = 이전 layer의 모든 node가 다음 layer의 모든 node와 연결되어 학습되는 layer. 
+*참고* : FC Layer(완전 연결 신경망, Fully Connected Layer = Dense Layer)
 
-  ![fclayer]({{site.url}}/assets/images/fclayer.png)
 
-  * 이미지가 휘어 있거나, 크기가 제각각이거나, 색상, 모양 등 조금만 변형이 생긴다면 학습이 어렵다.
-  * 학습하는 데에 시간이 오래 걸린다.
-  * 이미지 픽셀을 1차원으로 평면화(flatten)하여 표현하는 과정에서 정보의 손실이 발생할 수 있다.
 
-  
+우리가 기존에 학습한 신경망 모델은 다음의 구조로 이루어져 있다. 
 
-* CNN 모델은 사람의 학습 방식을 모방하여 이미지 학습을 진행한다.
+![fclayer]({{site.url}}/assets/images/fclayer.png)
 
-  * 사람은 이미지에 변형이 생기더라도 특징을 비교해서 기억하고 있기 때문에, 이미지를 판단할 수 있다.
-  * 즉, 데이터를 있는 그대로 기억하는 것이 아니라, 데이터가 가진 일부 특징을 기억한다.
+  그러나, 이 경우 다음의 문제가 있었다.
 
-* CNN 모델은 이미지 픽셀을 모두 입력하는 것이 아니라, 이미지를 대표하는 특징을 도출한다. 즉, 이미지를 대표하는 여러 개의 이미지를 만들어서 그 이미지의 특징적 픽셀을 학습한다.
+* 이미지가 휘어 있거나, 크기가 제각각이거나, 색상, 모양 등 조금만 변형이 생긴다면 학습이 어렵다.
+* 학습하는 데에 시간이 오래 걸린다.
+* 이미지 픽셀을 1차원으로 평면화(flatten)하여 표현하는 과정에서 정보의 손실이 발생할 수 있다.
 
-![CNN 원리]({{ site.url }}/assets/images/CNN1.png){: width="80%" height="80%"}{:.aligncenter}
+
+
+ CNN 알고리즘은 기존의 신경망 모델과 달리, 사람의 학습 방식을 모방해 이미지 학습을 진행한다.
+
+ 요컨대, 사람은 이미지에 변형이 생기더라도 특징을 비교해서 기억하고 있기 때문에, 이미지를 판단할 수 있다. 즉, 데이터를 있는 그대로 기억하는 것이 아니라, **데이터가 가진 *일부* 특징**을 기억한다.
+
+ *따라서*  이 원리를 모방한 CNN 알고리즘은 이미지 픽셀을 모두 입력하는 것이 아니라, 이미지를 대표하는 특징을 도출한다. 즉, 이미지를 대표하는 여러 개의 이미지를 만들어서 그 이미지의 특징적 픽셀을 학습한다.
+
+
+
+![CNN 원리]({{ site.url }}/assets/images/CNN1.png)
 
 
 
@@ -68,11 +73,9 @@ last_modified_at: 2020-03-01
 
 
 
- CNN 알고리즘의 가장 큰 특징은 이미지 크기를 줄이면서, 특징을 나타내는 여러 장의 이미지들을 뽑아낼 수 있다는 것이다.
+ CNN 알고리즘의 가장 큰 특징은 이미지 크기를 **줄이면서**, **특징**을 나타내는 여러 장의 이미지들을 뽑아낼 수 있다는 것이다.
 
-
-
-- 이미지의 공간 정보를 유지하면서(flatten 없음) , 인접한 이미지와의 특징을 효과적으로 인식한다.
+- 이미지의 공간 정보를 유지하면서(flatten 없음), 인접한 이미지와의 특징을 효과적으로 인식한다.
 - 추출한 이미지의 특징을 모으거나 강화할 수 있다.
 - 일반 FC layer 학습 방식과 비교해, 학습해야 할 node의 수가 적다.
 
@@ -82,9 +85,7 @@ last_modified_at: 2020-03-01
 
 ### 1.3. 주요 개념
 
-
-
-**Filter**가 **입력 데이터(이미지)**를 순회하며 **합성곱**을 계산하고, 그 계산 결과를 이용하여 **Feature Map**을 만든다. 이를 모아 한 이미지에 대한 **Activation Map**을 만드는데, 이 과정을 하나의 **Convolution**이라고 한다. **Convolution Layer**의 shape은 **Filter 크기, Stride, Padding 적용 여부, Max Pooling 크기**에 따라 달라진다.
+> **Filter**가 **입력 데이터(이미지)**를 순회하며 **합성곱**을 계산하고, 그 계산 결과를 이용하여 **Feature Map**을 만든다. 이를 모아 한 이미지에 대한 **Activation Map**을 만드는데, 이 과정을 하나의 **Convolution**이라고 한다. **Convolution Layer**의 shape은 **Filter 크기, Stride, Padding 적용 여부, Max Pooling 크기**에 따라 달라진다.
 
 
 
@@ -96,78 +97,99 @@ last_modified_at: 2020-03-01
 
 **2) Channel**
 
-* Convolution을 구성하는 layer의 수를 의미한다.
+ Convolution을 구성하는 layer의 수를 의미한다. 처음에는 image의 depth(흑백, 컬러 등)이지만, 그 이후에는 필터의 개수가 된다.
 
-  * 처음에는 image의 depth.
-  * 그 이후에는 필터의 개수.
+ 최초의 input image가 컬러 이미지라면, RGB 스케일을 사용하기 때문에 channel이 3이다. 반면, 흑백 이미지라면, grey 스케일을 사용하기 때문에 channel이 1이다.
 
-* 최초의 input image가 컬러 이미지라면, RGB 스케일을 사용하기 때문에 channel이 3이다. 반면, 흑백 이미지라면, grey 스케일을 사용하기 때문에 channel이 1이다.
+![channel]({{ site.url }}/assets/images/channel.jpg)
 
-  ![channel]({{ site.url }}/assets/images/channel.jpg)
+* 높이가 39 픽셀이고 폭이 31 픽셀인 컬러 사진 데이터의 shape은 (39, 31, 3).
+* 높이가 39픽셀이고 폭이 31픽셀인 흑백 사진 데이터의 shape은 (39, 31, 1).
 
-  * 높이가 39 픽셀이고 폭이 31 픽셀인 컬러 사진 데이터의 shape은 (39, 31, 3).
-  * 높이가 39픽셀이고 폭이 31픽셀인 흑백 사진 데이터의 shape은 (39, 31, 1).
-
-* 이후 convolution layer를 지날 때마다,  *filter의 수에 따라* channel이 달라지게 된다.
+ 이후 convolution layer를 지날 때마다,  *filter의 수에 따라* channel이 달라지게 된다.
 
 
 
 **3) Filter(=kernel), Stride**
 
-![filter]({{ site.url }}/assets/images/filter.png){:.aligncenter}
 
-* 합성곱 연산을 수행하는 과정에서, 이미지의 특징을 뽑아낼 파라미터(거름망)이다.
-* 즉, 이미지에서 detection을 위해 가중치를 주는 것이다.기존 머신러닝, 딥러닝 모델에서의 weight라고 봐도 된다. 
-* 일반적으로 정사각 행렬로 정의된다. 초기에 random값을 부여하며, 학습을 통해 적절한 filter의 값을 찾아 나간다.
+
+ 합성곱 연산을 수행하는 과정에서, 이미지의 특징을 뽑아낼 거름망이다.
+
+
+
+![filter]({{ site.url }}/assets/images/filter.png)
+
+
+
+ 즉, `image detection`을 위한 가중치이다. 기존 모델에서의 `weight`라고 봐도 된다. 일반적으로 정사각 행렬로 정의한다. 처음에는 random 값을 부여하며, 학습을 통해 모델이 적절한 filter 값을 찾아 나가게 된다.
+
+
 
 
 
 **4) Convolution(합성곱)**
 
-* 각 이미지 데이터에서 filter를 통해 feature을 추출하기 위해 사용하는 연산으로, [위키피디아]([https://ko.wikipedia.org/wiki/%ED%95%A9%EC%84%B1%EA%B3%B1](https://ko.wikipedia.org/wiki/합성곱)) 다음과 같이 정의한다.
 
-  > *"합성곱 연산*은 두 함수 f, g 가운데 하나의 함수를 반전(reverse), 전이(shift)시킨 다음, 다른 하나의 함수와 곱한 결과를 적분하는 것을 의미한다."
 
-* 이미지로 나타내면 다음과 같다.
+ 각 이미지 데이터에서 filter를 통해 feature을 추출하기 위해 사용하는 연산으로, [위키피디아]([https://ko.wikipedia.org/wiki/%ED%95%A9%EC%84%B1%EA%B3%B1](https://ko.wikipedia.org/wiki/합성곱))에서는 다음과 같이 정의한다.
 
-![colvolution]({{site.url}}/assets/images/convolution23.png){: width="80%" height="80%"}{:.aligncenter}
 
-![colvolution detail]({{site.url}}/assets/images/convolution1.gif){: width="80%" height="80%"}{:.aligncenter}
+
+> *"합성곱 연산*은 두 함수 f, g 가운데 하나의 함수를 반전(reverse), 전이(shift)시킨 다음, 다른 하나의 함수와 곱한 결과를 적분하는 것을 의미한다."
+
+
+
+ 이해를 위해 이미지로 나타내면 다음과 같다.
+
+
+
+![colvolution]({{site.url}}/assets/images/convolution23.png)
+
+![colvolution detail]({{site.url}}/assets/images/convolution1.gif)
 
 
 
 **5) Feature Map, Stride**
 
-* Feature map이란, 입력된 이미지 데이터에 합성곱 연산을 수행한 결과로, 각 이미지의 특징을 찾아낸 결과이다.
 
-![feature map]({{site.url}}/assets/images/featuremap.png){: width="80%" height="80%"}{:.aligncenter}
 
-* Feature map을 도출하기 위해, filter는 입력된 이미지 데이터를 일정한 간격으로 순회한다. 이 때, 필터를 순회하기 위해 지정하는 간격을 **stride**라고 한다.
-  * stride가 1일 때 parameter가 SAME 옵션이면 처음 이미지 사이즈와 결과 이미지 사이즈가 동일하게 나온다.
+ 입력된 이미지 데이터에 합성곱 연산을 수행한 결과로, 각 이미지의 특징을 찾아낸 결과이다.
+
+![feature map]({{site.url}}/assets/images/featuremap.png)
+
+
+
+ Feature map을 도출하기 위해, filter는 입력된 이미지 데이터를 일정한 간격으로 *순회* 한다. 이 때, 필터를 순회하기 위해 지정하는 간격을 **stride**라고 한다.
+
+* stride가 1일 때 parameter가 SAME 옵션이면 처음 이미지 사이즈와 결과 이미지 사이즈가 동일하게 나온다.
+
+* stride가 2일 때 parameter가 SAME 옵션이면 처음 이미지 사이즈의 절반으로 줄어든다.
+
   
-  * stride가 2일 때 parameter가 SAME 옵션이면 처음 이미지 사이즈의 절반으로 줄어든다.
+
   
-    
+
+  *예시) 4X4 이미지에 2X2 필터를 stride 1로 적용했을 때의 feature map*
   
-    *예시) 4X4 이미지에 2X2 필터를 stride 1로 적용했을 때의 feature map*
-  
-    ![stride example]({{ site.url}}/assets/images/stride.jpg){: width="70%" height="70%"}{:.aligncenter}
+  ![stride example]({{ site.url}}/assets/images/stride.jpg)
 
 
 
-* feature map의 size가 정수가 되게 stride를 설정해야 한다. feature map의 한 변의 길이는 다음과 같다.
-
+ feature map의 size가 정수가 되게 stride를 설정해야 한다. feature map의 한 변의 길이는 다음과 같다.
 $$
 {(N-F)/stride + 1}
 $$
 
 
 
-* input data의 channel별로 하나씩의 feature map이 만들어진다.
+ input data의 channel별로 하나씩의 feature map이 만들어진다.
 
-  ![feature map2]({{ site.url }}/assets/images/featuredddmap.png){: width="70%" height="70%"}{:.aligncenter}
+![feature map2]({{ site.url }}/assets/images/featuredddmap.png)
 
-* **입력 데이터의 channel 수와 필터의 channel 수가 같아야** 합성곱 연산이 수행될 수 있다.
+
+
+ **입력 데이터의 channel 수와 필터의 channel 수가 같아야** 합성곱 연산이 수행될 수 있다.
 
 
 
@@ -182,7 +204,11 @@ $$
 (feature-map-size) * filter 개수
 $$
 
-![activation map]({{site.url}}/assets/images/lecture.png){: width="70%" height="70%"}{:.aligncenter}
+와 같다.
+
+
+
+![activation map]({{site.url}}/assets/images/lecture.png)
 
 
 
@@ -196,7 +222,7 @@ $$
 
 
 
-![padding]({{site.url}}/assets/images/padding.png){: width="70%" height="70%"}{:.aligncenter}
+![padding]({{site.url}}/assets/images/padding.png)
 
 
 
@@ -207,12 +233,11 @@ $$
 
 * `valid`(패딩 없음)와 `same`(feature map의 크기가 기존 입력 이미지 데이터의 크기와 같아짐)의 파라미터 옵션으로 조정한다.
 
-![padding option]({{site.url}}/assets/images/paddingoption.png){: width="70%" height="70%"}{:.aligncenter}
+![padding option]({{site.url}}/assets/images/paddingoption.png)
 
 
 
-* padding을 진행한 결과 이미지의 한 변의 size는 다음과 같다.
-
+  padding을 진행한 결과 이미지의 한 변의 size는 다음과 같다.
 $$
 {(N + 2P - F)/S} + 1
 $$
@@ -225,18 +250,16 @@ $$
 
  convolution layer의 출력 데이터를 받아서, 출력 데이터의 크기를 줄이거나, 특정 데이터를 강조하기 위한 용도로 사용하는 layer이다.
 
- pooling layer의 처리 방식에는 Max pooling, Min pooling, Average Pooling 등이 있다. CNN에서는 주로 Max pooling을 사용한다.
+ pooling layer의 처리 방식에는 `Max pooling`, `Min pooling`, `Average pooling` 등이 있다. CNN에서는 주로 `Max pooling`을 사용한다.
 
-![maxpulling]({{site.url}}/assets/images/maxpulling.png){: width="70%" height="70%"}{:.aligncenter}
+![maxpulling]({{site.url}}/assets/images/maxpulling.png)
 
 
 
-* Pooling 시 kernel의 크기와 stride를 정한다. 
+  Pooling 시 kernel의 크기와 stride를 정한다. 옵션으로는 `valid`(패딩 없음)와 `same`(pooling 후의 크기가 기존 입력 이미지 데이터의 크기와 같음)의 옵션을 갖는다.
 
-* valid(패딩 없음)와 same(pooling 후의 크기가 기존 입력 이미지 데이터의 크기와 같음)의 옵션을 갖는다.
+  Pooling 결과는 다음과 같은 특징을 갖는다.
 
-* Pooling의 결과는 다음과 같은 특징이 있다.
-  * 학습 대상 파라미터(filter)가 없다. 대신 kernel이라고 부른다.
-  * 출력 데이터의 크기가 감소한다.
-  * 채널 수는 변경되지 않는다.
-
+* 학습 대상 파라미터(filter)가 없다. 대신 `kernel`이라고 부른다.
+* 출력 데이터의 크기가 감소한다.
+* 채널 수는 변경되지 않는다.

@@ -3,9 +3,6 @@ title:  "[DL] CNN_2. 모델 구현"
 excerpt: "한 줄 요약 : MNIST 예제로 구현하는 CNN."
 toc: true
 toc_sticky: true
-header:
-  teaser: /assets/images/blog-Lecture-Tensorflow.jpg
-
 categories:
   - Lecture
 tags:
@@ -24,7 +21,11 @@ last_modified_at: 2020-03-01
 
 
 
-[노트북 파일](https://github.com/sirzzang/LECTURE/blob/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL/[20200114] DL_CNN_MNIST.ipynb)
+<sup>[노트북 파일](https://github.com/sirzzang/LECTURE/blob/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL/[20200114] DL_CNN_MNIST.ipynb)</sup>
+
+<sup>Tensorflow: 1.X</sup>
+
+
 
 ## 2. CNN 개념의 코드 구현 
 
@@ -33,9 +34,10 @@ last_modified_at: 2020-03-01
  CNN 모델을 구현하기 위한 기본 아키텍쳐는 다음과 같다.
 
 * image + filter
-* convolution layer (+ RELU)
-
+* convolution layer ( + activation function )
 * pooling layer
+
+
 
 
 
@@ -81,7 +83,9 @@ image = np.array([[[1],[2],[3]],
 
 
 
- width, height, color(=depth), filter 개수를 통해 filter를 정의한다. 이 때, `filter`가 예약어이므로 변수 명으로 사용할 수 없음에 주의하자. 2x2 사이즈의 gray scale 필터를 3개의 채널로 만들어 보자. 필터 스칼라 값은 아무렇게나 주어도 된다.
+ `width`, `height`, `color(=depth)`, `filter 개수`를 통해 `filter`를 정의한다. 이 때, `filter`가 예약어이므로 변수 명으로 사용할 수 없음에 주의하자. 
+
+ 2x2 사이즈의 gray scale 필터를 3개의 채널로 만들어 보자. 필터 스칼라 값은 아무렇게나 주어도 된다.
 
 ```python
 # (2, 2, 1, 3)
@@ -94,7 +98,7 @@ weight = np.array([[[[1,10,-1]],
 
 
 
- filter 순회를 통해 feature map을 만들고, 그 feature map을 모아 activation map을 만든다.  
+ `filter` 순회를 통해 `feature map`을 만들고, 그 `feature map`을 모아 `activation map`을 만든다.  
 
 ```python
 conv2d = tf.nn.conv2d(image,
@@ -105,19 +109,17 @@ sess = tf.Session()
 sess.run(conv2d)
 ```
 
-* `tf.nn.conv2d` : Tensorflow 신경망의 convolution 함수 중 (이미지 형태와 무관하게) feature map을 2차원으로 추출하는 함수.
 
-  * parameter : 1) 사용할 이미지, 2) 필터, 3) stride, 4) padding 옵션.
 
-    * stride를 지정할 때는 가운데 2칸이 중요하다. 가로, 세로 이동하는 칸 수를 다르게 잡아도 되지만, 연산에 문제가 생길 수도 있기 때문에, 미리 계산하지 않았다면 *(웬만하면)* 길이를 동일하게 지정하자.
+`tf.nn.conv2d` 함수를 사용한다. Tensorflow 신경망의 convolution 함수 중 (이미지 형태와 무관하게) feature map을 2차원으로 추출해 준다.
 
-    * padding 옵션에서 **VALID**는 padding을 하지 *않겠다* 는 의미이고, **SAME**이 padding을 *한다* 는 의미이다.
+ parameter로는 1) 사용할 이미지, 2) 필터, 3) stride, 4) padding 옵션를 갖는다. 특히, stride를 지정할 때는 가운데 2칸이 중요하다. 가로, 세로 이동하는 칸 수를 다르게 잡아도 되지만, 연산에 문제가 생길 수도 있기 때문에, 미리 계산하지 않았다면 *(웬만하면)* 길이를 동일하게 지정하자. padding 옵션에서 **VALID**는 padding을 하지 *않겠다* 는 의미이고, **SAME**이 padding을 *한다* 는 의미이다.
 
-      
+
 
  `conv2d`층으로 이루어진 convolution 단계의 실행 결과는 다음과 같다.
 
-* 결과 tensor shape : (이미지 개수, feature map size, 필터 개수(=차원))
+> 결과 tensor shape : (이미지 개수, feature map size, 필터 개수(=차원))
 
 ```python
 # conv2d층 실행한 결과로 tensor : (1, 2, 2, 3)
@@ -138,10 +140,13 @@ pool = tf.nn.max_pool(conv2d,
                      padding='SAME')
 ```
 
-* `tf.nn.max_pool` : Tensorflow 신경망의 max pooling 함수.
-  * parameter : 1) pooling 적용할 층, 2) 커널 사이즈, 3) stride, 4) padding 옵션.
-    * kernel size : 맨 앞과 뒤의 1은 더미 변수.
-    * 이번에는 패딩 진행.
+
+
+`tf.nn.max_pool`함수를 이용한다. 
+
+ parameter로는 1) pooling 적용할 층, 2) 커널 사이즈, 3) stride, 4) padding 옵션이 있다. kernel size에서 맨 앞과 뒤의 1은 더미 변수이다. 
+
+ 이번 단계에서는 패딩을 진행해 보자.
 
  
 
@@ -155,6 +160,8 @@ pool = tf.nn.max_pool(conv2d,
   [[ 28. 280. -24.]
    [ 28. 280. -28.]]]]
 ```
+
+
 
  패딩 옵션을 주어 풀링을 진행한 결과 tensor를 해석하면 다음의 그림과 같다. ~~*(질문을 해결해 주신 문쌤께 감사를!)*~~ 패딩이 붙은 픽셀의 스칼라 값은 0이고, 빨간 사각형이 커널이다.
 
@@ -172,6 +179,10 @@ pool = tf.nn.max_pool(conv2d,
 
 * 이미지 convolution 및 pooling 후 원본과 **어떻게 달라지는지** 확인하고, 
 * 이미지의 특징을 나타내는 픽셀만 학습시킬 때 **성능이 좋음**을 확인한다.
+
+
+
+### 3.0. 모듈 및 데이터 준비
 
 
 
@@ -218,7 +229,9 @@ sample_img = mnist.train.images[0].reshape(28, 28)
 plt.imshow(sample_img, cmap='Greys')
 ```
 
-![sample image]({{site.url}}/assets/images/numberseven.jpg){:.aligncenter}
+![sample image]({{site.url}}/assets/images/numberseven.jpg)
+
+
 
 > *참고*
 >
@@ -551,4 +564,4 @@ result = sess.run(accuracy,
 
 
 
- test accuracy가 0.9850999712944031로 나온다. 기존에 기본 딥러닝 층을 활용해 모델을 구성했을 때보다 성능이 향상되었음을 알 수 있다.
+ test accuracy가 0.9850999712944031로 나온다. 기존에 기본 딥러닝 층을 활용해 모델을 구성했을 때보다 *성능이 향상* 되었음을 알 수 있다.

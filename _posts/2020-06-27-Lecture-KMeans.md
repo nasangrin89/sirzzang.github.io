@@ -106,7 +106,7 @@ last_modified_at: 2020-06-27
 
 
 
-<center>![image-20200619110947233]({{site.url}}/assets/images/image-20200619110947233.png)</center>
+![image-20200619110947233]({{site.url}}/assets/images/image-20200619110947233.png)
 
 
 
@@ -116,7 +116,7 @@ last_modified_at: 2020-06-27
 
 
 
- ### 2.2 Silhouette Method
+### 2.2 Silhouette Method
 
 
 
@@ -180,7 +180,7 @@ $$
 
 
 
-![image-20200619131835449]({{site.url}}/images/image-20200619131835449.png)
+![image-20200619131835449]({{site.url}}/assets/images/image-20200619131835449.png)
 
 
 

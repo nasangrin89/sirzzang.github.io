@@ -1,5 +1,6 @@
 ---
-title:  "[ML/DL] Keras로 나만의 Loss, Regularizer 만들기"
+title:  "[ML/DL] Keras로 Loss, Regularizer 만들기"
+excerpt: "Loss Function, Regularizer Function 커스텀하기"
 toc: true
 toc_sticky: true
 categories:

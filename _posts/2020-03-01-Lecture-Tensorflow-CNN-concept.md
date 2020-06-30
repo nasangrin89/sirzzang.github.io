@@ -177,6 +177,8 @@ last_modified_at: 2020-03-01
 
 
  feature map의 size가 정수가 되게 stride를 설정해야 한다. feature map의 한 변의 길이는 다음과 같다.
+
+
 $$
 {(N-F)/stride + 1}
 $$
@@ -200,9 +202,13 @@ $$
 
 
  feature map을 모은 결과로, *convolution layer의 입력 데이터*가 된다. activation map의 shape은 
+
+
 $$
 (feature-map-size) * filter 개수
 $$
+
+
 
 와 같다.
 
@@ -238,6 +244,8 @@ $$
 
 
   padding을 진행한 결과 이미지의 한 변의 size는 다음과 같다.
+
+
 $$
 {(N + 2P - F)/S} + 1
 $$

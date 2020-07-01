@@ -1,9 +1,7 @@
 ---
 
-
-
-title:  "[ML] K-Means_2. 구현"
-excerpt: "Scikit-learn, Tensorflow로 K-Means 구현하기"
+title:  "[ML] KMeans_2. 구현"
+excerpt: "<<Clustering>> Scikit-learn, Tensorflow로 K-Means 구현하기"
 toc: true
 toc_sticky: true
 categories:

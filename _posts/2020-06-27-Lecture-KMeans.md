@@ -1,6 +1,6 @@
 ---
-title:  "[ML] K-Means_1. 개념"
-excerpt: "K-Means 알고리즘의 개념"
+title:  "[ML] KMeans_1.개념"
+excerpt: "<<Clustering>> KMeans 알고리즘의 개념"
 toc: true
 toc_sticky: true
 categories:

@@ -1,6 +1,6 @@
 ---
 title:  "[Crawling] 파이썬 웹 크롤링"
-excerpt: "크롤링 팁"
+excerpt: "<<Programming>> 크롤링 팁"
 toc: true
 toc_sticky: true
 categories:

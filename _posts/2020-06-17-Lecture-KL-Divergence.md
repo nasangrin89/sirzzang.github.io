@@ -1,6 +1,6 @@
 ---
 title:  "[ML/DL] KL Divergence"
-excerpt: "KL Divergence, 상대 엔트로피."
+excerpt: "<<Loss Function>> KL Divergence, 상대 엔트로피."
 toc: true
 toc_sticky: true
 categories:

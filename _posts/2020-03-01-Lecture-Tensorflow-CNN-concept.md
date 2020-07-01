@@ -1,6 +1,6 @@
 ---
 title:  "[DL] CNN_1. 개념"
-excerpt: "한 줄 요약 : CNN 모델의 개념을 알아본다."
+excerpt: "<<Neural Network>> CNN 모델의 개념을 알아보자."
 toc: true
 toc_sticky: true
 header:

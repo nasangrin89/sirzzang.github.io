@@ -1,6 +1,6 @@
 ---
 title:  "[ML] MNIST_1. Tensorflow 구현"
-excerpt: "한 줄 요약 : Multinomial Classification을 Tensorflow로 구현해 보자."
+excerpt: "<<Classification>> Multinomial Classification을 Tensorflow로 구현해 보자."
 toc: true
 toc_sticky: true
 categories:

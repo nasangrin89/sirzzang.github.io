@@ -1,6 +1,6 @@
 ---
 title:  "[ML/DL] Cross Entropy"
-excerpt: "크로스 엔트로피, 손실 함수."
+excerpt: "<<Loss Function>> 크로스 엔트로피, 손실 함수를 이해해 보자."
 toc: true
 toc_sticky: true
 categories:

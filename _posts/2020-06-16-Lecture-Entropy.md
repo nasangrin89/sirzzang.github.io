@@ -1,6 +1,6 @@
 ---
 title:  "[ML/DL] Entropy"
-excerpt: "섀넌 엔트로피"
+excerpt: "<<Loss Function>> 정보 이론 관점에서 엔트로피(섀넌 엔트로피)를 알아보자."
 toc: true
 toc_sticky: true
 categories:

@@ -1,6 +1,6 @@
 ---
 title:  "[DL] MNIST_2. Deep Learning"
-excerpt: "한 줄 요약 : MNIST 분류 문제를 Tensorflow Deep Learning으로 구현해 보자."
+excerpt: "<<Neural Network>> MNIST 분류 문제를 Tensorflow Deep Learning으로 구현해 보자."
 toc: true
 toc_sticky: true
 categories:

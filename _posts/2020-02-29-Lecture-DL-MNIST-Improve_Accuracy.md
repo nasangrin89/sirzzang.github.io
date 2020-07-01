@@ -1,6 +1,6 @@
 ---
 title:  "[DL] MNIST_3. Deep Learning 정확도 향상"
-excerpt: "한 줄 요약 : 딥러닝 시 정확도를 높일 수 있는 방법을 알아본다."
+excerpt: "<<Neural Network>> 딥러닝에서 더 정확도를 높여 MNIST 문제를 풀어보자."
 toc: true
 toc_sticky: true
 categories:

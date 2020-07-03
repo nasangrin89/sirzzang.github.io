@@ -19,7 +19,7 @@ last_modified_at: 2020-06-27
 
 <sup>Tensorflow : 2.2.0</sup>
 
-# _KNN: Tensorflow로 구현하기_
+# _KNN: 코드로 구현하기_
 
 
 

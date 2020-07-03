@@ -1,5 +1,5 @@
 ---
-title:  "[DL] 경쟁학습_2. 구현"
+title:  "[DL] Competitive Learning_2. 구현"
 excerpt: "<<Clustering>> Tensorflow로 Competitive Learning 구현하기"
 toc: true
 toc_sticky: true
@@ -16,7 +16,7 @@ last_modified_at: 2020-07-01
 
 
 
-<sup>출처가 명시되지 않은 모든 자료(이미지 등)는 [조성현 강사님](https://blog.naver.com/chunjein)의 강의 및 강의 자료를 기반으로 합니다.</sup> <sup>[Github Repo 1](https://github.com/sirzzang/LECTURE/tree/master/인공지능-자연어처리(NLP)-기반-기업-데이터-분석/조성현 강사님/ML/ML 실습/20200619), [Github Repo 2](https://github.com/sirzzang/LECTURE/blob/master/인공지능-자연어처리(NLP)-기반-기업-데이터-분석/조성현 강사님/DL/DL 실습/20200626/ML-TF-Classification-Kmeans-numpyData.py)</sup>
+<sup>출처가 명시되지 않은 모든 자료(이미지 등)는 [조성현 강사님](https://blog.naver.com/chunjein)의 강의 및 강의 자료를 기반으로 합니다.</sup> <sup>[Github Repo](https://github.com/sirzzang/LECTURE/tree/master/인공지능-자연어처리(NLP)-기반-기업-데이터-분석/조성현 강사님/DL/DL 실습/20200701)</sup>
 
 <sup>Tensorflow : 2.2.0</sup>
 
@@ -71,7 +71,7 @@ def createData(n):
 >
 >  지난 번 수업 때도 느꼈던 건데, `r`만 잘 설정하면 굳이 3개로 제한하지 않아도 여러 개의 군집 데이터를 형성할 수 있을 것 같다. 생성하고자 하는 군집 개수 인자로 받아서, `np.linspace`로 구간 나누고 `r` 구간 따라서 x, y 좌표 생성해 주면 될 것 같다.
 >
->  그렇게 구현해보려고 했는데, 문제는, `np.random.normal`의 평균과 표준편차를 어떻게 잡아야 되는지 모르겠다. 혹시 Scikit-learn의   [make_blobs](https://github.com/scikit-learn/scikit-learn/blob/fd237278e/sklearn/datasets/_samples_generator.py#L742){: .btn .btn--small} 함수가 어떻게 군집을 이루는 점을 이루는지 그 원리를 이해하면 될 수 있지 않을까 했는데 ㅎ... 지금의 나한테는 좀... 어려운 듯(^^;;)하다.
+>  그렇게 구현해보려고 했는데, 문제는, `np.random.normal`의 평균과 표준편차를 어떻게 잡아야 되는지 모르겠다. 혹시 Scikit-learn의   [make_blobs](https://github.com/scikit-learn/scikit-learn/blob/fd237278e/sklearn/datasets/_samples_generator.py#L742){: .btn .btn--small} 함수가 어떻게 군집을 이루는 점을 만들어내는지 그 원리를 이해하면 될 수 있지 않을까 했는데 ㅎ... 지금의 나한테는 좀... 어려운 듯(^^;;)하다.
 
 
 

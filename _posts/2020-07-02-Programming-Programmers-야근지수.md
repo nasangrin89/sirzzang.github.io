@@ -100,7 +100,7 @@ def solution(n, works):
 
 
 
-### 더 생각해볼 점
+### 더 생각해 볼 점
 
 
 
@@ -172,9 +172,11 @@ def solution(n, works):
 
 
 
-### 더 생각해볼 점
+### 더 생각해 볼 점
 
 
+
+ 역시나 정확도 테스트는 통과하는데 효율성 테스트를 통과하지 못한다.
 
  결국 JK에게 가르침을 구했다. *(~~JK는 한 방에 풀더라.. 멋진 JK... 존경해...~~)*
 
@@ -187,6 +189,90 @@ def solution(n, works):
 
 
 
+## 2.3. 3일차 
+
+
+
+### 풀이 방법
+
+
+
+ 풀이 방법을 바꿨다. 첫 날 풀이에서 문제가 되었던 부분이 **1)** 정렬과, **2)** 1씩 빼준다는 부분이었다.
+
+ 주로 바꾼 부분은 다음과 같다.
+
+* 정렬을 처음에 한 번만 한다.
+* `works` 리스트에서 가장 큰 원소들(뒤로 가면서 똑같은 값으로 맞출 것이기 때문에 원소가 여러 개이다.)과 그 다음으로 큰 원소 간 차이를 구한다. 그리고 그 차이만큼을 한 번에 빼 준다. 빼기 연산을 여러 번 수행하지 않아도 된다.
+
+
+
+ 이렇게 바꿨을 때 생각해 봐야 하는 예외 상황은 다음과 같다.
+
+* 한 번에 차이만큼을 빼주려고 할 때, 빼줄 수 없는 경우가 있다. 빼줘야 할 값이 `n`보다 커져 버리는 경우다. 이 경우에는 그냥 가장 큰 원소들에 남은 `n`을 분배하여 빼 준다.
+* 모든 `works` 리스트 내의 원소 값이 동일해져 버리는 경우가 있다. 이 경우에도 `n`을 분배하여 빼 준다. 분배하여 빼 줄 때는 몫과 나머지를 사용하도록 논리를 구현했다. 너무 자질구레하니까 그 부분은 패스.
+
+
+
+### 풀이 코드
+
+
+
+```python
+def solution(n, works):
+    answer = 0
+    if n >= sum(works):
+        return answer
+    else:
+        works.sort(reverse = True) # 한 번만 정렬하자 처음에.
+        i = 0 # 인덱스
+        try:
+            while n > 0:
+                if works[i] == works[i+1]:
+                    i += 1
+                elif (works[i] - works[i+1]) * (i+1) <= n:
+                    n -= (works[i] - works[i+1]) * (i+1)
+                    for j in range(i+1):
+                        works[j] -= (works[i] - works[i+1])
+                    i += 1
+                else:
+                    for j in range(i+1):
+                        works[j] -= 1
+                        n -= 1
+                        if n == 0:
+                            break
+        except IndexError:
+            q, r = n // len(works), n % len(works)
+            if q > 0 :
+                for i in range(len(works)):
+                    works[i] -= q
+                n -= q * len(works)
+
+            while n > 0:
+                for i in range(len(works)):
+                    works[i] -= 1
+                    n -= 1
+                    if n == 0:
+                        break
+
+        for work in works:
+            answer += work * work
+
+        return answer
+```
+
+
+
+
+
+### 더 생각해 볼 점
+
+
+
+* 풀긴 했는데, 아무리 생각해도 코드가 너무 더럽다. 경우의 수 분기가 저렇게 많은 게 좋은 풀이는 아닌 듯. ~~*심란하다. 왜 이렇게 눈에 보이는 대로 곧이 곧대로밖에 못 짜는걸까.*~~
+* 로직과 별개로, 배열 원소 바꿀 때 주의하자. `for work in works: work -= 1` 이런 식으로 코드 짜면, 리스트 내부 원소 안 바뀐다. 인덱싱을 통해 값을 할당해 주어야 한다.
+
+
+
 ---
 
 
@@ -195,31 +281,55 @@ def solution(n, works):
 
 
 
-[풀이 출처](https://programmers.co.kr/learn/courses/30/lessons/42626/solution_groups?language=python3)
+출처: https://blog.rajephon.dev/2018/10/14/programmers-solution-level3-no-overtime/
 
 ```python
-import heapq as hq
+import heapq
 
-def solution(scoville, K):
+def solution(n, works):
+    for i in range(len(works)):
+        works[i] *= -1
+    heapq.heapify(works)
 
-    hq.heapify(scoville)
-    answer = 0
-    while True:
-        first = hq.heappop(scoville)
-        if first >= K:
+    for i in range(0, n):
+        m = heapq.heappop(works)
+        if m >= 0:
+            heapq.heappush(works, m)
             break
-        if len(scoville) == 0:
-            return -1
-        second = hq.heappop(scoville)
-        hq.heappush(scoville, first + second*2)
-        answer += 1  
+        m += 1
+        heapq.heappush(works, m)
 
+    answer = 0
+    while len(works) > 0:
+        m = heapq.heappop(works)
+        answer += pow(m * -1, 2)
     return answer
 ```
 
-* `heapify`를 이용해 바로 힙으로 만들었다.
-* `scoville` 배열이 비게 되면 `-1`을 반환한다.
+
+
+출처: https://programmers.co.kr/learn/courses/30/lessons/12927/solution_groups?language=python3
 
 
 
+ 아래 코드들은 효율성 테스트에서는 통과하지 못했지만(문제 개편), 로직이 간단해서 기록한다.
+
+```python
+def noOvertime(n, works):
+    if n >= sum(works):
+        return 0
+    while n > 0:
+        works[works.index(max(works))] -= 1
+        n -= 1
+    result = sum([w ** 2 for w in works])
+    return result
+
+def noOvertime(n, works):
+    while n>=1:
+        works.sort()
+        works[-1]-=1
+        n-=1
+
+    return sum(x**2 for x in works)
+```
 

@@ -1,6 +1,6 @@
 ---
-title:  "[DL] CNN_1. 개념"
-excerpt: "<<Neural Network>> CNN 모델의 개념을 알아보자."
+title:  "[DL] CNN_1. 모델 구조"
+excerpt: "<<Neural Network>> CNN 모델 구조를 이해해 보자."
 toc: true
 toc_sticky: true
 header:
@@ -14,260 +14,347 @@ tags:
   - CNN
   - Tensorflow
 use_math: true
-last_modified_at: 2020-03-01
+last_modified_at: 2020-07-05
 ---
 
-
-
-
+<sup> [문성훈 강사님](https://moon9342.github.io)의 강의를 기반으로 합니다.</sup> <sup>[Github Repo](https://github.com/sirzzang/LECTURE/tree/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL)</sup> <sup> +) [조성현 강사님](https://blog.naver.com/chunjein)의 강의를 기반으로 내용을 보충합니다.</sup> 
 
 # _CNN(Convolutional Neural Network)_
 
 
 
-## 1. CNN 개념
 
-### 1.1. image processing
 
+## 1. 개요
 
 
- CNN 모델은 **이미지를 판단**하는 데 있어 최적인 신경망 모델 알고리즘이다.
 
+ 딥러닝을 도입하여 MNIST 예제를 풀어보았다. 이 과정에서 구성한 신경망 모델의 구조를 떠올려 보자. `입력 - 은닉 - 출력층`을 거쳤다. 그런데 이러한 구조로는 이미지를 학습하기에 어려움이 있다. 
 
+ MNIST 이미지 예제를 통해 학습하는 모델을 구현했을 때도 보았듯, 이미지는 2차원 데이터이고, 이 2차원 데이터를 1차원 벡터로 평활화하여 신경망 모델에 학습시켜야 한다. 이렇게 이미지 데이터의 픽셀을 1차원으로 `flatten`하는 과정에서, 정보의 손실이 발생할 수 있다.
 
- 바꿔 말하면, 기존의 신경망 모델으로는 이미지 학습에 어려움이 있다는 말이다.
 
 
+>  이미지가 휘어 있거나, 크기가 제각각이거나, 색상이나 모양에 조금이라도 변형이 있다면? 평활화하는 과정에서 정보가 온전히 보존될 수 있을까?
 
-*참고* : FC Layer(완전 연결 신경망, Fully Connected Layer = Dense Layer)
 
 
+ 이에 이미지를 판단하기 위한 알고리즘으로서 CNN 신경망 모델이 제안되었다. 그리고 해당 알고리즘이 컴퓨터 비전, ImageNet 등에서 좋은 성과를 거두면서, CNN 모델이 이미지를 판단하는 데 있어 성능이 좋은 알고리즘으로 인식되기 시작하였다.
 
-우리가 기존에 학습한 신경망 모델은 다음의 구조로 이루어져 있다. 
 
-![fclayer]({{site.url}}/assets/images/fclayer.png)
 
-  그러나, 이 경우 다음의 문제가 있었다.
+ 이 모델을 구현하는 데 있어 핵심은 **"사람의 학습 방식을 모방해 이미지 학습을 진행한다"**는 것이다. 요컨대, 사람은 이미지에 변형이 생기더라도 특징을 비교해서 기억하고 있기 때문에, 이미지를 판단할 수 있다. 즉, 데이터를 있는 그대로 기억하는 것이 아니라, **데이터가 가진** *일부* **특징**을 기억한다.
 
-* 이미지가 휘어 있거나, 크기가 제각각이거나, 색상, 모양 등 조금만 변형이 생긴다면 학습이 어렵다.
-* 학습하는 데에 시간이 오래 걸린다.
-* 이미지 픽셀을 1차원으로 평면화(flatten)하여 표현하는 과정에서 정보의 손실이 발생할 수 있다.
+ *따라서*  이 원리를 모방한 CNN 알고리즘은 이미지 픽셀을 모두 입력하는 것이 아니라, 이미지를 대표하는 특징을 도출한다. 이 과정을 반복하여 이미지를 대표하는 여러 개의 이미지를 만들어서 그 이미지의 특징적 픽셀을 학습하는 것이다.
 
+ CNN 알고리즘의 가장 큰 특징은 **이미지 크기를 줄이면서도, 특징을 나타내는 여러 장의 이미지들**을 추출해낼 수 있다는 것이다. `Fully Connected Layer`에 도달하기 전까지 평활화 과정 없이 이미지의 공간 정보를 효과적으로 유지하면서, 특징을 나타내는 픽셀들을 추출해 낸다. 이 과정에서 인접한 픽셀과의 관계를 효과적으로 인식할 수 있고, 추출한 이미지의 특징을 모으거나 강화할 수도 있다.
 
+ 학습 효율성 측면에서 보자면, `Fully Connected Layer`에 추출 과정을 거친 벡터를 넣기 때문에, 모든 이미지 픽셀을 1차원으로 평활화하여 주입할 때보다 학습해야 할 `node` 수가 적어진다.
 
- CNN 알고리즘은 기존의 신경망 모델과 달리, 사람의 학습 방식을 모방해 이미지 학습을 진행한다.
 
- 요컨대, 사람은 이미지에 변형이 생기더라도 특징을 비교해서 기억하고 있기 때문에, 이미지를 판단할 수 있다. 즉, 데이터를 있는 그대로 기억하는 것이 아니라, **데이터가 가진 *일부* 특징**을 기억한다.
 
- *따라서*  이 원리를 모방한 CNN 알고리즘은 이미지 픽셀을 모두 입력하는 것이 아니라, 이미지를 대표하는 특징을 도출한다. 즉, 이미지를 대표하는 여러 개의 이미지를 만들어서 그 이미지의 특징적 픽셀을 학습한다.
 
 
+## 2. 주요 개념
 
-![CNN 원리]({{ site.url }}/assets/images/CNN1.png)
 
 
+ 정사각 행렬 모양의 `Filter`가 이미지를 순회하며 `Convolution`을 계산하고, 그 계산 결과를 이용하여 `Feature(d) Map`을 만든다. 이를 모아 한 이미지에서 활성화된 픽셀만을 모은 `Activation Map`을 만든다. 여기까지의 과정을 하나의 `Convolution Layer`라고 한다. 이 `Convolution Layer`의 shape은 `Filter` 크기, `Stride`, `Padding`, `Pooling` 등에 영향을 받는다.  출력된 `Convolution Layer`를 또 하나의 입력 데이터로 삼아, 위의 과정을 반복한다. 이 과정에서 이미지의 `size`는 줄어들고, `channel`이 늘어나게 된다. 이렇게 한 이미지의 특징을 뽑아 낸다.
 
 
 
-### 1.2. 특징
+### 2.1. 이미지 데이터에 대한 이해
 
 
 
- CNN 알고리즘의 가장 큰 특징은 이미지 크기를 **줄이면서**, **특징**을 나타내는 여러 장의 이미지들을 뽑아낼 수 있다는 것이다.
+ 우리가 눈으로 보는 컬러 이미지는 사실 `RGB` 공간에 저장된다. 쉽게 이해하자면, 아래와 같은 컬러 이미지는 다음과 같이 `RED`, `GREEN`, `BLUE`의 세 가지 픽셀 값을 사용하여 표현된다는 것이다. 
 
-- 이미지의 공간 정보를 유지하면서(flatten 없음), 인접한 이미지와의 특징을 효과적으로 인식한다.
-- 추출한 이미지의 특징을 모으거나 강화할 수 있다.
-- 일반 FC layer 학습 방식과 비교해, 학습해야 할 node의 수가 적다.
+![RGB]({{site.url}}/assets/images/ruby_rgb.png){: width="500" height="300"}{: .align-center} 
 
+<br>
 
+ 따라서 위의 이미지를 다음과 같이 이해할 수 있다.
 
+![RGB-image]({{site.url}}/assets/images/rgb-image.png){: width="500" height="300"}{: .align-center} 
 
 
-### 1.3. 주요 개념
 
-> **Filter**가 **입력 데이터(이미지)**를 순회하며 **합성곱**을 계산하고, 그 계산 결과를 이용하여 **Feature Map**을 만든다. 이를 모아 한 이미지에 대한 **Activation Map**을 만드는데, 이 과정을 하나의 **Convolution**이라고 한다. **Convolution Layer**의 shape은 **Filter 크기, Stride, Padding 적용 여부, Max Pooling 크기**에 따라 달라진다.
+<br>
 
+ 만약 흑백 이미지라면, 이미지는 `RGB` 공간이 아니라 `Gray Scale` 공간에 저장된다. 이 경우, 픽셀의 값은 당연히 `흰색`의 강도를 나타낼 것이다. 클수록 검정색에 가깝고, 작을 수록 흰색에 가깝다.
 
+ 이렇게 이미지가 어떤 색 공간에 저장되는지에 따라 이미지의 `depth`가 달라진다. `RGB` 공간의 경우 이미지 `depth`는 3이고, `Gray Scale` 공간의 경우 1이다. 이미지를 하나의 `depth`별로 쪼개어 나타냈을 때 한 장 한 장(?)의 이미지를 `Channel`이라고 한다.
 
- 출력된 **Convolution** 데이터를 또 하나의 입력 데이터로 삼아, 위의 과정을 반복한다. 이 과정에서 이미지의 size는 줄어들고, channel이 늘어나게 된다.
 
 
 
-**1) input data type : Height x Width x Channel**
 
-**2) Channel**
+### 2.2. 입력 데이터
 
- Convolution을 구성하는 layer의 수를 의미한다. 처음에는 image의 depth(흑백, 컬러 등)이지만, 그 이후에는 필터의 개수가 된다.
 
- 최초의 input image가 컬러 이미지라면, RGB 스케일을 사용하기 때문에 channel이 3이다. 반면, 흑백 이미지라면, grey 스케일을 사용하기 때문에 channel이 1이다.
 
-![channel]({{ site.url }}/assets/images/channel.jpg)
+ CNN 신경망에 입력되는 데이터는 `(Height, Width, Channel)` 형태의 이미지이다.  만약 CNN 신경망에 이미지 1장이 입력된다고 해 보자. 그 이미지가 만약 28x28 픽셀의 컬러 이미지라면 해당 입력 데이터의 shape은 `(28, 28, 3)`이고, 흑백 이미지라면 그 shape은 `(28, 28, 1)`이 된다.
 
-* 높이가 39 픽셀이고 폭이 31 픽셀인 컬러 사진 데이터의 shape은 (39, 31, 3).
-* 높이가 39픽셀이고 폭이 31픽셀인 흑백 사진 데이터의 shape은 (39, 31, 1).
 
- 이후 convolution layer를 지날 때마다,  *filter의 수에 따라* channel이 달라지게 된다.
 
+### 2.3. Convolution Layer
 
+<br>
 
-**3) Filter(=kernel), Stride**
+**1) 필터 (*a.k.a Kernel*)** 
 
 
 
- 합성곱 연산을 수행하는 과정에서, 이미지의 특징을 뽑아낼 거름망이다.
+ 이미지의 특징을 뽑아낼 **거름망** 역할을 한다. 일반적으로 2차원 정사각 행렬 형태이다. 자신의 사이즈 만큼 이미지를 확대하여, 해당하는 부분만 확인한다. 그리고 특정한 연산을 수행하여 그 영역의 값들을 *하나의* 값으로 뽑아 낸다.
 
+ 해당하는 영역의 값들을 하나의 값으로 뽑아내기 위해, 합성곱 연산을 수행한다. `Image Detection`을 위한 것으로, 기존 신경망 모델에서의 `weight`이라고 이해하면 된다. 처음에는 `random`값을 부여한 뒤, 학습을 통해 적절한 `filter` 값을 찾아 나가게 된다.
 
 
-![filter]({{ site.url }}/assets/images/filter.png)
 
+> *Channel*
+>
+>  `Convolution`을 구성하는 레이어의 수를 의미한다. 처음에는 이미지의 `depth`(흑백, 컬러 여부)이지만, 그 이후에는 필터의 개수가 된다. 따라서 이미지는 입력층을 지나 `Convolution Layer`를 지날 때마다, 채널의 수가 달라지게 된다.
 
+<br>
 
- 즉, `image detection`을 위한 가중치이다. 기존 모델에서의 `weight`라고 봐도 된다. 일반적으로 정사각 행렬로 정의한다. 처음에는 random 값을 부여하며, 학습을 통해 모델이 적절한 filter 값을 찾아 나가게 된다.
+**2) 합성곱**
 
 
 
-
-
-**4) Convolution(합성곱)**
-
-
-
- 각 이미지 데이터에서 filter를 통해 feature을 추출하기 위해 사용하는 연산으로, [위키피디아]([https://ko.wikipedia.org/wiki/%ED%95%A9%EC%84%B1%EA%B3%B1](https://ko.wikipedia.org/wiki/합성곱))에서는 다음과 같이 정의한다.
-
-
-
-> *"합성곱 연산*은 두 함수 f, g 가운데 하나의 함수를 반전(reverse), 전이(shift)시킨 다음, 다른 하나의 함수와 곱한 결과를 적분하는 것을 의미한다."
-
-
-
- 이해를 위해 이미지로 나타내면 다음과 같다.
-
-
-
-![colvolution]({{site.url}}/assets/images/convolution23.png)
-
-![colvolution detail]({{site.url}}/assets/images/convolution1.gif)
-
-
-
-**5) Feature Map, Stride**
-
-
-
- 입력된 이미지 데이터에 합성곱 연산을 수행한 결과로, 각 이미지의 특징을 찾아낸 결과이다.
-
-![feature map]({{site.url}}/assets/images/featuremap.png)
-
-
-
- Feature map을 도출하기 위해, filter는 입력된 이미지 데이터를 일정한 간격으로 *순회* 한다. 이 때, 필터를 순회하기 위해 지정하는 간격을 **stride**라고 한다.
-
-* stride가 1일 때 parameter가 SAME 옵션이면 처음 이미지 사이즈와 결과 이미지 사이즈가 동일하게 나온다.
-
-* stride가 2일 때 parameter가 SAME 옵션이면 처음 이미지 사이즈의 절반으로 줄어든다.
-
-  
-
-  
-
-  *예시) 4X4 이미지에 2X2 필터를 stride 1로 적용했을 때의 feature map*
-  
-  ![stride example]({{ site.url}}/assets/images/stride.jpg)
-
-
-
- feature map의 size가 정수가 되게 stride를 설정해야 한다. feature map의 한 변의 길이는 다음과 같다.
-
-
-$$
-{(N-F)/stride + 1}
-$$
-
-
-
- input data의 channel별로 하나씩의 feature map이 만들어진다.
-
-![feature map2]({{ site.url }}/assets/images/featuredddmap.png)
-
-
-
- **입력 데이터의 channel 수와 필터의 channel 수가 같아야** 합성곱 연산이 수행될 수 있다.
-
-
-
-
-
-**6) Activation map**
-
-
-
- feature map을 모은 결과로, *convolution layer의 입력 데이터*가 된다. activation map의 shape은 
-
-
-$$
-(feature-map-size) * filter 개수
-$$
-
-
-
-와 같다.
-
-
-
-![activation map]({{site.url}}/assets/images/lecture.png)
-
-
-
-**7) Padding**
+ 필터가 합성곱 연산을 수행하는 과정을 알아보기 위해 샘플 이미지를 준비하자. 왼쪽의 흑백 이미지 사진을 `Gray Scale`의 픽셀 값으로 나타내면 오른쪽과 같다.
 
  
 
- convolution layer를 중첩하여 지나며 출력 이미지 데이터의 크기가 입력 이미지 데이터의 크기보다 작아지게 된다. 이렇게 이미지가 축소되는 과정에서 공간 정보의 손실이 생길 수 있다.
+|                             루비                             |                       Gray Scale 픽셀                        |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![ruby]({{site.url}}/assets/images/ruby.png){: width="250" height="250"} | ![ruby_gray]({{site.url}}/assets/images/ruby_pixel.png){: width="250" height="250"} |
 
- **이미지 데이터의 손실을 막기 위해** 이미지의 테두리에 지정된 픽셀만큼 0의 값을 할당하여 덧대어 주는 과정을 의미한다. 이 때, 0의 값은 말 그대로 0이라기 보다는 *비어 있는 공간* 을 의미한다고 이해한다.
+<br>
 
-
-
-![padding]({{site.url}}/assets/images/padding.png)
-
-
-
- 이미지 데이터의 외곽에 0의 픽셀값을 할당함으로써, 다음의 효과를 얻을 수 있다.
-* convolution layer의 출력 데이터가 줄어드는 것을 방지할 수 있다.
-* 출력 데이터의 크기를 조절할 수 있다.
-* 인공 신경망이 이미지의 외곽을 인식할 수 있다.
-
-* `valid`(패딩 없음)와 `same`(feature map의 크기가 기존 입력 이미지 데이터의 크기와 같아짐)의 파라미터 옵션으로 조정한다.
-
-![padding option]({{site.url}}/assets/images/paddingoption.png)
+  이제 임의의 `Filter`를 가지고 위의 흑백 이미지 스케일에 합성곱 연산을 수행해 보자.
 
 
 
-  padding을 진행한 결과 이미지의 한 변의 size는 다음과 같다.
+* 임의의 `Filter` : `random` 값이므로 크게 신경쓰지 말자.
+
+![filter]({{site.url}}/assets/images/filter_ex.png){: width="100" height="100"}{: .align-center} 
+
+* 합성곱 연산 
+
+ [위키피디아](https://ko.wikipedia.org/wiki/%ED%95%A9%EC%84%B1%EA%B3%B1)를 보면, 합성곱 연산은 *“합성곱 연산은 두 함수 f, g 가운데 하나의 함수를 반전(reverse), 전이(shift)시킨 다음, 다른 하나의 함수와 곱한 결과를 적분하는 것을 의미한다.”*라고 정의되어 있다.
+
+ 그러나 지금 단계에서는 수식보다 연산이 어떻게 이루어지는지 그 과정을 이해하는 것이 더 중요하다.
+
+![convolution]({{site.url}}/assets/images/convolution.png){: width="600" height="400"}{: .align-center} 
+
+ 위의 그림에서 각 색깔로 표시되어 있는 위치에서 합성곱 연산이 어떻게 일어나는지 보자. 입력된 이미지 데이터 행렬에서 필터 크기만큼만 추출~~*(? 적당한 말이 생각이 안 난다)*~~한다. 그리고 필터 행렬과 추출된 행렬 크기 만큼의 이미지 데이터에서 각 원소를 곱한 뒤 더한다.
+
+ <br>
+
+**3) 보폭  (*a.k.a Stride*)**
+
+
+
+ `Filter`가 합성곱 연산을 수행하기 위해 **이동하는 양**을 의미한다. `window` 개념을 생각하면 이해하기 쉽다. 필터가 지정된 보폭만큼 왼쪽에서 오른쪽으로, 그리고 위에서 아래로 이동한다. 
+
+ `5 x 5` 이미지에서 필터 사이즈가 `3 x 3`일 때, 보폭이 `1`인 경우와 `2`인 경우, 필터의 이동이 어떻게 달라지는지 살펴 보자.
+
+
+
+|                     stride = 1                     |                     stride = 2                     |
+| :------------------------------------------------: | :------------------------------------------------: |
+| ![stride1]({{site.url}}/assets/images/stride1.png) | ![stride2]({{site.url}}/assets/images/stride2.png) |
+
+
+
+<br> 
+
+**4) Feature map 만들기**
+
+
+
+ 드디어 이미지에서 특징을 뽑아낸 새로운 이미지를 만들 차례이다. 필터를 설정하고, 같은 값을 갖는 필터를 이용해 입력된 이미지 데이터를 훑는(?)다. 그 과정에서 각각의 필터가 계산해 내는 합성곱 연산 결과를 2차원 행렬에 저장한다. 그러면 그것이 바로 `Feature Map`이다. 
+
+ `5 x 5` 이미지, 필터 사이즈가 `3 x 3`일 때, 보폭이 `1`인 경우 `Feature Map`은 다음과 같이 구한다.
+
+<br>
+
+![feature map]({{site.url}}/assets/images/feature_map_1.png){: width="600" height="400"}{: .align-center} 
+
+<br>
+
+
+
+ 이러한 과정으로 필터를 거쳐 합성곱을 수행하면, 필터 가중치에 해당하는 이미지의 특징들이 추출된다. *~~(마치 필터 모양, 크기의 돋보기로 이미지를 살펴 봐서 하나씩 뽑아낸 셈?)~~* 그래서 이를 이미지의 특징이 추출된 형태라 하여 `Feature(d) Map`이라 한다. 
+
+ 예컨대 아래와 같이 `5`를 나타내는 이미지에서 맨 위의 가로 부분을 뽑아내서 인식하고 싶다면, 가로로 배열되어 있는 성분을 강조하는 `3 x 3` 크기의 필터를 적용할 수 있을 것이다. 숫자가 없는 부분의 픽셀 값을 모두 0이라 하여 `Convolution`을 수행하면, 오른쪽과 같이 기존의 이미지에 비해 가로 성분이 강조된 `Feature Map`이 출력된다.
+
+ ![feature map ex]({{site.url}}/assets/images/feature-map-example.png){: width="600" height="400"}{: .align-center} 
+
+<br>
+
+ 
+
+ 중요한 것은 `Feature Map`에서 한 변의 길이이다. 한 변의 길이가 정수가 되도록 `stride`를 설정하는 것이 중요하다.
+
+
+
+* `5 x 5` 이미지, `3 x 3` 필터, `1` 보폭 : `Feature Map` 사이즈 `3 x 3`
+* `5 x 5` 이미지, `3 x 3` 필터, `2` 보폭 : `Feature Map` 사이즈 `2 x 2`
+
+
+
+ 이를 바탕으로 한 변의 길이를 일반화하여 나타내면 다음과 같다. (`N` : 이미지의 변의 길이(가로/세로), `F` : 필터의 한 변 크기, `stride` : 보폭 크기)
+
 
 
 $$
-{(N + 2P - F)/S} + 1
+\{(N-F)/stride\} + 1
 $$
 
 
 
-**8) Pooling layer**
+**5) Padding**
 
 
 
- convolution layer의 출력 데이터를 받아서, 출력 데이터의 크기를 줄이거나, 특정 데이터를 강조하기 위한 용도로 사용하는 layer이다.
-
- pooling layer의 처리 방식에는 `Max pooling`, `Min pooling`, `Average pooling` 등이 있다. CNN에서는 주로 `Max pooling`을 사용한다.
-
-![maxpulling]({{site.url}}/assets/images/maxpulling.png)
+ 그런데 위와 같이 `Filter`를 적용하여 이미지의 특징을 추출하는 작업을 계속하다 보면, 이미지의 사이즈가 작아지게 된다. 이렇게 이미지의 사이즈가 작아지게 되면 정보의 손실이 발생하게 되므로, 이를 방지하기 위해 이미지 레이어 외부에 일정한 값의 레이어를 덧댄다. 일반적으로 상하좌우 같은 크기의 값을 갖는 0을 덧대는 패딩을 사용한다.
 
 
 
-  Pooling 시 kernel의 크기와 stride를 정한다. 옵션으로는 `valid`(패딩 없음)와 `same`(pooling 후의 크기가 기존 입력 이미지 데이터의 크기와 같음)의 옵션을 갖는다.
+ ![padding ex]({{site.url}}/assets/images/padding_e.png){: width="600" height="400"}{: .align-center} 
 
-  Pooling 결과는 다음과 같은 특징을 갖는다.
 
-* 학습 대상 파라미터(filter)가 없다. 대신 `kernel`이라고 부른다.
-* 출력 데이터의 크기가 감소한다.
-* 채널 수는 변경되지 않는다.
+
+  위의 예시에서 양 쪽에 1만큼의 패딩을 덧댄다. 원래 `10 x 10` 사이즈이던 이미지가 `12 x 12` 사이즈가 된다. 그리고 컨볼루션을 한 결과, 원래 이미지와 같은 크기의 `10 x 10` 사이즈의 `Feature Map`이 나온다.
+
+
+
+> *참고* 
+>
+>  이후 코드 구현에서 패딩의 결과를 어떻게 이해해야 할지 몰라 질문했는데, 패딩에서 덧대는 `0`이 진짜 숫자로서의 의미를 갖는다기 보다는 비어 있는 `공간`으로서의 의미를 갖는다고 이해해야 맞는 듯하다.
+
+
+
+ 패딩을 통해 다음과 같은 효과를 얻을 수 있다.
+
+* `Convolution Layer`의 출력 데이터 크기가 과도하게 줄어드는 것을 방지한다. 이미지의 공간 정보 손실을 방지한다.
+* 인공 신경망이 이미지 외곽을 인지할 수 있다.
+
+
+
+ 이를 바탕으로 한 변의 길이를 일반화하여 나타내면 다음과 같다. (`N` : 이미지의 변의 길이(가로/세로), `F` : 필터의 한 변 크기, `P` : 패딩의 크기, `stride` : 보폭 크기) 패딩을 하면 이미지 한 변의 길이가 `N`에서 `N+2P`로 늘어난다는 것만 주의하면 된다.
+
+
+
+$$
+\{(N+2P-F)/stride\} + 1
+$$
+
+
+
+ 
+
+**6) Activation Map**
+
+
+
+`Feature Map`의 각 픽셀에 대해 활성화 함수를 적용한 결과이다. `Convolution Layer`의 최종 출력 결과가 된다. 일반적으로 `ReLU` 함수를 사용한다.
+
+
+
+<br>
+
+### 2.4. Pooling Layer
+
+
+
+> *참고*
+>
+>  `Pooling` 별도 `Layer`를 형성하는 작업이 아닌, `Convolution Layer` 내의 작업으로 보기도 한다. 
+
+
+
+ `Pooling`이란 `Convolution Layer`의 출력인 `Activation Map`의 크기를 줄이는 과정이다. `Activation Map`에서 어차피 인접한 부분이라면 겹치는 픽셀이 많을 것이다. 따라서 인접한 부분에서 일정한 기준에 따라 픽셀 하나의 값을 뽑아 낸다.
+
+ 일정한 크기의 커널을 두고 `Activation Map`을 슬라이딩하며 가장 큰 값(`Max Pooling`) 혹은 가장 작은 값(`Min Pooling`) 혹은 평균값(`Average Pooling`)을 뽑아 낸다. `Pooling` 커널이 슬라이딩하는 것은 `2.3.1)`의 필터가 움직이는 것과 같은 원리이므로, 해당 커널 역시 `stride`가 있다.
+
+ 커널 사이즈가 `2x2`이고, `stride`가 2일 때 각각의 Pooling 종류에 따라 `Activation Map`이 어떻게 달라지는지 확인하자.
+
+
+
+ ![pooling]({{site.url}}/assets/images/pooling-struc.png){: width="250" height="250"}{: .align-center} 
+
+
+
+|                       Max                       |                       Avg                       |                       Min                       |
+| :---------------------------------------------: | :---------------------------------------------: | :---------------------------------------------: |
+| ![max]({{site.url}}/assets/images/max-pool.png) | ![avg]({{site.url}}/assets/images/avg-pool.png) | ![min]({{site.url}}/assets/images/min-pool.png) |
+
+<br>
+
+ 일반적으로 커널에 해당하는 영역에서 대푯값을 뽑아내고자 하므로, 가장 큰 값이 해당 커널 영역에서 상관성이 가장 높다고 판단하여 `Max Pooling`을 제일 많이 사용한다.
+
+ `Pooling`을 적용하면 정보의 손실이 일어난다는 단점이 있지만, 한편으로 연산량, 메모리 사용량을 줄이고, 과적합을 방지할 수 있다. 또한 입력 데이터의 특정 부분이 약간 틀어지거나 위치가 변하더라도, `Pooling`을 적용함으로써 동일한 결과를 얻어낼 수 있다.
+
+
+
+> *참고* : Viewpoint Invariance(시각 불변성)
+>
+>  고양이 코의 위치가 달라져도 고양이 코라고 인식할 수 있다. 이미지의 일부분이 변형되더라도 그 특징을 통해 정상적으로 인식하기 위해서는 Pooling이 필요하다.
+
+ 
+
+<br>
+
+### 2.5. Fully Connected Layer
+
+ 위와 같은 `Convolution`과 `Pooling`을 반복적으로 적용하여 이미지의 특징을 추출해 낸다. 해당 과정을 반복하면 반복할수록, 원래 이미지는 추상화되어 특징들이 남게 된다.
+
+ 이렇게 추출된 결과를 `flatten`하여, 1차원 벡터로 `Fully Connected Layer`에 전달한다.
+
+<br>
+
+ ![fc layer]({{site.url}}/assets/images/fully-connected-layer.png){: .align-center} 
+
+
+
+`Fully Connected Layer`에서 수행하는 일은 이전의 신경망 모델과 동일하다.  활성화 함수를 적용해 원하는 작업(여기서는 분류)을 수행한 뒤, 최종 결과를 추출해 낸다. 옵티마이저는 `Convolution Layer`와 `Fully Connected Layer`의 가중치에 오류들을 역전파하며 각 가중치들을 조정해 나가게 된다.
+
+<br>
+
+
+
+## 3. 모델 아키텍쳐
+
+
+
+ `20 x 20` 사이즈의 컬러 이미지 1장을 1번의 `Convolution Layer`와 `Pooling Layer`에 통과시켜 고양이인지, 강아지인지 구분한다고 해 보자.
+
+<br>
+
+ ![cnn arch]({{site.url}}/assets/images/cnn-architecture.png){: .align-center} 
+
+
+
+ 3차원 이미지이기 때문에, `RGB` 각각의 채널로 구성되어 있다. 여기에 `4 x 4` 형태의 필터를 적용한다고 하자. `RGB` 공간의 이미지이기 때문에, 필터 역시 `RGB` 공간에 있어야 하므로, 필터의 `depth`도 3이다. 따라서 필터 shape은 `(4, 4, 3)`이 된다.
+
+ 필터에서 `R` 채널에 해당하는 부분이 이미지의 `R` 채널을 순회하고, `G`에 해당하는 부분이 이미지의 `G` 채널을 순회하며, `B`에 해당하는 부분이 이미지의 `B` 채널을 순회한다. 각각의 채널에 필터가 적용된다는 말이다.
+
+ 이제 이 필터는 12개의 텐서로 구성된 육면체(실제 구현 단계에서는 `Tensor`이다)이며, 이미지에 적용했을 때 총 12개의 값이 나온다. 이 상태에서 `Convolution` 연산을 하기 때문에 12개의 값을 모두 더한 것이 `Feature Map`의 한 칸에 저장된다. 패딩을 하지 않고, `stride`를 2로 설정한다고 하자. 이 때 `Feature Map` 한 변의 길이는 9가 된다.
+
+ 이제 이미지에 각각 다른 필터 6개를 적용한다고 하자. 6개의 서로 다른 특징들을 추출하겠다는 의미다. 예컨대 하나의 필터는 고양이의 귀를, 하나는 고양이의 눈을, 또 다른 하나는 고양이 수염을 인식하는 방식이다. 서로 다른 부분을 추출하므로 각각의 필터가 가지고 있는 가중치는 모두 다르다.
+
+ 그렇다면 6개의 필터를 활용해 `Convolution`을 적용한 결과로 모두 9x9짜리의 `Feature map` 6개를 결과로 얻게 된다. 각각의 `Feature map`에 `ReLU` 활성화 함수를 적용하여 `Activation Map`을 만든다. 따라서 `Convolution Layer`에서 얻게 되는 데이터의 shape은 `(9, 9, 6)`이 된다.
+
+ 위의 과정을 통해 Convolution 출력 레이어의 최종 결과의 채널은 필터의 개수와 같아 진다는 것을 알 수 있다. 특히 위에서 말했듯 필터가 추출하고 싶은 이미지 특징을 나타낸다는 점을 고려한다면, 추출하고 싶은 특징의 수를 설정한 뒤, 이것을 모두 필터로 설정해 버리면 된다. **그 결과, `Convolution Layer`의 채널 수로 추출하고자 하는 특성의 수 만큼을 가지게 된다.**
+
+ 이제 위의 `Activation Map`에 커널 사이즈를 `3 x 3`, `stride`를 2로 하여 `Max Pooling`을 적용하자. 그러면 각각의 `Activation Map`이 `3 x 3` 사이즈로 축소된다.
+
+ 이렇게 모든 `Convolution`과 `Pooling`의 과정을 거친 후, 모든 데이터를 평활화한다. 그러면 `(3, 3, 6)` shape의 데이터가 `(54, )` shape의 1차원 벡터가 된다. 이 벡터를 `Fully Connected Layer`에 주입하고, 활성화 함수로 Sigmoid 함수를 사용하여 이진 분류 문제를 풀면 되는 것이다.
+
+<br>
+
+ 한 장의 이미지를 주입할 때 CNN 모델의 아키텍쳐는 위와 같다. 이제 위와 같은 이미지가 여러 장 있다면, 데이터의 shape이 4차원이 될 것이다. 기존의 3차원 구조에 이미지의 개수가 한 차원으로 더 추가되는 것이다. 다음 실습에서 살펴 볼 Tensorflow에서는 이미지 데이터를 `(입력 이미지 개수, 채널 수, 이미지 높이, 이미지 너비)`, 즉, `(Num, Height, Width, Channels)`로 표현한다.
+
+ 차원이 한 차원 더 더해지는 것일 뿐, 뒤의 과정은 동일하다. 이렇게 여러 장의 이미지에 `Convolution`과 `Pooling`을 여러 번 적용하고(여러 층을 만든다는 의미이다.), 학습을 통해 특징을 추출해낸 뒤 `Fully Connected Layer`에 주입하여 원하는 작업을 수행하는 것이 CNN 알고리즘의 원리이다.

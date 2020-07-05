@@ -3,7 +3,7 @@ title: "[Programmers] 야근 지수"
 excerpt: 3일 1문제 - 1
 header:
   teaser: /assets/images/blog-Programming.jpg
-toc: true
+toc: false
 categories:
   - Programming
 tags:
@@ -104,12 +104,7 @@ def solution(n, works):
 
 
 
-* 스킬 테스트 레벨3 풀면서 처음으로 20분 안에 로직 짰고, 실제로 정확성 테스트도 다 맞았는데, 효율성에서 걸렸다. `for`, `while`, `sort` 등 너무 효율적이지 못한 요소가 많은 것 같다. 
-
-  
-
-![image-20200701231617318]({{site.url}}/assets/images/image-20200701231617318.png)
-
+* 효율성에서 걸렸다. `for`, `while`, `sort` 등 너무 효율적이지 못한 요소가 많은 것 같다. 
 
 
 * 채점 결과 다시 살펴 보니 테스트 7, 8에서 시간이 좀 많이 걸린다. 질문 게시판 검색해 보면서 해당 테스트에서 실패한 사례가 있나 봐야 겠다. 
@@ -268,6 +263,7 @@ def solution(n, works):
 
 
 
+* 시간 초과의 주된 원인은 정렬이었나보다.
 * 풀긴 했는데, 아무리 생각해도 코드가 너무 더럽다. 경우의 수 분기가 저렇게 많은 게 좋은 풀이는 아닌 듯. ~~*심란하다. 왜 이렇게 눈에 보이는 대로 곧이 곧대로밖에 못 짜는걸까.*~~
 * 로직과 별개로, 배열 원소 바꿀 때 주의하자. `for work in works: work -= 1` 이런 식으로 코드 짜면, 리스트 내부 원소 안 바뀐다. 인덱싱을 통해 값을 할당해 주어야 한다.
 

@@ -1,11 +1,8 @@
 ---
 title:  "[DL] CNN_3. 앙상블"
-excerpt: "<<Neural Network>> CNN 모델에 앙상블을 적용해 보자(feat.클래스...)."
+excerpt: "<<Neural Network>> CNN 모델에 앙상블을 적용해 보자. (feat.클래스...)"
 toc: true
 toc_sticky: true
-header:
-  teaser: /assets/images/blog-Lecture-Tensorflow.jpg
-
 categories:
   - Lecture
 tags:
@@ -16,17 +13,19 @@ tags:
 last_modified_at: 2020-03-01
 ---
 
+<sup> [문성훈 강사님](https://moon9342.github.io)의 강의를 기반으로 합니다.</sup> <sup>[Github Repo](https://github.com/sirzzang/LECTURE/tree/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL)</sup> 
+
+<sup>Tensorflow: 1.5</sup>
 
 
 
 
-# _CNN(Convolutional Neural Network)_
 
-> 이미지 분석에 강점을 갖는 **합성곱 신경망**을 이용해 이미지를 예측하자.
-
+# _CNN + Ensemble_
 
 
-## 4. CNN + Ensemble
+
+## 1. 앙상블
 
 
 
@@ -52,9 +51,11 @@ last_modified_at: 2020-03-01
 
 
 
-### 4.1. Logic으로 구현하기
+## 2. 구현
 
-[노트북 파일](https://github.com/sirzzang/LECTURE/blob/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL/[20200116] DL_CNN_MNIST_ensemble.ipynb)
+
+
+### 2.1. Logic으로 구현하기
 
 
 
@@ -246,9 +247,7 @@ print(f"정확도는 {accuracy_rate * 100}% 입니다.")
 
 
 
-### 4.2. OOP로 구현하기
-
-[노트북 파일](https://github.com/sirzzang/LECTURE/blob/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL/[20200117] DL_CNN_MNIST_ensemble_class.ipynb)
+### 2.2. OOP로 구현하기
 
 
 

@@ -3,9 +3,6 @@ title:  "[DL] CNN_1. 모델 구조"
 excerpt: "<<Neural Network>> CNN 모델 구조를 이해해 보자."
 toc: true
 toc_sticky: true
-header:
-  teaser: /assets/images/blog-Lecture-Tensorflow.jpg
-
 categories:
   - Lecture
 tags:
@@ -17,7 +14,7 @@ use_math: true
 last_modified_at: 2020-07-05
 ---
 
-<sup> [문성훈 강사님](https://moon9342.github.io)의 강의를 기반으로 합니다.</sup> <sup>[Github Repo](https://github.com/sirzzang/LECTURE/tree/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL)</sup> <sup> +) [조성현 강사님](https://blog.naver.com/chunjein)의 강의를 기반으로 내용을 보충합니다.</sup> 
+<sup> [문성훈 강사님](https://moon9342.github.io)의 강의를 기반으로 합니다.</sup> <sup>[Github Repo](https://github.com/sirzzang/LECTURE/tree/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL)</sup> 
 
 # _CNN(Convolutional Neural Network)_
 
@@ -79,8 +76,6 @@ last_modified_at: 2020-07-05
 
 
 
-<br>
-
  만약 흑백 이미지라면, 이미지는 `RGB` 공간이 아니라 `Gray Scale` 공간에 저장된다. 이 경우, 픽셀의 값은 당연히 `흰색`의 강도를 나타낼 것이다. 클수록 검정색에 가깝고, 작을 수록 흰색에 가깝다.
 
  이렇게 이미지가 어떤 색 공간에 저장되는지에 따라 이미지의 `depth`가 달라진다. `RGB` 공간의 경우 이미지 `depth`는 3이고, `Gray Scale` 공간의 경우 1이다. 이미지를 하나의 `depth`별로 쪼개어 나타냈을 때 한 장 한 장(?)의 이미지를 `Channel`이라고 한다.
@@ -95,7 +90,7 @@ last_modified_at: 2020-07-05
 
  CNN 신경망에 입력되는 데이터는 `(Height, Width, Channel)` 형태의 이미지이다.  만약 CNN 신경망에 이미지 1장이 입력된다고 해 보자. 그 이미지가 만약 28x28 픽셀의 컬러 이미지라면 해당 입력 데이터의 shape은 `(28, 28, 3)`이고, 흑백 이미지라면 그 shape은 `(28, 28, 1)`이 된다.
 
-
+<br>
 
 ### 2.3. Convolution Layer
 
@@ -107,7 +102,7 @@ last_modified_at: 2020-07-05
 
  이미지의 특징을 뽑아낼 **거름망** 역할을 한다. 일반적으로 2차원 정사각 행렬 형태이다. 자신의 사이즈 만큼 이미지를 확대하여, 해당하는 부분만 확인한다. 그리고 특정한 연산을 수행하여 그 영역의 값들을 *하나의* 값으로 뽑아 낸다.
 
- 해당하는 영역의 값들을 하나의 값으로 뽑아내기 위해, 합성곱 연산을 수행한다. `Image Detection`을 위한 것으로, 기존 신경망 모델에서의 `weight`이라고 이해하면 된다. 처음에는 `random`값을 부여한 뒤, 학습을 통해 적절한 `filter` 값을 찾아 나가게 된다.
+ 해당하는 영역의 값들을 하나의 값으로 뽑아내기 위해, 합성곱 연산을 수행한다. `Image Detection`을 위한 것으로, 기존 신경망 모델에서의 `weight`이라고 이해하면 된다. 처음에는 random 값을 부여한 뒤, 학습을 통해 적절한 `filter` 값을 찾아 나가게 된다.
 
 
 
@@ -141,9 +136,11 @@ last_modified_at: 2020-07-05
 
 * 합성곱 연산 
 
- [위키피디아](https://ko.wikipedia.org/wiki/%ED%95%A9%EC%84%B1%EA%B3%B1)를 보면, 합성곱 연산은 *“합성곱 연산은 두 함수 f, g 가운데 하나의 함수를 반전(reverse), 전이(shift)시킨 다음, 다른 하나의 함수와 곱한 결과를 적분하는 것을 의미한다.”*라고 정의되어 있다.
 
- 그러나 지금 단계에서는 수식보다 연산이 어떻게 이루어지는지 그 과정을 이해하는 것이 더 중요하다.
+
+> [위키피디아](https://ko.wikipedia.org/wiki/%ED%95%A9%EC%84%B1%EA%B3%B1)를 보면, 합성곱 연산은 *“합성곱 연산은 두 함수 f, g 가운데 하나의 함수를 반전(reverse), 전이(shift)시킨 다음, 다른 하나의 함수와 곱한 결과를 적분하는 것을 의미한다.”*라고 정의되어 있다.
+
+
 
 ![convolution]({{site.url}}/assets/images/convolution.png){: width="600" height="400"}{: .align-center} 
 
@@ -271,7 +268,7 @@ $$
 
 > *참고*
 >
->  `Pooling` 별도 `Layer`를 형성하는 작업이 아닌, `Convolution Layer` 내의 작업으로 보기도 한다. 
+>  `Pooling`을 별도 `Layer`가 아니라, `Convolution Layer` 내의 작업으로 보기도 한다. 
 
 
 
@@ -341,11 +338,11 @@ $$
 
  필터에서 `R` 채널에 해당하는 부분이 이미지의 `R` 채널을 순회하고, `G`에 해당하는 부분이 이미지의 `G` 채널을 순회하며, `B`에 해당하는 부분이 이미지의 `B` 채널을 순회한다. 각각의 채널에 필터가 적용된다는 말이다.
 
- 이제 이 필터는 12개의 텐서로 구성된 육면체(실제 구현 단계에서는 `Tensor`이다)이며, 이미지에 적용했을 때 총 12개의 값이 나온다. 이 상태에서 `Convolution` 연산을 하기 때문에 12개의 값을 모두 더한 것이 `Feature Map`의 한 칸에 저장된다. 패딩을 하지 않고, `stride`를 2로 설정한다고 하자. 이 때 `Feature Map` 한 변의 길이는 9가 된다.
+ 이제 이 필터는 12개의 값으로 구성된 육면체(실제 구현 단계에서는 `Tensor`이다)이다. 이 상태에서 `Convolution` 연산을 하기 때문에 12개의 값을 모두 더한 것이 `Feature Map`의 한 칸에 저장된다. 패딩을 하지 않고, `stride`를 2로 설정한다고 하자. 이 때 `Feature Map` 한 변의 길이는 9가 된다.
 
  이제 이미지에 각각 다른 필터 6개를 적용한다고 하자. 6개의 서로 다른 특징들을 추출하겠다는 의미다. 예컨대 하나의 필터는 고양이의 귀를, 하나는 고양이의 눈을, 또 다른 하나는 고양이 수염을 인식하는 방식이다. 서로 다른 부분을 추출하므로 각각의 필터가 가지고 있는 가중치는 모두 다르다.
 
- 그렇다면 6개의 필터를 활용해 `Convolution`을 적용한 결과로 모두 9x9짜리의 `Feature map` 6개를 결과로 얻게 된다. 각각의 `Feature map`에 `ReLU` 활성화 함수를 적용하여 `Activation Map`을 만든다. 따라서 `Convolution Layer`에서 얻게 되는 데이터의 shape은 `(9, 9, 6)`이 된다.
+ 그렇다면 6개의 필터를 활용해 `Convolution`을 적용한 결과로 모두 9x9짜리의 `Feature Map` 6개를 결과로 얻게 된다. 각각의 `Feature Map`에 `ReLU` 활성화 함수를 적용하여 `Activation Map`을 만든다. 따라서 `Convolution Layer`에서 얻게 되는 데이터의 shape은 `(9, 9, 6)`이 된다.
 
  위의 과정을 통해 Convolution 출력 레이어의 최종 결과의 채널은 필터의 개수와 같아 진다는 것을 알 수 있다. 특히 위에서 말했듯 필터가 추출하고 싶은 이미지 특징을 나타낸다는 점을 고려한다면, 추출하고 싶은 특징의 수를 설정한 뒤, 이것을 모두 필터로 설정해 버리면 된다. **그 결과, `Convolution Layer`의 채널 수로 추출하고자 하는 특성의 수 만큼을 가지게 된다.**
 
@@ -355,6 +352,6 @@ $$
 
 <br>
 
- 한 장의 이미지를 주입할 때 CNN 모델의 아키텍쳐는 위와 같다. 이제 위와 같은 이미지가 여러 장 있다면, 데이터의 shape이 4차원이 될 것이다. 기존의 3차원 구조에 이미지의 개수가 한 차원으로 더 추가되는 것이다. 다음 실습에서 살펴 볼 Tensorflow에서는 이미지 데이터를 `(입력 이미지 개수, 채널 수, 이미지 높이, 이미지 너비)`, 즉, `(Num, Height, Width, Channels)`로 표현한다.
+ 한 장의 이미지를 주입할 때 CNN 모델의 아키텍쳐는 위와 같다. 이제 위와 같은 이미지가 여러 장 있다면, 데이터의 shape이 4차원이 될 것이다. 기존의 3차원 구조에 이미지의 개수가 한 차원으로 더 추가되는 것이다. 다음 실습에서 살펴 볼 Tensorflow에서는 이미지 데이터를 `(입력 이미지 개수, 이미지 높이, 이미지 너비, 채널 수)`, 즉, `(Num, Height, Width, Channels)`로 표현한다.
 
  차원이 한 차원 더 더해지는 것일 뿐, 뒤의 과정은 동일하다. 이렇게 여러 장의 이미지에 `Convolution`과 `Pooling`을 여러 번 적용하고(여러 층을 만든다는 의미이다.), 학습을 통해 특징을 추출해낸 뒤 `Fully Connected Layer`에 주입하여 원하는 작업을 수행하는 것이 CNN 알고리즘의 원리이다.

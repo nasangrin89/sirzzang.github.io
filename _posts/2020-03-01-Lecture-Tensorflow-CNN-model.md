@@ -13,31 +13,17 @@ tags:
 last_modified_at: 2020-03-01
 ---
 
+<sup> [문성훈 강사님](https://moon9342.github.io)의 강의를 기반으로 합니다.</sup> <sup>[Github Repo](https://github.com/sirzzang/LECTURE/tree/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL)</sup> 
+
+<sup>Tensorflow: 1.5</sup>
 
 
 
-
-# _CNN(Convolutional Neural Network)_
-
-
-
-<sup>[노트북 파일](https://github.com/sirzzang/LECTURE/blob/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL/[20200114] DL_CNN_MNIST.ipynb)</sup>
-
-<sup>Tensorflow: 1.X</sup>
+# _CNN 구현_
 
 
 
-## 2. CNN 개념의 코드 구현 
-
-
-
- CNN 모델을 구현하기 위한 기본 아키텍쳐는 다음과 같다.
-
-* image + filter
-* convolution layer ( + activation function )
-* pooling layer
-
-
+## 1. CNN 개념의 코드 구현 
 
 
 
@@ -71,6 +57,8 @@ image = np.array([[[1],[2],[3]],
 #    [8.]
 #    [9.]]]]
 ```
+
+
 
 > *참고*
 >
@@ -119,7 +107,11 @@ sess.run(conv2d)
 
  `conv2d`층으로 이루어진 convolution 단계의 실행 결과는 다음과 같다.
 
-> 결과 tensor shape : (이미지 개수, feature map size, 필터 개수(=차원))
+
+
+> 결과 tensor shape : `(이미지 개수, feature map size, 필터 개수(=차원))`
+
+
 
 ```python
 # conv2d층 실행한 결과로 tensor : (1, 2, 2, 3)
@@ -173,7 +165,7 @@ pool = tf.nn.max_pool(conv2d,
 
 
 
-## 3. MNIST 실습
+## 2. MNIST 실습
 
   Tensorflow 내장 MNIST 데이터를 활용해 CNN 모델을 구현한다.
 
@@ -182,7 +174,7 @@ pool = tf.nn.max_pool(conv2d,
 
 
 
-### 3.0. 모듈 및 데이터 준비
+### 2.1. 모듈 및 데이터 준비
 
 
 
@@ -204,20 +196,9 @@ mnist = input_data.read_data_sets("./data/mnist",
                                  one_hot=True)
 ```
 
- 콘솔 창에 다음의 결과가 출력되면 성공적으로 데이터를 불러온 것이다.
-
-```python
-Extracting ./data/mnist\train-images-idx3-ubyte.gz
-Extracting ./data/mnist\train-labels-idx1-ubyte.gz
-Extracting ./data/mnist\t10k-images-idx3-ubyte.gz
-Extracting ./data/mnist\t10k-labels-idx1-ubyte.gz
-```
 
 
-
-
-
-### 3.1. 이미지 확인
+### 3.2. 이미지 확인
 
  train set에 55000개의 이미지가 존재한다. 그 중 하나를 가져와 그림을 그리고, 원본 이미지를 확인하자.  기존의 이미지 데이터를 28x28 사이즈로 바꿔 주어야 2차원의 그림 형태로 확인할 수 있다. 컬러맵 옵션을 `Greys`로 주어 흑백 이미지로 반환했다.
 
@@ -375,9 +356,13 @@ plt.imshow(pool_img[1].reshape(7,7), cmap="Greys")
 
 
 
-### 3.2. 모델 학습
+### 3.3. 모델 구현
+
+
 
  convolution 및 pooling 과정을 거쳐 이미지가 어떻게 변환되는지 감을 잡았다. 이제 모델을 구성하고 학습하자.
+
+
 
 > *참고*
 >

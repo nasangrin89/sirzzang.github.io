@@ -15,7 +15,7 @@ last_modified_at: 2020-03-01
 
 <sup> [문성훈 강사님](https://moon9342.github.io)의 강의를 기반으로 합니다.</sup> <sup>[Github Repo](https://github.com/sirzzang/LECTURE/tree/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL)</sup> 
 
-<sup>Tensorflow: 1.5</sup>
+<sup>Tensorflow: 1.15</sup>
 
 
 

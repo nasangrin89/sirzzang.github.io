@@ -56,9 +56,13 @@ last_modified_at: 2020-07-05
 
 
 
- 정사각 행렬 모양의 `Filter`가 이미지를 순회하며 `Convolution`을 계산하고, 그 계산 결과를 이용하여 `Feature(d) Map`을 만든다. 이를 모아 한 이미지에서 활성화된 픽셀만을 모은 `Activation Map`을 만든다. 여기까지의 과정을 하나의 `Convolution Layer`라고 한다. 이 `Convolution Layer`의 shape은 `Filter` 크기, `Stride`, `Padding`, `Pooling` 등에 영향을 받는다.  출력된 `Convolution Layer`를 또 하나의 입력 데이터로 삼아, 위의 과정을 반복한다. 이 과정에서 이미지의 `size`는 줄어들고, `channel`이 늘어나게 된다. 이렇게 한 이미지의 특징을 뽑아 낸다.
+ 정사각 행렬 모양의 `Filter`가 이미지를 순회하며 `Convolution`을 계산하고, 그 계산 결과를 이용하여 `Feature(d) Map`을 만든다. 이를 모아 한 이미지에서 활성화된 픽셀만을 모은 `Activation Map`을 만든다. 여기까지의 과정을 하나의 `Convolution Layer`라고 한다. 이 `Convolution Layer`의 shape은 `Filter` 크기, `Stride`, `Padding` 등에 영향을 받는다. 
 
+ 출력된 `Convolution Layer`를 또 하나의 입력 데이터로 삼아, `Pooling` 과정을 거친다. 
 
+ 위의 과정을 반복한다. 이 과정에서 이미지의 `size`는 줄어들고, `channel`이 늘어나게 된다. 이렇게 한 이미지의 특징을 뽑아 낸다.
+
+<br>
 
 ### 2.1. 이미지 데이터에 대한 이해
 

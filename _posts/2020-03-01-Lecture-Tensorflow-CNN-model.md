@@ -86,7 +86,7 @@ weight = np.array([[[[1,10,-1]],
 
 
 
- `filter` 순회를 통해 `feature map`을 만들고, 그 `feature map`을 모아 `activation map`을 만든다.  
+ `filter` 순회를 통해 `feature map`을 만든다.
 
 ```python
 conv2d = tf.nn.conv2d(image,
@@ -192,13 +192,12 @@ import matplotlib.pyplot as plt
  불러 온 `input_data`로부터 학습 데이터를 확보한다. 데이터를 저장할 경로를 지정하고, `one_hot` 옵션을 주어 라벨에 대한 원핫 인코딩까지 진행한다.
 
 ```python
-mnist = input_data.read_data_sets("./data/mnist",
-                                 one_hot=True)
+mnist = input_data.read_data_sets("./data/mnist", one_hot=True)
 ```
 
 
 
-### 3.2. 이미지 확인
+### 2.2. 이미지 확인
 
  train set에 55000개의 이미지가 존재한다. 그 중 하나를 가져와 그림을 그리고, 원본 이미지를 확인하자.  기존의 이미지 데이터를 28x28 사이즈로 바꿔 주어야 2차원의 그림 형태로 확인할 수 있다. 컬러맵 옵션을 `Greys`로 주어 흑백 이미지로 반환했다.
 
@@ -294,7 +293,7 @@ conv2d_result = sess.run(conv2d)
 
  convolution 결과 shape을 통해, 1장의 이미지가 5개의 채널로 겹쳐져 있음을 알 수 있다. 각각의 채널은 이미지에서 특징적인 부분을 잡아 내고 있는 부분이다.
 
- 이 특징들이 어떤 것인지 보기 위해서는, 5개의 이미지들을 펼쳐야 한다. 축을 전환하면 된다.   *(3차원 축, 즉 겹쳐져 있던 채널들이 x축으로 오면서 각각의 채널들이 5차원 벡터의 요소들로 들어가게 된다.)*
+ 이 특징들이 어떤 것인지 보기 위해서는, 5개의 이미지들을 펼쳐야 한다. 축을 전환하면 된다.   *(3차원 축, 즉 겹쳐져 있던 채널들이 x축으로 오면서 각각의 채널들이 0차원 축으로 들어가게 된다.)*
 
 ```python
 conv2d_img = np.swapaxes(conv2d_result, 0, 3)
@@ -356,7 +355,7 @@ plt.imshow(pool_img[1].reshape(7,7), cmap="Greys")
 
 
 
-### 3.3. 모델 구현
+### 2.3. 모델 구현
 
 
 
@@ -424,29 +423,23 @@ L2 = tf.reshape(L2, [-1, 7*7*64]) # 채널 개수 = 필터의 수
 
 **5) FC Layer**
 
- 3개의 전결합 층을 구성한다. 각각의 층에서 은닉 층의 수는 임의로 적용한다. Xavier 초기화를 적용한다.
+ 3개의 전결합 층을 구성한다. 각각의 층에서 은닉 층의 수는 임의로 적용한다. Xavier 초기화, ReLU 활성화 함수, dropout을 적용한다.
 
 ```python
 # 1st FC Layer
-W3 = tf.get_variable('weight3',
-                    shape=[7*7*64, 256],
-                    initializer = tf.contrib.layers.xavier_initializer())
+W3 = tf.get_variable('weight3', shape=[7*7*64, 256], initializer = tf.contrib.layers.xavier_initializer())
 b3 = tf.Variable(tf.random_normal([256]), name='bias3')
-_L3 = tf.nn.relu(tf.matmul(L2, W3)+b3) # 전결합
+_L3 = tf.nn.relu(tf.matmul(L2, W3)+b3) # 활성화: ReLU
 L3 = tf.nn.dropout(_L3, keep_prob=prob_rate) # dropout
 
 # 2nd FC Layer
-W4 = tf.get_variable('weoght4',
-                    shape=[256, 256],
-                    initializer = tf.contrib.layers.xavier_initializer())
+W4 = tf.get_variable('weight4', shape=[256, 256], initializer = tf.contrib.layers.xavier_initializer())
 b4 = tf.Variable(tf.random_normal([256]), name='bias4')
 _L4 = tf.nn.relu(tf.matmul(L3, W4)+b4)
 L4 = tf.nn.dropout(_L4, keep_prob=prob_rate)
 
 # 3rd FC Layer
-W5 = tf.get_variable('weight5',
-                    shape=[256,10], # label=10
-                    initializer = tf.contrib.layers.xavier_initializer())
+W5 = tf.get_variable('weight5', shape=[256,10], initializer = tf.contrib.layers.xavier_initializer())
 b5 = tf.Variable(tf.random_normal([10]), name='bias5')
 ```
 

@@ -15,7 +15,9 @@ last_modified_at: 2020-06-11
 
 
 
+<sup>[신윤수 강사님](ys@betweak.com)의 강의 및 강의 자료를 기반으로 합니다.</sup>
 
+<sup>[Github Repo](https://github.com/sirzzang/LECTURE/tree/master/인공지능-자연어처리(NLP)-기반-기업-데이터-분석/신윤수 강사님/파이썬/웹 크롤링)</sup>
 
 # _Crawling Tips_
 

@@ -1,8 +1,6 @@
 ---
 title: "[Programmers] 야근 지수"
-excerpt: 3일 1문제 - 1
-header:
-  teaser: /assets/images/blog-Programming.jpg
+excerpt: 3일 1문제-1
 toc: false
 categories:
   - Programming

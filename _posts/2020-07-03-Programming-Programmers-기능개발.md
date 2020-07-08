@@ -1,8 +1,6 @@
 ---
 title: "[Programmers] 기능 개발"
-excerpt: 3일 1문제 - 2
-header:
-  teaser: /assets/images/blog-Programming.jpg
+excerpt: 3일 1문제-2
 toc: false
 categories:
   - Programming

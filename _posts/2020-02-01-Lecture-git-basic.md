@@ -167,7 +167,7 @@ Changes to be committed:
 
 
 
-
+<br>
 
 
 
@@ -486,7 +486,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 
 
- 충돌을 해결하기 위해서는 실제로 파일을 확인하고, 선택해야 한다. 실제로 눈으로 바뀐 부분을 확인하고, 어떤 코드가 돌아가게 하려는지 판단한 후, **첫째,** `master` 브랜치의 내용을 반영하던가, **둘째,** `hotfix/test` 브랜치의 내용을 반영하던가, **셋째,** `둘 모두를` 놔두던가 해야 한다. 
+ 충돌을 해결하기 위해서는 실제로 파일을 확인하고, 선택해야 한다. 실제로 눈으로 바뀐 부분을 확인하고, 어떤 코드가 돌아가게 하려는지 판단한 후, **첫째,** `master` 브랜치의 내용을 반영하든가, **둘째,** `hotfix/test` 브랜치의 내용을 반영하든가, **셋째,** `둘 모두를` 놔두든가 해야 한다. 
 
 * `hotfix/test` 내용 남긴다면, `Accept Incoming Change`.
 * `master` 내용 남긴다면, `Accept Current`.

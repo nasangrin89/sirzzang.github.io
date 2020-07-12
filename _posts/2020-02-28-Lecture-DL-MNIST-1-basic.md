@@ -1,5 +1,5 @@
 ---
-title:  "[DL] MNIST_2. Deep Learning"
+title:  "[DL] MNIST_2.Deep Learning 구현"
 excerpt: "<<Neural Network>> MNIST 분류 문제를 Tensorflow Deep Learning으로 구현해 보자."
 toc: true
 toc_sticky: true

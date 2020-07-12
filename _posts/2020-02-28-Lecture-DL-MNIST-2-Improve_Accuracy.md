@@ -1,5 +1,5 @@
 ---
-title:  "[DL] MNIST_3. Deep Learning 정확도 향상"
+title:  "[DL] MNIST_3.Deep Learning 정확도 향상"
 excerpt: "<<Neural Network>> 딥러닝에서 더 정확도를 높여 MNIST 문제를 풀어보자."
 toc: true
 toc_sticky: true

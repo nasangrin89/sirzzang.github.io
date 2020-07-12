@@ -1,5 +1,5 @@
 ---
-title:  "[ML] KNN_2. 구현"
+title:  "[ML] KNN_2.구현"
 excerpt: "<<Classification>> Tensorflow로 KNN 알고리즘을 구현해보자."
 toc: true
 toc_sticky: true

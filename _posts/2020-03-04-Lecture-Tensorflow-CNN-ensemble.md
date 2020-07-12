@@ -1,5 +1,5 @@
 ---
-title:  "[DL] CNN_3. 앙상블"
+title:  "[DL] CNN_3.앙상블 구현"
 excerpt: "<<Neural Network>> CNN 모델에 앙상블을 적용해 보자. (feat.클래스...)"
 toc: true
 toc_sticky: true

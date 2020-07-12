@@ -1,5 +1,5 @@
 ---
-title:  "[ML] KNN_1. 개념"
+title:  "[ML] KNN_1.개념"
 excerpt: "<<Classification>> KNN 알고리즘의 개념"
 toc: true
 toc_sticky: true

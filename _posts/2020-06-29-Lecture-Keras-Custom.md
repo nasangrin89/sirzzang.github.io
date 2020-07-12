@@ -1,5 +1,5 @@
 ---
-title:  "[ML/DL] 나만의 Loss, Regularizer 만들기"
+title:  "[ML/DL] 손실함수, 규제함수 만들기"
 excerpt: "<<Keras>> Loss Function, Regularizer Function 커스텀하기"
 toc: true
 toc_sticky: true

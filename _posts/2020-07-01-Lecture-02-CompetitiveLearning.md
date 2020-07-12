@@ -1,5 +1,5 @@
 ---
-title:  "[DL] Competitive Learning_2. 구현"
+title:  "[DL] Competitive Learning_2.구현"
 excerpt: "<<Clustering>> Tensorflow로 Competitive Learning 구현하기"
 toc: true
 toc_sticky: true

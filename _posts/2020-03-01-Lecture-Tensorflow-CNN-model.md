@@ -1,5 +1,5 @@
 ---
-title:  "[DL] CNN_2. 모델 구현"
+title:  "[DL] CNN_2.모델 구현"
 excerpt: "<<Neural Network>> CNN을 활용해 MNIST 문제를 풀어보자."
 toc: true
 toc_sticky: true

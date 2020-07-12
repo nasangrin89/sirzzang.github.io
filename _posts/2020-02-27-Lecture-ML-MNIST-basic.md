@@ -1,5 +1,5 @@
 ---
-title:  "[ML] MNIST_1. Tensorflow 구현"
+title:  "[ML] MNIST_1.Tensorflow 구현"
 excerpt: "<<Classification>> Multinomial Classification을 Tensorflow로 구현해 보자."
 toc: true
 toc_sticky: true

@@ -30,3 +30,4 @@ header:
 4. MNIST DBSCAN
 5. ~~CNN `Conv2D`, `Conv2DTranspose` 등 개념 추가~~
 6. CNN+LSTM
+7. DCGAN 다른 소스 찾아보고 -> 강사님 소스 오류 해결할 것(가중치 업데이트, accuracy 무엇?) -> 네트워크 층 구조 관련해서 더 찾아 보기

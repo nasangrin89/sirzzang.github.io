@@ -16,7 +16,7 @@ last_modified_at: 2020-03-01
 
 
 
-<sup>문성훈 강사님(moon9342@gmail.com)의 강의 내용을 기반으로 합니다.</sup>
+<sup>[문성훈 강사님](https://moom9342.github.io/)의 강의 내용을 기반으로 합니다.</sup>
 
 <sup>Tensorflow 1.X ver</sup>
 
@@ -93,9 +93,7 @@ Y = tf.placeholder(shape=[None, 10], dtype=tf.float32)
 
 ### 2.3. weight, bias
 
- 이 단계부터 달라진다. 문쌤은 3개의 layer를 설정한다. 물론 각 layer에서 구성하는 perceptron은 임의로 정한 수이다.
-
- 다음 layer로 넘겨 주어야 하므로, **shape**에 *항상* 유의하자. ~~제발..~~ 그리고, 이제부터는 layer끼리 행렬곱이 들어간다.
+ 이 단계부터 달라진다. 문쌤은 3개의 layer를 설정하셨다. 물론 각 layer에서 구성하는 perceptron은 임의로 정한 수이다. 다음 layer로 넘겨 주어야 하므로, **shape**에 *항상* 유의하자. ~~제발..~~  이제부터는 layer끼리 행렬곱이 들어간다.
 
 ```python
 # layer1 : X data 각각에 대해 256번 학습 진행.
@@ -154,8 +152,6 @@ sess.run(tf.global_variables_initializer())
 ### 2.8. 학습
 
  이전과 마찬가지로, batch를 이용한다.
-
-
 
 ```python
 num_of_epoch = 30 # 전체 학습 횟수

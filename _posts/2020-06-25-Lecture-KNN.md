@@ -30,7 +30,7 @@ last_modified_at: 2020-06-27
 
 
 
-![2020-06-16]({{site.url}}/assets/images/2020-06-16.png)
+![2020-06-16]({{site.url}}/assets/images/2020-06-16.png){: .align-center}
 
 
 
@@ -46,7 +46,7 @@ last_modified_at: 2020-06-27
 
 
 
-![knn-distance]({{site.url}}/assets/images/knn-distance-1592714954771.png)
+![knn-distance]({{site.url}}/assets/images/knn-distance-1592714954771.png){: .align-center}
 
 
 
@@ -70,7 +70,7 @@ last_modified_at: 2020-06-27
 
 
 
-![2020-06-16 (2)]({{site.url}}/assets/images/dimension-curse.png)
+![2020-06-16 (2)]({{site.url}}/assets/images/dimension-curse.png){: .align-center}
 
 
 

@@ -16,7 +16,7 @@ last_modified_at: 2020-03-01
 
 
 
-<sup>문성훈 강사님(moon9342@gmail.com)의 강의 내용을 기반으로 합니다.</sup>
+<sup>[문성훈 강사님](https://moon9342.github.io/)의 강의 내용을 기반으로 합니다.</sup>
 
 <sup>Tensorflow 1.X ver</sup>
 
@@ -93,8 +93,7 @@ logit = tf.matmul(layer2, W3) + b3
 H = tf.nn.relu(logit) # 로짓 활성화 함수도 relu!
 
 # cost
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=logit,
-                                                                labels=Y))
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=logit, labels=Y))
 
 # train
 train = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(cost)
@@ -111,8 +110,7 @@ for step in range(num_of_epoch):
     cost_val = 0
     for i in range(num_of_iter):
         batch_x, batch_y = mnist.train.next_batch(batch_size)
-        _, cost_val = sess.run([train, cost], feed_dict={X: batch_x,
-                                                        Y: batch_y})
+        _, cost_val = sess.run([train, cost], feed_dict={X: batch_x, Y: batch_y})
     if step % 3 == 0:
         print("cost: {}".format(cost_val))
 print("학습 끝")
@@ -122,8 +120,7 @@ pred = tf.argmax(H, 1)
 label = tf.argmax(Y, 1)
 correct = tf.equal(pred, label)
 accuracy = tf.reduce_mean(tf.cost(correct, dtype=tf.float32))
-result = sess.run(accuracy, feed_dict={X: mnist.test.images,
-                                      Y: mnist.test.labels})
+result = sess.run(accuracy, feed_dict={X: mnist.test.images, Y: mnist.test.labels})
 print("accuracy: {}".format(accuracy))
 ```
 

@@ -106,7 +106,7 @@ last_modified_at: 2020-06-27
 
 
 
-![image-20200619110947233]({{site.url}}/assets/images/image-20200619110947233.png)
+![image-20200619110947233]({{site.url}}/assets/images/image-20200619110947233.png){: width="500" height="300"}{: .align-center}
 
 
 
@@ -182,7 +182,7 @@ $$
 
 
 
-![image-20200619131835449]({{site.url}}/assets/images/image-20200619131835449.png)
+![image-20200619131835449]({{site.url}}/assets/images/image-20200619131835449.png){: width="600" height="400"}{: .align-center}
 
 
 
@@ -204,11 +204,9 @@ $$
 
 
 
----
 
 
-
-# [Some Insights]
+## 4. 더 생각해 볼 점
 
 
 

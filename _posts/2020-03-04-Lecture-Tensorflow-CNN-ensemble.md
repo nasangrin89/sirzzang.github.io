@@ -103,18 +103,9 @@ drop_rate = tf.placeholder(dtype=tf.float32)
 X_img = tf.reshape(X, [-1, 28, 28, 1])
 
 # convolution layers
-L1 = tf.layers.conv2d(inputs=X_img,
-                      filters=32,
-                      kernel_size=[3,3],
-                      padding='SAME',
-                      strides=1,
-                      activation=tf.nn.relu)
-L1 = tf.nn.max_pooling2d(inputs=L1,
-                         pool_size=[2,2], 
-                         padding='SAME',
-                         strides=2)
-L1 = tf.layers.dropout(inputs=L1,
-                       rate=drop_rate)
+L1 = tf.layers.conv2d(inputs=X_img, filters=32, kernel_size=[3,3], padding='SAME', strides=1, activation=tf.nn.relu)
+L1 = tf.nn.max_pooling2d(inputs=L1, pool_size=[2,2], padding='SAME', strides=2)
+L1 = tf.layers.dropout(inputs=L1, rate=drop_rate)
 
 L2 = tf.layers.conv2d(inputs=L1, filters=64, kernel_size=[3,3], padding="SAME", strides=1, activation=tf.nn.relu)
 L2 = tf.layers.max_pooling2d(inputs=L2, pool_size=[2,2], padding="SAME", strides=2)
@@ -180,9 +171,7 @@ for i in range(num_of_models): # i번째 모델
         cost_val = 0
         for iter in range(num_of_iter):
             batch_X, batch_y = mnist.train.next_batch(batch_size)
-            _, cost_val = sess.run([train, cost], feed_dict = {X:batch_X,
-                                                              y:batch_y,
-                                                              drop_rate=0.3})
+            _, cost_val = sess.run([train, cost], feed_dict = {X:batch_X, y:batch_y, drop_rate=0.3})
     print(f"{i+1}번째 가설 학습이 완료되었습니다.") 
     
     # test set 이미지에 대한 예측
@@ -198,8 +187,7 @@ print(initial_predict)
 prediction = tf.argmax(initial_predict, 1)
 is_correct = tf.equal(prediction, tf.argmax(y, 1))
 accuracy = tf.reduce_mean(tf.cast(is_correct, dtype=tf.float32))
-accuracy_rate = sess.run(accuracy, feed_dict = {y:mnist.test.labels,
-                                               drop_rate:0})
+accuracy_rate = sess.run(accuracy, feed_dict = {y:mnist.test.labels, drop_rate:0})
 print(f"정확도는 {accuracy_rate * 100}% 입니다.")
 ```
 
@@ -344,10 +332,8 @@ class CnnModel:
             
             for iter in range(num_of_iter):
                 batch_X, batch_y = self.mnist.train.next_batch(batch_size)
-                _, cost_val = self.sess.run([self.train, self.cost],
-                                           feed_dict={self.X : batch_X,
-                                                       self.y : batch_y,
-                                                       self.drop_rate:0.4})
+                _, cost_val = self.sess.run([self.train, self.cost], 
+                                            feed_dict={self.X : batch_X, self.y : batch_y, self.drop_rate:0.4})
              
             if step % 3:
                 print("cost : {}".format(cost_val))
@@ -355,8 +341,7 @@ class CnnModel:
     # 4. H 로짓 값 출력 기능
     def get_Hval(self):
         print("입력한 값에 대한 H를 리턴해요!")
-        return self.sess.run(self.H, feed_dict={self.X : self.mnist.test.images,
-                                               self.drop_rate : 0})
+        return self.sess.run(self.H, feed_dict={self.X : self.mnist.test.images, self.drop_rate : 0})
 ```
 
  모델 객체가 생성되자마자 바로 그래프 노드가 필요하므로, 그래프 그리는 기능을 생성자에 포함한다. 학습은 class 밖에서 호출하여 진행하므로, 생성자 안에 포함하지 않는다.

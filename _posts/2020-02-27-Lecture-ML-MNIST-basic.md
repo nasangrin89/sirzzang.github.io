@@ -16,7 +16,7 @@ last_modified_at: 2020-03-01
 
 
 
-<sup>문성훈 강사님(moon9342@gmail.com)의 강의 내용을 기반으로 합니다.</sup>
+<sup>[문성훈 강사님](https://moom9342.github.io/)의 강의 내용을 기반으로 합니다.</sup>
 
 <sup>Tensorflow 1.X ver</sup>
 
@@ -48,7 +48,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets('./data/mnist', one_hot=True)
 ```
 
- `input_data`에서 `read_data_sets` 함수를 활용해 Tensorflow 내장 MNIST 데이터 셋을 불러온다. 경로에 지정한 폴더 아래 4개의 압축파일이 생성되며, `one_hot = True` 옵션을 주면 알아서 원핫 인코딩이 되어 나온다!
+ `input_data`에서 `read_data_sets` 함수를 활용해 Tensorflow 내장 MNIST 데이터 셋을 불러온다. 경로에 지정한 폴더 아래 4개의 압축파일이 생성되며, `one_hot = True` 옵션을 주면 알아서 원핫 인코딩이 되어 나온다.
 
 
 
@@ -143,8 +143,7 @@ sess.run(tf.global_variables_initializer())
 ```python
 train_epoch = 30
 for step in range(train_epoch):
-    _, cost_val = sess.run([train, cost], feed_dict = {X:mnist.train.images,
-                                                       Y:mnist.train.labels})
+    _, cost_val = sess.run([train, cost], feed_dict = {X:mnist.train.images, Y:mnist.train.labels})
     
     if step % 3 == 0:
         print("Cost 값은: {}".format(cost_val))
@@ -190,8 +189,7 @@ pred = tf.argmax(H, 1)
 label = tf.argmax(Y, 1)
 correct = tf.equal(pred, label)
 accuracy = tf.reduce_mean(tf.cast(correct, dtype=tf.float32))
-print("정확도는 : {}".format(sess.run(accuracy, feed_dict = {X : mnist.test.images,
-                                                            Y : mnist.test.labels})))
+print("정확도는 : {}".format(sess.run(accuracy, feed_dict = {X : mnist.test.images, Y : mnist.test.labels})))
 ```
 
  가설 H로부터 도출된 값과 라벨 값을 `axis=1` 방향으로 `argmax`한다. NumPy의 `argmax`와 사용법이 동일하다. `argmax`한 결과, 예측 라벨과 실제 라벨이 나오게 된다. 
@@ -285,8 +283,7 @@ for step in range(train_epoch):
     # 배치에 대한 학습 진행
     for i in range(num_of_iter):
         batch_x, batch_y = mnist.train.next_batch(batch_size)
-        _, cost_val = sess.run([train, cost], feed_dict = {X: batch_x,
-                                                           Y: batch_y})
+        _, cost_val = sess.run([train, cost], feed_dict = {X: batch_x, Y: batch_y})
         
     if step % 3 == 0:
         print("Cost 값은 : {}". format(cost_val))
@@ -296,8 +293,7 @@ pred = tf.argmax(H, 1)
 label = tf.argmax(Y, 1)
 correct = tf.equal(pred, label)
 accuracy = tf.reduce_mean(tf.cast(correct, dtype=tf.float32))
-print("정확도는 : {}".format(sess.run(accuracy, feed_dict = {X : mnist.test.images,
-                                                            Y : mnist.test.labels})))
+print("정확도는 : {}".format(sess.run(accuracy, feed_dict = {X : mnist.test.images, Y : mnist.test.labels})))
 ```
 
 
@@ -326,7 +322,7 @@ Cost 값은 : 0.1510837972164154
 
 
 
- 정확도가 올라간다! 너무 많은 데이터를 한 번에 학습시켰기 때문인 것 같다.
+ 정확도가 올라간다! 아무래도 이전에 정확도가 낮았던 것은 너무 많은 데이터를 한 번에 학습시켰기 때문인 것 같다.
 
 
 
@@ -338,8 +334,7 @@ import random
 r = np.random.randint(0, mnist.test.num_examples)
 
 print("Label : {}".format(sess.run(tf.argmax(mnist.test.labels[r:r+1], axis=1))))
-print("predict : {}".format(sess.run(tf.argmax(H,1),
-                                     feed_dict = { X : mnist.test.images[r:r+1] })))
+print("predict : {}".format(sess.run(tf.argmax(H,1), feed_dict = { X : mnist.test.images[r:r+1] })))
 ```
 
 

@@ -65,8 +65,7 @@ image = np.array([[[1],[2],[3]],
 > * `.reshape()`을 이용할 수도 있다.
 >
 >   ```python
->   image = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9], dtype=np.float32)
->   				.reshape(1, 3, 3, 1)
+>   image = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9], dtype=np.float32).reshape(1, 3, 3, 1)
 >   ```
 
 
@@ -284,7 +283,8 @@ conv2d_result = sess.run(conv2d)
 #      0.0000000e+00]]
 #     ...
 
->>>print(conv2d_result.shape) # (1, 14, 14, 5)
+>>> print(conv2d_result.shape) 
+# (1, 14, 14, 5)
 ```
 
  
@@ -457,8 +457,7 @@ H = tf.nn.relu(logit)
 **7) Cost**
 
 ```python
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=logit,
-                                                                labels=Y))
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=logit, labels=Y))
 ```
 
 
@@ -494,9 +493,7 @@ for step in range(num_of_epoch):
     cost_val = 0
     for i in range(num_of_iter):
         batch_X, batch_y = mnist.train.next_batch(batch_size)
-        _, cost_val = sess.run([train, cost], feed_dict = {X:batch_X,
-                                                          Y:batch_Y,
-                                                          prob_rate:0.75})
+        _, cost_val = sess.run([train, cost], feed_dict = {X:batch_X, Y:batch_Y, prob_rate:0.75})
     if step % 5 == 0:
         print(f"cost : {cost_val}")
 
@@ -532,10 +529,7 @@ Cost : 0.029111383482813835
 predict = tf.argmax(H, 1)
 is_correct = tf.equal(predict, tf.argmax(Y, 1))
 accuracy = tf.reduce_mean(tf.cast(is_correct, dtype=tf.float32))
-result = sess.run(accuracy,
-                 feed_dict = {X:mnist.test.images,
-                             Y:mnist.test.labels,
-                             drop_rate:1}) # dropout 적용하지 않음.
+result = sess.run(accuracy, feed_dict = {X:mnist.test.images, Y:mnist.test.labels, drop_rate:1}) # dropout 적용하지 않음.
 
 >>> print(f"정확도는 {result}입니다.")
 ```

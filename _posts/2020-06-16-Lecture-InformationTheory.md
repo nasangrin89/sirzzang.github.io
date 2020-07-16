@@ -41,7 +41,7 @@ last_modified_at: 2020-06-17
 
 
 
-![entropy]({{site.url}}/assets/images/entropy.png)
+![entropy]({{site.url}}/assets/images/entropy.png){: .align-center}
 
 
 
@@ -164,7 +164,7 @@ $$
 
 
 
-![cross entropy]({{site.url}}/assets/images/image-20200623100124725.png)
+![cross entropy]({{site.url}}/assets/images/image-20200623100124725.png){: .align-center}
 
 
 
@@ -298,7 +298,7 @@ $$
 
  기존에 배웠던 손실함수인 MSE와 비교해서 살펴 보면, 모델의 정확도가 상승할수록 CE와 MSE가 모두 감소하는 것을 알 수 있다. 
 
-![image-20200623112106497]({{site.url}}/assets/images/image-20200623112106497.png)
+![image-20200623112106497]({{site.url}}/assets/images/image-20200623112106497.png){: .align-center}
 
 
 

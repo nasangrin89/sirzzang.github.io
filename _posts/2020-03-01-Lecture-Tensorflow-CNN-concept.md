@@ -11,7 +11,7 @@ tags:
   - CNN
   - Tensorflow
 use_math: true
-last_modified_at: 2020-07-05
+last_modified_at: 2020-03-03
 ---
 
 <sup> [문성훈 강사님](https://moon9342.github.io)의 강의를 기반으로 합니다.</sup> <sup>[Github Repo](https://github.com/sirzzang/LECTURE/tree/master/서비스-산업-데이터를-활용한-머신러닝-분석/전반기(문성훈 강사님)/DL)</sup> 
@@ -299,12 +299,6 @@ $$
  `Pooling`을 적용하면 정보의 손실이 일어난다는 단점이 있지만, 한편으로 연산량, 메모리 사용량을 줄이고, 과적합을 방지할 수 있다. 또한 입력 데이터의 특정 부분이 약간 틀어지거나 위치가 변하더라도, `Pooling`을 적용함으로써 동일한 결과를 얻어낼 수 있다.
 
 
-
-> *참고* : Viewpoint Invariance(시각 불변성)
->
->  고양이 코의 위치가 달라져도 고양이 코라고 인식할 수 있다. 이미지의 일부분이 변형되더라도 그 특징을 통해 정상적으로 인식하기 위해서는 Pooling이 필요하다.
-
- 
 
 <br>
 

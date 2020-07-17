@@ -1,6 +1,6 @@
 ---
 title: "[Programmers] H-Index"
-excerpt: 3일 1문제-1
+excerpt: 3일 1문제-6
 toc: false
 categories:
   - Programming
@@ -187,3 +187,52 @@ def solution(citations):
 
 
  굳이 while문 for문 안 쓰고 이렇게 하면 되는 것이었다.(...) 
+
+
+
+
+
+*출처: JK*
+
+
+
+ JK가 `C++` 로 푼 걸 파이썬으로 옮기기만 했는데, 시간이 매우 빠르다. 내 로직의 문제였다 ㅎ...
+
+```python
+def solution(citations):
+    answer = 0
+    citations.sort()
+    i = 0
+    h = 0
+    while i < len(citations):
+        if citations[i] == h:
+            if len(citations) - i >= h:
+                answer = h
+                h += 1
+                i += 1
+            else:
+                break
+        elif citations[i] < h:
+            i += 1
+            continue
+        else:
+            if len(citations) - i >= h:
+                answer = h
+                h += 1
+            else:
+                break            
+    return answer
+```
+
+
+
+* 오름차순 정렬
+* `h` : 논문 인용 횟수 체크. `i` : citations 배열에서 인덱스로 움직이면서 비교.
+* 경우의 수 3가지
+  * 논문 인용 횟수가 현재 `h`보다 작다면, 계속해서 비교.
+  * 논문 인용 횟수가 현재 `h`와 같다면,
+    * 마지막까지 검사하지 않았다면 `h` 늘려서 검사하고 `i`도 늘리고,
+    * 마지막까지 검사 완료했으면 검사 중단.
+  * 논문 인용 횟수가 현재 `h`보다 크다면,
+    * 마지막까지 검사하지 않았을 때는 그 인덱스 그대로 놓고 `h`만 늘리고,
+    * 마지막까지 검사 완료했으면 검사 중단.

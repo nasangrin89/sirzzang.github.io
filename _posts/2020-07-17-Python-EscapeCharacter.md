@@ -1,6 +1,6 @@
 ---
-title:  "[Python] 파이썬 문자열 r과 \"
-excerpt: 내 마음대로 이해해 보는 문자열 패턴에서 `r`의 의미.
+title:  "[Python] 파이썬 문자열 r과 escape 문자"
+excerpt: 내 마음대로 이해해 보는 문자열 패턴에서 `r`의 의미
 categories:
   - Python
 toc : true
@@ -8,7 +8,7 @@ tags:
   - Python
   - 정규표현식
   - 이스케이프 문자
- 
+last_modified_at: 2020-07-17
 ---
 
 

@@ -22,7 +22,7 @@ header:
 
  <br>
 
-1. GET vs POST(크롤링할 때 차이까지 포함), lambda, 클래스 신윤수 강사님
+1. ~~GET vs POST(크롤링할 때 차이까지 포함), lambda~~, 클래스 신윤수 강사님
 2. 오토인코더에서 linear activation function 의미 + PCA와 비교
 3. CNN output 레이어 activation function 안 되는 이유(loss 1.000...) + credit fraud sigmoid + binary_crossentropy 조합?
 4. activation function 개념 정확히 정리

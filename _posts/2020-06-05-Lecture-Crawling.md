@@ -23,9 +23,43 @@ last_modified_at: 2020-06-11
 
 
 
+## 1. GET vs. POST
+
+<sup> 강사님의 강의 외에 [여기](https://mangkyu.tistory.com/17), [여기](https://im-developer.tistory.com/166)도 참고했습니다. </sup>
 
 
-## 1. 태그 선택
+
+> *참고* : HTTP 메소드
+>
+> * GET : 가져오기
+> * POST : 붙이기(등록하기)
+> * PUT : 수정하기
+> * DELETE : 삭제하기
+
+
+
+### GET : 읽거나 검색. 눈에 보임.
+
+* URL에 변수(데이터) 포함해 요청. URL 형식에 맞지 않는 경우 인코딩.
+* 데이터를 Header에 포함해 요청.
+* Body는 보통 빈 상태로 전송.
+
+
+
+### POST : 데이터 제출 후 데이터 등록 혹은 생성. 눈에 안 보임.
+
+* URL에 데이터 노출하지 않고 요청.
+* 데이터는 Body에 포함해 요청. 전송 시 필요한 추가 데이터 포함.
+* Header 필드 중 Body의 데이터를 포함하는 Content-Type 필드가 들어가고, 어떠한 데이터 타입인지 명시.
+* 쿼리 스트링 뿐만 아니라, 라디오 버튼, 텍스트 박스 등 객체 값도 전송 가능.
+
+
+
+
+
+
+
+## 2. 태그 선택
 
 
 
@@ -58,7 +92,7 @@ for news_li, enter_li in zip(*ols):
 
 
 
-## 2. URL 설정
+## 3. URL 설정
 
  문자열 formatting도 좋지만, dictionary 사용해서 header 정보 및 쿼리까지 같이 넘기자. 
 
@@ -88,7 +122,7 @@ req = requests.get(base_url, params=params)
 
 
 
-## 3. iframe
+## 4. iframe
 
 
 
@@ -102,7 +136,7 @@ req = requests.get(base_url, params=params)
 
 
 
-## 4. DOM 크롤링 (w/o Selenium)
+## 5. DOM 크롤링 (w/o Selenium)
 
 > ~~지금 강사님은 Selenium을 좋아하지는 않는 편~~
 
@@ -213,7 +247,7 @@ def resp_to_json(html):
 
 
 
-## 5. 이미지 크롤링
+## 6. 이미지 크롤링
 
 * url의 개념적 저장보다는 이미지 실제 파일의 물리적 저장이 추천된다.
 * 대용량 파일의 경우 `stream=True` 옵션으로 진행한다. `req.iter_content()` 이터레이터 객체 안에 chunk 단위로 분할하여 저장하자.

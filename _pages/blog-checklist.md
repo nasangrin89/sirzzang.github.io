@@ -18,7 +18,7 @@ header:
 
 
 
-> 근데 가장 시급한 건, `checkbox` 만들고 싶다 ㅎㅎ;;
+> 근데 가장 시급한 건, `checkbox` 만들고 싶다 ㅎㅎ;; 
 
  <br>
 
@@ -29,6 +29,17 @@ header:
    * 종류
    * 레이어별 사용하는 function (*feat. 중헌쓰의 가르침*)
 5. MNIST DBSCAN
-6. ~~CNN `Conv2D`, `Conv2DTranspose` 등 개념 추가~~
-7. CNN+LSTM
-8. DCGAN 다른 소스 찾아보고 -> 강사님 소스 오류 해결할 것(가중치 업데이트, accuracy 무엇?) -> 네트워크 층 구조 관련해서 더 찾아 보기
+6. ~~CNN `Conv2D`, `Conv2DTranspose` 등 개념 추가~~ , CNN Conv2D 소스코드 보기(패딩 사이즈 적용 공식 있는지 확인해서 내용 추가).
+7. ~~CNN+LSTM 코로나 데이터~~ 
+8. hybrid network IMDB 예 활용해서 댓글 프로젝트에 결합?
+9. DCGAN 다른 소스 찾아보고 -> 강사님 소스 오류 해결할 것(가중치 업데이트, accuracy 무엇?) -> 네트워크 층 구조 관련해서 더 찾아 보기
+10. **케라스에서 `# of params`, 모델 층 간 shape 변화, variables 개수** : 제발 꼭 공부하고 정리 좀…
+
+
+
+<br>
+
+> 책을 읽자!
+>
+>   - Walter Ong, 구술 문화와 한자 문화
+>   - Hans Rosling, 팩트풀니스

@@ -124,7 +124,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 ```python
 df_raw = df_raw.groupby(by='ObservationDate').sum() # 날짜별로 각 수치 그룹핑
 df_raw = (df_raw - df_raw.shift(1)).drop(columns=['SNo'], axis=1).dropna() 
-# 날짜별 누적합 해체, 인덱스 열 삭제, 결측치(1개) 제거
+# 날짜별 누적합 해체, 인덱스 열 삭제, 결측치(1개) 제거.
 
 # 표준화
 scaler = StandardScaler()
@@ -346,7 +346,7 @@ None
 
 
 
- `2.2`에서 병렬 모델을 구성할 때, shape을 맞출 필요가 없다는 것이 얼마나 감사한 일인지 깨달았다. 위에서는 그냥 Concatenate만 하면 되기 때문에, shape을 크게 고민하지 않아도 되었다. 그러나 직렬 모델의 경우 이전 네트워크를 통과한 두 latent feature의 shape을 맞추어 다음 네트워크에 통과시켜야 한다. `Reshape` 레이어를 사용해 텐서의 shape을 바꾸려고 했는데,  *~~과장 없이, 진짜로~~*  아래와 같은 에러를 20번은 만난 것 같다.
+ `2.2`에서 병렬 모델을 구성할 때, shape을 맞출 필요가 없다는 것이 얼마나 감사한 일인지 깨달았다. 위에서는 그냥 Concatenate만 하면 되기 때문에, shape을 크게 고민하지 않아도 되었다. 그러나 직렬 모델의 경우 이전 네트워크를 통과한 latent feature의 shape을 맞추어 다음 네트워크에 통과시켜야 한다. `Reshape` 레이어를 사용해 텐서의 shape을 바꾸려고 했는데,  *~~과장 없이, 진짜로~~*  아래와 같은 에러를 20번은 만난 것 같다.
 
 
 

@@ -1,6 +1,6 @@
 ---
 title:  "[NLP] TF-IDF"
-excerpt: "<<NLP>> 빈도 기반의 단어 수치화 방법인 TF-IDF 행렬을 알아 보자."
+excerpt: "<<NLP-수치화>> 빈도 기반의 단어 수치화 방법인 TF-IDF 모델을 알아 보자."
 toc: true
 toc_sticky: true
 categories:
@@ -28,7 +28,7 @@ last_modified_at: 2020-07-21
 
 
 
- 여러 개의 문서(= 문장)가 있을 때, 각각의 문서 내에 있는 단어에 **수치적 중요도**를 부여하여 단어를 수치화하는 방법이다. **빈도**_(count)_를 기반으로 단어에 중요도를 부여하고, 그것을 수치로 나타낸다.
+ 여러 개의 문서(= 문장)가 있을 때, 각각의 문서 내에 있는 단어에 **수치적 중요도**를 부여하여 단어를 수치화하는 방법이다. **빈도** *(count)*를 기반으로 단어에 중요도를 부여하고, 그것을 수치로 나타낸다.
 
 
 
@@ -36,7 +36,7 @@ last_modified_at: 2020-07-21
 
 
 
-![colab-tfidf](sirzzang.github.io/assets/images/tf-idf.png)
+![tfidf]({{site.url}}/assets/images/tf-idf.png)
 
 <center><sup>제일 오른쪽이 TF-IDF 행렬이다.</sup></center>
 
@@ -69,7 +69,7 @@ last_modified_at: 2020-07-21
 
 
 
- DF가 클수록 여러 문서에 나타나는 **일반적**_(general)_인 단어라고 본다. 특정 문서 안에서 단어가 많이 나타나면 그 단어는 그 문서 안에서 중요한 단어이긴 하나, 모든 문서에서 그 단어가 많이 나타난다면 그렇지 않을 수 있다. 예컨대, 영어로 치면 `a`, `the`와 같이 중요하지 않은 단어일 수 있다.
+ DF가 클수록 여러 문서에 나타나는 **일반적** *(general)*인 단어라고 본다. 특정 문서 안에서 단어가 많이 나타나면 그 단어는 그 문서 안에서 중요한 단어이긴 하나, 모든 문서에서 그 단어가 많이 나타난다면 그렇지 않을 수 있다. 예컨대, 영어로 치면 `a`, `the`와 같이 중요하지 않은 단어일 수 있다.
 
  따라서 *specific*한 단어일수록 중요도가 크다고 보고, `1/DF`에 비례할수록 단어의 중요도가 커진다고 본다. 따라서 IDF 행렬은 Document Frequncy에 역수를 취해 그에 비례하도록 수치를 계산한다. 정확한 계산 공식은 다음과 같다.
 
@@ -79,16 +79,11 @@ IDF = log(\frac {1} {DF})
 $$
 
 
- ### TF-IDF
+### TF-IDF
 
 
 
  결과적으로 TF-IDF 알고리즘은 단어의 중요도는 **TF와 IDF에 비례**한다고 본다. 이 때, IDF에 비례한다는 말은, 곧 DF에 반비례한다는 말이기도 하다. 따라서 단어의 중요도를 나타내기 위해 TF와 IDF를 곱한 행렬을 만든다. 이를 `TF-IDF` 행렬이라고 한다.
-
-
-
-### 활용
-
 
 
  TF-IDF 행렬을 구하면, 각 문서별로 단어가 몇 번 등장하는지를 수치화함으로써 해당 문서를 수치화할 수 있게 된다. 이렇게 수치화한 문서 벡터를 다른 작업에 활용한다. 예컨대, 각 문서 벡터 간 유사도를 계산해 검색 문장과 가장 유사한 문서를 추천하는 데에 사용할 수 있다.
@@ -210,17 +205,177 @@ for i in range(1, len(sentences)):
     cos_sim_docs[sentences[i]] = calc_cos_sim(tfidf_matrix.T[0], tfidf_matrix.T[i])
 ```
 
+<br>
+
+### 중헌쓰 풀이
+
+ `count`, `norm` 등 함수를 적절하게 사용해서 깔끔하게 풀었다. *~~나도 그냥 count 썼으면 깔끔했을 텐데 왜 그 생각이 안 났을까!~~*  검색 문장과 다른 문장들을 나누어 구현한 점이 신기했다.
+
+```python
+import numpy as np
+from numpy import dot
+from numpy.linalg import norm
+
+Search = input("") # 검색할 문장
+DOC1 = str.split('shipment of gold damaged in a fire')
+DOC2 = str.split('delivery of silver arrived in a silver truck')
+DOC3 = str.split('shipment of gold arrived in a truck')
+
+Terms_raw = DOC1+DOC2+DOC3+str.split(Search) # 모든 문장 합친 raw 문장
+
+Search2 = str.split(Search) # 검색 문장
+Terms = list(set(Terms_raw)) # terms 리스트로 만들어 정렬
+Terms.sort()
+
+# 중복 제거하기 위해 set 자료구조 활용하고, 단어 빈도 count.
+DF = []
+for Term in Terms:
+     DF.append(list(set(DOC1)).count(Term)+
+               list(set(DOC2)).count(Term)+
+               list(set(DOC3)).count(Term))
+
+# IDF 행렬 만들어 주기
+IDF = []
+for df in DF:
+    IDF.append(np.log10(3/df))
+    
+# 각 문서 내 TF 계산
+TF1 = []
+TF2 = []
+TF3 = []
+TFsearch = []
+for Term in Terms:
+    TF1.append(DOC1.count(Term)/len(DOC1))
+    TF2.append(DOC2.count(Term)/len(DOC2))
+    TF3.append(DOC3.count(Term)/len(DOC3))
+    TFsearch.append(Search2.count(Term)/len(Search2))
+
+# TF-IDF 계산
+TF1_IDF = []
+TF2_IDF = []
+TF3_IDF = []
+TFsearch_IDF = []
+for i in range(len(Terms)):
+     TF1_IDF.append(IDF[i]*TF1[i])
+     TF2_IDF.append(IDF[i]*TF2[i])
+     TF3_IDF.append(IDF[i]*TF3[i])
+     TFsearch_IDF.append(IDF[i]*TFsearch[i])
+
+TF1_IDF= np.array(TF1_IDF)
+TFsearch_IDF = np.array(TFsearch_IDF)
+
+def cos_sim(A, B):
+       return dot(A, B)/(norm(A)*norm(B))
+   
+Doc1_ = cos_sim(TFsearch_IDF,TF1_IDF)
+Doc2_ = cos_sim(TFsearch_IDF,TF2_IDF)
+Doc3_ = cos_sim(TFsearch_IDF,TF3_IDF)
+```
 
 
-### 다른 풀이
+
+<br>
+
+### 강사님 풀이
+
+ *~~오랜만에 다시 보는 클래스… 지금 당장은 무리고 나중에 다시 보자…~~*
 
 
 
-**강사님 해설**
+```python
+import nltk
+import math
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
+class TextSimilarityExample:
+    def __init__(self, statements):
+        self.statements = statements
+        
+    def TF(self, sentence):
+        words = nltk.word_tokenize(sentence.lower())
+        freq = nltk.FreqDist(words)
+        dictionary = {}
+        for key in freq.keys():
+            norm = freq[key] / float(len(words))
+            dictionary[key] = norm
+        return dictionary
 
+    def IDF(self):
+        def idf(TotalNumberOfDocuments, NumberOfDocumentsWithThisWord):
+            return 1.0 + math.log(TotalNumberOfDocuments/NumberOfDocumentsWithThisWord)
+        
+        numDocuments = len(self.statements)
+        uniqueWords = {}
+        idfValues = {}
+        for sentence in self.statements:
+            for word in nltk.word_tokenize(sentence.lower()):
+                if word not in uniqueWords:
+                    uniqueWords[word] = 1
+                else:
+                    uniqueWords[word] += 1
+        for word in uniqueWords:
+            idfValues[word] = idf(numDocuments, uniqueWords[word])
+        return idfValues
 
-**중헌쓰 풀이**
+    def TF_IDF(self, query):
+        words = nltk.word_tokenize(query.lower())
+        idf = self.IDF()
+        vectors = {}
+        for sentence in self.statements:
+            tf = self.TF(sentence)
+            for word in words:
+                tfv = tf[word] if word in tf else 0.0
+                idfv = idf[word] if word in idf else 0.0
+                mul = tfv * idfv
+                if word not in vectors:
+                    vectors[word] = []
+                vectors[word].append(mul)
+        return vectors
 
+    def displayVectors(self, vectors):
+        print(self.statements, '\n')
+        for word in vectors:
+            print("{} -> {}".format(word, np.round(vectors[word], 3)))
 
+    def cosineSimilarity(self):
+        vec = TfidfVectorizer()
+        matrix = vec.fit_transform(self.statements)
+        for j in range(1, 5):
+            i = j - 1
+            print("\nsimilarity of document {} with others".format(i))
+            similarity = cosine_similarity(matrix[i:j], matrix)
+            print(np.round(similarity, 3))
+
+    def demo(self):
+        inputQuery = self.statements[0]
+        vectors = self.TF_IDF(inputQuery)
+        self.displayVectors(vectors)
+        self.cosineSimilarity()
+
+statements = [
+            'ruled india',
+            'Chalukyas ruled Badami',
+            'So many kingdoms ruled India',
+            'Lalbagh is a botanical garden in India'
+        ]
+
+similarity = TextSimilarityExample(statements)
+similarity.demo()
+
+vec = TfidfVectorizer()
+matrix = vec.fit_transform(statements)
+print('\n')
+print(np.round(matrix.toarray(), 3))
+print(np.round(matrix.toarray()[0:1]), 3)
+
+print()
+for j in range(1, 5):
+    i = j - 1
+    print("similarity of document {} with others".format(i))
+    similarity = cosine_similarity(matrix[i:j, :], matrix)
+    print(np.round(similarity, 3))
+    print()
+```
 

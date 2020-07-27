@@ -136,7 +136,9 @@ $$
 
 *참고: 의사결정나무 알고리즘에서의 적용*
 
-  [Decision Tree 수업 내용](https://github.com/sirzzang/LECTURE/blob/master/%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5-%EC%9E%90%EC%97%B0%EC%96%B4%EC%B2%98%EB%A6%AC(NLP)-%EA%B8%B0%EB%B0%98-%EA%B8%B0%EC%97%85-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D/%EC%A1%B0%EC%84%B1%ED%98%84%20%EA%B0%95%EC%82%AC%EB%8B%98/ML/%5B20200616-17%5D%20ML-Classification-DecisionTree.pdf) 및 아래 Udacity 강의 내용을 참고하자.
+  [Decision Tree 수업 내용](https://github.com/sirzzang/LECTURE/blob/master/인공지능-자연어처리(NLP)-기반-기업-데이터-분석/조성현 강사님/01. ML/[20200616-17] ML-Classification-DecisionTree.pdf) 및 아래 Udacity 강의 내용을 참고하자.
+
+
 
 
 
@@ -182,7 +184,7 @@ $$
 
 
 $$
-H(x) = \Sigma_{i=1}^n log(\frac {1} {p_i}) * pi \\
+H(P) = \Sigma_{i=1}^n log(\frac {1} {p_i}) * pi \\
 H(P, Q) = \Sigma_{i=1}^n log(\frac {1} {q_i}) * pi \\
 $$
 
@@ -365,7 +367,7 @@ $$
 
  KL Divergence 값을 이해할 때 가장 중요한 것은, 두 확률 분포가 비슷할 수록 더 작은 값을 갖는다는 것이다. 결국 확률 분포의 차이를 수치화하고 싶다는 아이디어에서 출발한 개념이므로, 수치화되어 나타난 값이 작을수록 더 비슷한 확률 분포임을 보여 준다.
 
- 한편 마지막 특징은 KL Divergence를 검색하다 보면 항상 따라 나오는 '거리 개념이 아니므로 주의한다'는 말과도 연관된다. 만약 KL Divergence가 두 확률 분포 사이의 거리를 나타냈다면 P와 Q의 위치가 바뀌어도 같은 값을 가져야 하지만, 전혀 그렇지 않다. 참고로, 이러한 관점에서 KL Divergence를 대칭적으로 바꾼 `Jenson-Shannon Divergence `식이 있다. 나중에 GAN에서 핵심적으로 등장하는 개념인 만큼, 지금은 그 존재를 알아두고, 이후 해당 단계에서 학습하도록 하자. 
+ 한편 마지막 특징은 KL Divergence를 검색하다 보면 항상 따라 나오는 '거리 개념이 아니므로 주의한다'는 말과도 연관된다. 만약 KL Divergence가 두 확률 분포 사이의 거리를 나타냈다면 P와 Q의 위치가 바뀌어도 같은 값을 가져야 하지만, 전혀 그렇지 않다. 참고로, 이러한 관점에서 KL Divergence를 대칭적으로 바꾼 `Jenson-Shannon Divergence `식이 있다. *~~그 존재만 알아 두자~~*
 
 
 

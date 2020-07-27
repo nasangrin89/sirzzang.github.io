@@ -16,7 +16,7 @@ last_modified_at: 2020-03-01
 
 
 
-<sup>[문성훈 강사님](https://moom9342.github.io/)의 강의 내용을 기반으로 합니다.</sup>
+<sup>[문성훈 강사님](https://moon9342.github.io/)의 강의 내용을 기반으로 합니다.</sup>
 
 <sup>Tensorflow 1.X ver</sup>
 
@@ -163,9 +163,7 @@ for step in range(num_of_epoch):
     cost_val = 0
     for i in range(num_of_iter):
         batch_x, batch_y = mnist.train.next_batch(batch_size)
-    
-    _, cost_val = sess.rin([train, cost], feed_dict = {X: batch_x,
-                                                      Y: batch_y})
+    	_, cost_val = sess.rin([train, cost], feed_dict = {X: batch_x, Y: batch_y})
    
     if step % 3 == 0:
         print(f"cost 값은 : {cost_val}")    
@@ -200,8 +198,7 @@ pred = tf.argmax(H, 1)
 label = tf.argmax(Y, 1)
 correct = tf.equal(pred, label)
 accuracy = tf.reduece_mean(tf.cast(correct, dtype=tf.float32))
-result = sess.run(accuracy, feed_dict = {X: mnist.test.images,
-                                        Y: mnist.test.labels})
+result = sess.run(accuracy, feed_dict = {X: mnist.test.images, Y: mnist.test.labels})
 print(f"정확도는 {result * 100}%입니다.")
 ```
 

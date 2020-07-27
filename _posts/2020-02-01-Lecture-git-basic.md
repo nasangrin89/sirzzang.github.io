@@ -15,13 +15,13 @@ last_modified_at: 2020-02-01
 
 
 
-<sup>[김탁희 강사님](www.github.com/edutak)의 강의 및 강의 자료를 기반으로 합니다.</sup>
+<sup>[김탁희 강사님](https://github.com/edutak)의 강의 및 강의 자료를 기반으로 합니다.</sup>
 
 <sup>[Github Repo](https://github.com/sirzzang/LECTURE/tree/master/서비스-산업-데이터를-활용한-머신러닝-분석/특강/GitHub)</sup>
 
 # _Git, Github_
 
- 분산형 버전관리 시스템 `Git`을 활용하여 `최종.txt`, `최종의 최종.txt`, ... 말고, `이력`을 관리해 보자.
+ 분산형 버전관리 시스템 `Git`을 활용하여 `최종.txt`, `최종의 최종.txt`, ... 처럼 파일 이름 말고, `이력`을 관리해 보자.
 
 ![git-flow]({{site.url}}/assets/images/git.png){: .align-center}
 
@@ -83,7 +83,7 @@ Changes to be committed:
 
 > *참고*
 >
->  `git commit --amend` 명령을 활용하면 이력을 변경할 수 있다. 그러나 협업 시 웬만하면 사용하지 않는 것이 좋다. ~~*뭐 빠뜨리고 커밋했어도 그냥 새로 commit하자.*~~
+>  `git commit --amend` 명령을 활용하면 이력을 변경할 수 있다. 그러나 협업 시 웬만하면 사용하지 않는 것이 좋다. ~~*뭐 빠뜨렸더라도 그냥 새로 commit하자.*~~
 
 
 
@@ -274,8 +274,8 @@ $ git log --oneline
 
 ```bash
 student@M16046 MINGW64 ~/Desktop/멀캠/web (master)
-    $ git branch -d feature/test
-    Deleted branch feature/test (was 6b31a45).
+$ git branch -d feature/test
+Deleted branch feature/test (was 6b31a45).
 ```
 
 
@@ -478,6 +478,7 @@ Auto-merging test.txt
 CONFLICT (content): Merge conflict in test.txt
 Automatic merge failed; fix conflicts and then commit the result.
 student@M16046 MINGW64 ~/Desktop/멀캠/web (master)
+
 $ git merge hotfix/test
 Auto-merging test.txt
 CONFLICT (content): Merge conflict in test.txt # 충돌!

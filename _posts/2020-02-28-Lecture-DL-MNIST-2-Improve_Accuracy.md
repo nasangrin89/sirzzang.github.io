@@ -175,8 +175,7 @@ b3 = tf.Variable(tf.random_normal([256]), name='bias3')
 logit = tf.matmul(layer2, W3)+b3
 H = tf.nn.relu(logit)
 
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=logit,
-                                                                labels=Y))
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=logit, labels=Y))
 
 train = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(cost)
 
@@ -301,8 +300,7 @@ b3 = tf.Variable(tf.random_normal([10]), name='bias3')
 logit = tf.matmul(layer2, W3)+b3
 H = tf.nn.relu(logit)
 
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=logit,
-                                                                labels=Y))
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=logit, labels=Y))
 train = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(cost)
 
 sess = tf.Session()
@@ -316,9 +314,7 @@ for step in range(num_of_epoch):
     cost_val = 0
     for i in range(num_of_iter):
         batch_x, batch_y = mnist.train.next_batch(batch_size)
-        _, cost_val = sess.run([train, cost], feed_dict={X:batch_x,
-                                                        Y: batch_y,
-                                                        dout_rate:0.3})
+        _, cost_val = sess.run([train, cost], feed_dict={X:batch_x, Y: batch_y, dout_rate:0.3})
     if step % 3 == 0:
         print(f"cost 값은 : {cost_val}")
 print("학습 끝")
@@ -328,9 +324,7 @@ pred = tf.argmax(H, 1)
 label = tf.argmax(Y, 1)
 correct = tf.equal(pred, label)
 accuracy = tf.reduce_mean(tf.cast(correct, dtype=tf.float32))
-result = sess.run(accuracy, feed_dict={X:mnist.test.images,
-                                      Y:mnist.test.labels,
-                                      dout_rate:0}) # 주의
+result = sess.run(accuracy, feed_dict={X:mnist.test.images, Y:mnist.test.labels, dout_rate:0}) # 주의
 print(f"정확도는 {result * 100}%입니다.")
 ```
 

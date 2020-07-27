@@ -16,7 +16,7 @@ last_modified_at: 2020-03-01
 
 
 
-<sup>[문성훈 강사님](https://moom9342.github.io/)의 강의 내용을 기반으로 합니다.</sup>
+<sup>[문성훈 강사님](https://moon9342.github.io/)의 강의 내용을 기반으로 합니다.</sup>
 
 <sup>Tensorflow 1.X ver</sup>
 

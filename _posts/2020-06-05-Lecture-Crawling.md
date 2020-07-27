@@ -70,7 +70,7 @@ last_modified_at: 2020-06-11
 ```python
 # 언패킹 예시
 for news_li, enter_li in zip(*ols):
-  news_kwd = news_li.find('span', class_='tit').text.strip()
+    news_kwd = news_li.find('span', class_='tit').text.strip()
     enter_kwd = enter_li.find('span', class_='tit').text.strip()
 ```
 

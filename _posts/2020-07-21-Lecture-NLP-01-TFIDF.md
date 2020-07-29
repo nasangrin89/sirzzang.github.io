@@ -1,6 +1,6 @@
 ---
 title:  "[NLP] TF-IDF"
-excerpt: "<<NLP-수치화>> 빈도 기반의 단어 수치화 방법인 TF-IDF 모델을 알아 보자."
+excerpt: "<<Vectorization>> 빈도 기반의 단어 수치화 방법인 TF-IDF 모델을 알아 보자."
 toc: true
 toc_sticky: true
 categories:

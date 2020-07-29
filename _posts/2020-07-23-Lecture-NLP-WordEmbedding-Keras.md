@@ -1,6 +1,6 @@
 ---
 title:  "[NLP] Word Embedding"
-excerpt: "<<NLP-WordEmbedding>> 지도학습 기반의 단어 임베딩 기법을 알아 보자."
+excerpt: "<<Embedding>> 지도학습 기반의 단어 임베딩 기법을 알아 보자."
 toc: true
 toc_sticky: true
 categories:
@@ -22,7 +22,7 @@ last_modified_at: 2020-07-27
 
 
 
-# _단어 임베딩-Keras_
+# _단어 임베딩-Keras Embedding Layer_
 
 <br>
 
@@ -314,13 +314,13 @@ print(euclidean_distances([father, mother, daughter, son]))
 
 **6) vocabulary**
 
- Keras의 imdb 데이터셋은 빈도 순으로 나열된 어휘 사전을 사용한다. `get_word_index`를 통해 어휘 사전을 가져 오면, `word : index` 구조로 어휘 집합이 배열되어 있음을 알 수 있다. 그런데 이 어휘 집합 안에는 패딩, 문장 시작, OOV, 유효하지 않은 문자를 표시하는 인덱스가 없다. 따라서 어휘 사전 구조를 `index : word` 형태로 바꾸고, `index`를 3씩 더해준 뒤, `0`, `1`, `2`, `3`에 특수 단어를 매핑해 추가한다. 그리고 다시 원래의 `word : index` 구조로 문장을 바꾼다.
+ Keras의 IMDB 데이터셋은 *빈도* 순으로 나열된 어휘 사전을 사용한다. `get_word_index`를 통해 어휘 사전을 가져 오면, `word : index` 구조로 어휘 집합이 배열되어 있음을 알 수 있다. 그런데 이 어휘 집합 안에는 패딩, 문장 시작, OOV, 유효하지 않은 문자를 표시하는 인덱스가 없다. 따라서 어휘 사전 구조를 `index : word` 형태로 바꾸고, `index`를 3씩 더해준 뒤, `0`, `1`, `2`, `3`에 특수 단어를 매핑해 추가한다. 그리고 다시 원래의 `word : index` 구조로 문장을 바꾼다.
 
 
 
 **7) 문장 해석 함수**
 
- 원래 imdb 데이터셋에서 가져 온 데이터가 수치로 인코딩된 것이었기 때문에, 위에서 만든 vocabulary 사전 구조에 맞게 문장을 해독하는 함수를 만든다.
+ 원래 IMDB 데이터셋에서 가져 온 데이터가 수치로 인코딩된 것이었기 때문에, 위에서 만든 vocabulary 사전 구조에 맞게 문장을 해독하는 함수를 만든다.
 
 
 

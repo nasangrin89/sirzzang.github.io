@@ -1,6 +1,6 @@
 ---
-title:  "[Python] Selenium을 공부하자!"
-excerpt : "셀레늄은 위대하다."
+title:  "[Python] Selenium"
+excerpt : "Selenium 사용법 이해하기"
 toc: true
 toc_sticky: true
 header:
@@ -46,11 +46,11 @@ last_modified_at: 2020-03-11
 
 
 
-## [0] Basics
+## 1. Basics
 
 
 
-### 1. Webdriver 설정
+### Webdriver 설정
 
  Selenium에서 사용할 수 있는 `Webdriver`는 `Chrome`, `Firefox`, `Internet Explorer`, `Opera`, `Safari`가 있다. 나는 Chrome Webdriver를 사용한다. 크롬 브라우저 버전에 맞게 설치하면 된다.
 
@@ -64,7 +64,7 @@ driver = webdriver.Chrome('설치 경로')
 
 
 
-### 2. Webdriver Options
+### 2Webdriver Options
 
   
 
@@ -104,7 +104,7 @@ driver = webdriver(chrome_options = options, executable_path='설치 경로')
 
 
 
-## [1] Locating Elements
+## 2. Locating Elements
 
  드라이버가 직접 웹 소스에서 element들을 찾아 반환한다.
 
@@ -180,7 +180,7 @@ driver.find_element(By.'속성', '속성 값')
 
 
 
-## [2] Wait
+## 3. Wait
 
  브라우저 드라이버가 웹에서 데이터를 받아올 수 있도록 *충분히* 기다려야 한다. 로딩이 끝날 때까지 기다리지 않는다면, 껍데기만 전송되어 온(`requests.text`가 받은 것과 별반 다를 것 없는) HTML 소스를 보게 된다.
 
@@ -247,7 +247,7 @@ element2 = wait.until(EC.presence_of_element_located((BY.CSS_SELECTOR, 'CSS')))
 
 
 
-## [3] 웹 사이트 자동 조작
+## 4. 웹 사이트 자동 조작
 
 
 
@@ -304,7 +304,7 @@ actions.perform()
 
 
 
-## [4] 기타
+## 5. 기타
 
 
 

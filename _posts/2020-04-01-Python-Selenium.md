@@ -38,11 +38,7 @@ last_modified_at: 2020-03-11
 
  특히 `requests.text`를 이용하게 되면 불러올 수 없는 데이터가 있다. 예컨대 뉴스 기사나 커뮤니티의 댓글이라든지, SNS 게시물 등 실시간 혹은 사용자의 입력 및 게시에 따라 동적으로 변화하는 것들이 그것이다. 이 경우 requests 모듈을 사용하게 되면 페이지의 **껍데기** 소스만 불러오게 되며, HTML 문서를 파싱한 뒤에도 정작 필요로 하는 데이터들은 *눈을 아무리 크게 뜨더라도* 찾아볼 수 없게 된다.
 
-
-
- 실제로 나도 프로젝트를 진행하며 Selenium으로 크롤링 작업을 수행하고, 그 사용법에 대해 정리할 필요성을 느꼈다. 이에 크롤링의 과정에서 언제 Selenium을 사용할 필요성을 느꼈는지, 그 기능을 어떻게 구현할 수 있는지 [정리하고자](https://www.selenium.dev/selenium/docs/api/py/index.html) 한다.
-
-
+<br>
 
 
 
@@ -81,7 +77,6 @@ options.add_argument('옵션')
 
 # 드라이버 설정
 driver = webdriver(chrome_options = options, executable_path='설치 경로')
-
 ```
 
   주로 사용할 수 있는 옵션은 다음과 같다.
@@ -203,7 +198,13 @@ driver = webdriver.Chrome('설치 경로')
 driver.implicitly_wait(3)
 ```
 
- 몇 초 동안 기다리는 것이 적정 값인지 알 수 없다는 문제가 있다.
+ 몇 초 동안 기다리는 것이 적정 값인지 알 수 없다는 문제가 있다. 
+
+
+
+> *참고* : 내용 추가
+>
+>  실제로 [웹 크롤링 미니 프로젝트](https://github.com/sirzzang/LECTURE/blob/master/인공지능-자연어처리(NLP)-기반-기업-데이터-분석/프로젝트/01. 크롤링/[미니 프로젝트] 크롤링 프로젝트 리뷰.md){: .btn .btn--danger .btn--small}를 진행했을 때, 옆 반에서 `implicitly_wait`으로 1000을 설정한 분이 계셨다. 진짜로 기다린다고 한다(…).
 
 
 
@@ -241,7 +242,7 @@ element2 = wait.until(EC.presence_of_element_located((BY.CSS_SELECTOR, 'CSS')))
 
 
 
-**time.sleep과의 [차이**](https://www.a-ha.io/questions/4d1c8589dcb22246af4a4d4960834bcf)
+**time.sleep과의 [차이](https://www.a-ha.io/questions/4d1c8589dcb22246af4a4d4960834bcf)**
 
  대기하는 것으로 `time.sleep`을 사용할 수도 있다. 이 메서드도 일정 시간 동안 대기하는 것은 마찬가지이지만, 이것은 **코드의 수행 자체를** 일정 시간 동안 멈추는 메서드이다. `implicitly_wait`이나 `WebdriverWait`은  Selenium의 웹 드라이버에만 특화된 메서드라고 보면 된다.
 
@@ -325,7 +326,6 @@ from selenium.webdriver.common.keys import Keys
 driver = webdriver.Chrome('설치 경로')
 element = driver.find_element_by_id('some id')
 element.send_keys(Keys.ENTER)
-
 ```
 
 
@@ -340,6 +340,28 @@ element.send_keys(Keys.ENTER)
         height = driver.execute_script("return document.body.scrollHeight")
         time.sleep(wait_time)
         driver.find_element_by_tag_name('body').send_keys(Keys.END)
+```
+
+
+
+```python
+# 유튜브 사이트 크롤링 시 사용한 코드
+def get_page(wd, url, wait_time=1):
+    wd.get(url)
+    while True:
+        height = driver.execute_script("return document.body.scrollHeight")
+        time.sleep(wait_time)
+        driver.find_element_by_tag_name('body').send_keys(Keys.END)
+        try:
+            bottom = driver.find_element_by_class_name('style-scope ytd-message-renderer')
+        except:
+            continue
+        if bottom is not None:
+            break
+
+    html = wd.page_source
+    wd.quit()
+    return html
 ```
 
 

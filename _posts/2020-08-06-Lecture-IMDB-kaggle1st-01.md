@@ -20,8 +20,6 @@ last_modified_at: 2020-07-26
 
 <sup>Tensorflow : 2.2.0</sup>
 
-<br>
-
 # *IMDB 감성 분석-Kaggle 우승자 아이디어*
 
 <br>

@@ -22,8 +22,6 @@ last_modified_at: 2020-07-26
 
 
 
-<br>
-
 # *IMDB 감성 분석-과제-Kaggle 우승자 아이디어 구현*
 
 <br>

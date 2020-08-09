@@ -1,5 +1,5 @@
 ---
-title:  "[NLP] IMDB Kaggle 우승자 논문 분석"
+title:  "[NLP] Kaggle IMDB_1.논문 분석"
 excerpt: "<<Sentiment Analysis>> Kaggle IMDB 대회 우승자 아이디어를 분석해 보자."
 toc: true
 toc_sticky: true
@@ -36,9 +36,7 @@ last_modified_at: 2020-07-26
 
 ## 2. 논문 분석
 
-<br>
-
-### 전처리
+### 2.1. 전처리
 
 
 
@@ -68,7 +66,7 @@ last_modified_at: 2020-07-26
 
 <br>
 
-### 모델링
+### 2.2. 모델링
 
 
 

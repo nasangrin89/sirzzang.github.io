@@ -1,5 +1,5 @@
 ---
-title:  "[NLP] IMDB Kaggle 우승자 아이디어 구현"
+title:  "[NLP] Kaggle IMDB_2. 구현"
 excerpt: "<<Sentiment Analysis>> Kaggle IMDB 대회 우승자 아이디어를 코드로 구현해 보자."
 toc: true
 toc_sticky: true
@@ -238,7 +238,7 @@ X_train = np.array(X_train)
 
 
 
-### <참고> Keras Embedding 사용
+### 			[참고] Keras Embedding
 
  전처리 단계까지 진행한 후, Keras Embedding 레이어를 사용해 기존 수업에서 구성했던 **컨볼루션 필터 사이즈를 달리 한 CNN 모델**을 훈련시켰다. 총 훈련 데이터에서 검증 데이터셋의 비율을 0.1로 설정한 뒤, 단순 정확도를 측정했다. 기존에는 정확도가 83% 정도였는데, 아무 것도 바꾸지 않았음에도 87.76%의 정확도가 나왔다. 미미하지만, 전처리를 통해 같은 네트워크 구성임에도 불구하고 정확도가 향상될 수 있음을 확인했다.
 
@@ -329,7 +329,7 @@ doc2vec_vec = np.array(doc2vec_vec)
 
 <br>
 
-### 모델링
+### 1.3. 모델링
 
 
 
@@ -404,7 +404,7 @@ None
 
  ![imdb-losstrajectory]({{site.url}}/assets/images/imdb-loss-01.png){: width="400"}{: .align-center}
 
-
+<center><sup>Test Loss가 계속 증가한다는 건, 과적합일까?</sup></center>
 
  단순 정확도는 88.2%로, 기존에 얻었던 결과보다 향상되었음을 알 수 있었다. Kaggle에 제출하기 위해 검증셋에 대한 `Roc-Auc`를 측정해 본 결과, 0.8819 정도가 나왔다. 이후 Kaggle 테스트 데이터셋을 동일한 방식으로 전처리하고, 예측했다. 제출한 후 점수는 82228이었다(…). ~~*매우 낮다*~~. 
 

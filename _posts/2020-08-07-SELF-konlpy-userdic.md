@@ -17,11 +17,9 @@ last_modified_at: 2020-08-07_
 
 
 
-# _Okt사용자 사전 추가_
+# _Okt 사용자 사전 추가_
 
 
-
- 예전에 [댓글 분석 프로젝트](https://github.com/High-Bee/WebcommentNLP){: .btn .btn--danger .btn--small} 할 때 Google Colabaratory에서 KoNLPy를 사용하며 **사용자 사전**을 추가하는 방법을 몰라 고생했었다. 그런데 20200807 강의에서 로컬 환경에서 `Okt` 사용자 사전을 추가하는 방법을 배웠다. 이를 바탕으로 Google Colabaratory에서 `Okt` 형태소 분석기에 사용자 사전을 추가해 본다.
 
 
 
@@ -229,7 +227,6 @@ adding: mecab-python-0.996/build/(in = 0) (out= 0)(stored 0%)
 adding: mecab-python-0.996/build/lib.linux-x86_64-3.6/(in = 0) (out= 0)(stored 0%)
 adding: mecab-python-0.996/build/lib.linux-x86_64-3.6/MeCab.py(in = 15733) (out= 2743)(deflated 82%)
     ...
-    
 ```
 
 

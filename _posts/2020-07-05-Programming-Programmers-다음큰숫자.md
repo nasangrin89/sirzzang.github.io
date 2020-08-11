@@ -1,5 +1,5 @@
 ---
-title: "[Programmers] 다음 큰 숫자"
+title: "[프로그래머스] 다음 큰 숫자"
 excerpt: 3일 1문제-4
 toc: false
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
 ---
 
 

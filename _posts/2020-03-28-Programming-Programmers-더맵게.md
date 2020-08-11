@@ -1,5 +1,5 @@
 ---
-title: "[Programmers] 더 맵게"
+title: "[프로그래머스] 더 맵게"
 excerpt: 1일 1문제풀이 9일차
 header:
   teaser: /assets/images/blog-Programming.jpg
@@ -9,7 +9,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 자료구조
   - 힙
 ---

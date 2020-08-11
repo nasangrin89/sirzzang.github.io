@@ -1,5 +1,5 @@
 ---
-title:  "[Programmers] 폰켓몬"
+title:  "[프로그래머스] 폰켓몬"
 excerpt:
 header:
   teaser: /assets/images/blog-Programming.jpg
@@ -9,7 +9,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "[Programmers] 기능 개발"
+title: "[프로그래머스] 기능 개발"
 excerpt: 3일 1문제-2
 toc: false
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
 ---
 
 

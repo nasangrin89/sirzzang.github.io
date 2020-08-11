@@ -1,5 +1,5 @@
 ---
-title:  "[Programmers] N개의 최소공배수"
+title:  "[프로그래머스] N개의 최소공배수"
 excerpt: "1일 1문제풀이 8일차"
 header:
   teaser: /assets/images/blog-Programming.jpg
@@ -9,7 +9,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 수학
 ---
 

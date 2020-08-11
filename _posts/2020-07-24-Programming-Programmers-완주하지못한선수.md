@@ -1,5 +1,5 @@
 ---
-title: "[Programmers] 완주하지 못한 선수"
+title: "[프로그래머스] 완주하지 못한 선수"
 excerpt: 3일 1문제-10
 toc: false
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 해시
 last_modified_at: 2020-07-24
 ---

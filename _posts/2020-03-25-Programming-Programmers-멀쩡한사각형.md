@@ -1,5 +1,5 @@
 ---
-title:  "[Programmers] 멀쩡한 사각형"
+title:  "[프로그래머스] 멀쩡한 사각형"
 excerpt: "1일 1문제풀이 6일차"
 header:
   teaser: /assets/images/blog-Programming.jpg
@@ -9,7 +9,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 수학
 ---
 

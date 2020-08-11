@@ -1,5 +1,5 @@
 ---
-title: "[Programmers] 위장"
+title: "[프로그래머스] 위장"
 excerpt: 3일 1문제-9
 toc: false
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 해시
 last_modified_at: 2020-07-22
 ---

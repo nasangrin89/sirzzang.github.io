@@ -1,5 +1,5 @@
 ---
-title: "[Programmers] 탑"
+title: "[프로그래머스] 탑"
 excerpt: 3일 1문제-3
 toc: false
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 스택
   - 큐
 ---

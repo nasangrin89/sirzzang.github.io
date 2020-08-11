@@ -1,5 +1,5 @@
 ---
-title: "[Programmers] 야근 지수"
+title: "[프로그래머스] 야근 지수"
 excerpt: 3일 1문제-1
 toc: false
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 자료구조
   - 우선순위 큐
 ---

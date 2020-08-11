@@ -1,5 +1,5 @@
 ---
-title:  "[Programmers] 점프와 순간이동"
+title:  "[프로그래머스] 점프와 순간이동"
 excerpt:
 header:
   teaser: /assets/images/blog-Programming.jpg
@@ -9,7 +9,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
 
 ---
 

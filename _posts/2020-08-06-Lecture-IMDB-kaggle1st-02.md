@@ -542,3 +542,21 @@ model.compile(loss='binary_crossentropy', optimizer=adam)
 
 * 두 임베딩 벡터의 차원을 일치시켜야 하는가?
 * 테스트셋 상 `Roc-Auc Score`와 Kaggle 예측 리더보드 상 `Roc-Auc Score` 간 관계가 있을까?
+
+<br>
+
+**20200810 추가**
+
+ 조금 더 고민해 보다가, 네트워크 구성, `Roc-Auc Score` 계산 방식 외에 Kaggle Train Set과 Test Set의 리뷰 및 단어 구성이 달라서 그런 것은 아닐까 하는 생각이 들었다. 강사님께 여쭤 보고 저자의 논문을 다시 찾아 보니, 다음과 같은 구절이 있었다.
+
+> *참고* : 논문 9.2. 뒷부분
+>
+>  We are using the test data to build both the tf-idf vectors and to build the distributed document representation, as both approaches are unsupervised, and thus do not require labels (This is allowed in the competition rules, as long as they are used as unsupervised data, like we did).
+
+
+
+ 요컨대, 저자도 전처리 및 임베딩 과정에서 Train 데이터와 Test 데이터를 모두 사용한 것이었다! 예전에는 절대 Test 데이터를 보면 안 된다는 생각에 사로잡혀 있었는데, 강사님께서도 **Test 데이터의 라벨은 사용하면 안 되지만, 경우에 따라서 Test 데이터의 feature들은 활용해도 될 것이라는 조언**을 해 주셨다.
+
+<br>
+
+ +) 그리고 이후에 전체 데이터에 대해 코퍼스를 동일하게 구성해서 TF-IDF 400차원, doc2vec 400차원 임베딩을 한 결과물을 딥러닝 네트워크로 구현해서 제출해 봤는데, 0.8563 정도가 최고 점수였다. 사이킷런의 `roc_auc_score`로 검증셋에 대해 측정할 때는 최고 점수가 0.93 정도였지만, 조금은 향상되었다.

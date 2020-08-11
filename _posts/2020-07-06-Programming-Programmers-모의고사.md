@@ -1,5 +1,5 @@
 ---
-title: "[Programmers] 모의고사"
+title: "[프로그래머스] 모의고사"
 excerpt: 3일 1문제-5
 toc: false
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 완전탐색
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "[Programmers] 괄호 변환"
+title: "[프로그래머스] 괄호 변환"
 excerpt: 3일 1문제-7
 toc: false
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
 last_modified_at: 2020-07-17
 ---
 

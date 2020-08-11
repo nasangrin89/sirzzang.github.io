@@ -1,5 +1,5 @@
 ---
-title: "[Programmers] H-Index"
+title: "[프로그래머스] H-Index"
 excerpt: 3일 1문제-6
 toc: false
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 정렬
 ---
 

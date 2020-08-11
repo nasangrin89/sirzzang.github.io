@@ -1,5 +1,5 @@
 ---
-title: "[Programmers] 카펫"
+title: "[프로그래머스] 카펫"
 excerpt: 3일 1문제-12
 toc: false
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 완전탐색
 last_modified_at: 2020-07-28
 ---

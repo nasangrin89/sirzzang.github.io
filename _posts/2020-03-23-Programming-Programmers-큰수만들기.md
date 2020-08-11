@@ -1,5 +1,5 @@
 ---
-title:  "[Programmers] 큰 수 만들기"
+title:  "[프로그래머스] 큰 수 만들기"
 excerpt: "1일 1문제풀이 4일차"
 header:
   teaser: /assets/images/blog-Programming.jpg
@@ -9,7 +9,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 그리디
   - 스택
 ---

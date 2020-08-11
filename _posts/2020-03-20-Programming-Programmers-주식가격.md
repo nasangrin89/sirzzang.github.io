@@ -1,5 +1,5 @@
 ---
-title:  "[Programmers] 주식가격"
+title:  "[프로그래머스] 주식가격"
 excerpt: "1일 1문제풀이 1일차"
 header:
   teaser: /assets/images/blog-Programming.jpg
@@ -9,7 +9,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 스택, 큐
   - 그리디
 ---

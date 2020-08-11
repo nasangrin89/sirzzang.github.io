@@ -1,5 +1,5 @@
 ---
-title:  "[Programmers] 다리를 지나는 트럭"
+title:  "[프로그래머스] 다리를 지나는 트럭"
 excerpt: "1일 1문제풀이 3일차"
 header:
   teaser: /assets/images/blog-Programming.jpg
@@ -9,7 +9,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 덱
 ---
 

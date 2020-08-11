@@ -1,5 +1,5 @@
 ---
-title:  "[Programmers] 문자열 압축"
+title:  "[프로그래머스] 문자열 압축"
 excerpt: "1일 1문제풀이 5일차"
 header:
   teaser: /assets/images/blog-Programming.jpg
@@ -9,7 +9,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
   - 완전탐색
 ---
 

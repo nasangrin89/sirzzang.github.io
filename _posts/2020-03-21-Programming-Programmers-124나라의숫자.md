@@ -1,5 +1,5 @@
 ---
-title:  "[Programmers] 124 나라의 숫자"
+title:  "[프로그래머스] 124 나라의 숫자"
 excerpt: "1일 1문제풀이 2일차"
 header:
   teaser: /assets/images/blog-Programming.jpg
@@ -9,7 +9,7 @@ categories:
 tags:
   - Python
   - Programming
-  - Programmers
+  - 프로그래머스
 ---
 
 > [문제 출처](https://programmers.co.kr/learn/courses/30/lessons/12899#)

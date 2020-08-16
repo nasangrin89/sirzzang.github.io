@@ -1,6 +1,6 @@
 ---
 title:  "[NLP] Trasnformer_1.모델 구조"
-excerpt: "<<Language Model>> Transformer 모델의 아키텍쳐를 알아 보자."
+excerpt: "<<Language Model>> Transformer 모델의 전체적인 구조를 알아 보자."
 toc: true
 toc_sticky: true
 classes: wide
@@ -45,7 +45,7 @@ last_modified_at: 2020-08-14
  인코더 디코더에 RNN 네트워크를 사용하는 Seq2seq 언어 모델은 순환 신경망 네트워크가 갖는 위의 두 가지 문제점 외에도 다음과 같은 문제점을 갖는다.
 
 * 하나의 문장 내에 있는 **개별 단어 간 관계**를 파악할 수 없다. Recurrent Step을 모두 거친 뒤, 하나의 벡터에 문장의 정보가 반영된다. 따라서 각 단어 간 유의미한 관계를 파악하기 힘들다.
-* 문장 길이가 *길수록* 하나의 벡터 안에 문장의 정보를 모두 포함하기 어려워진다. 문장이 길수록 **앞서 반영된 단어의 정보는 점차 손실*된다.
+* 문장 길이가 *길수록* 하나의 벡터 안에 문장의 정보를 모두 포함하기 어려워진다. 문장이 길수록 *앞서 반영된 단어의 정보는 점차 손실*된다.
 
 <br>
 
@@ -61,13 +61,13 @@ last_modified_at: 2020-08-14
 
 ## 2. 아키텍쳐
 
+{: .notice--warning}
+
+**Remember**  인코더와 디코더, 그리고 각각을 구성하는 레이어의 구조는 조금 더 세세하게 살펴볼 예정이다. 그러나 그 전에, 반드시 모델의 전체 구조를 머릿 속에 그리고 넘어가도록 하자.
 
 
-{: .notice\-\-warning} **Remember** 인코더와 디코더, 그리고 각각을 구성하는 레이어의 구조는 조금 더 세세하게 살펴볼 예정이다. 그러나 그 전에, 반드시 모델의 전체 구조를 머릿 속에 그리고 넘어가도록 하자.{: .notice}
 
-
-
-
+<br>
 
  논문에 소개되어 있는 아키텍쳐에서, 큰 그림을 이해하는 데 필요한 것은 다음의 세 가지이다.
 
@@ -103,9 +103,9 @@ last_modified_at: 2020-08-14
 
 > *참고* : `학습/예측`
 >
->  디코더 입력 및 출력 부분에 `학습/예측`이라고 표현한 이유는 이후 구현 단계에서는 Seq2Seq 모델과 마찬가지로, 학습 시에는 **Teacher Forcing** 방식을, 예측(채팅 모듈) 시에는 한 단어씩 입력하는 방식을 사용하기 때문이다. 원래 논문에 소개된 대로라면, Softmax 활성화 함수를 거쳐 다음 단어가 나올 확률을 예측해야 한다.
+>  디코더 입력 및 출력 부분에 `학습/예측`이라고 표현한 이유는 이후 구현 단계에서 Seq2Seq 모델과 마찬가지로, 학습 시에는 **Teacher Forcing** 방식을, 예측(채팅 모듈) 시에는 한 단어씩 입력하는 방식을 사용하기 때문이다. 원래 논문에 소개된 대로라면, Softmax 활성화 함수를 거쳐 다음 단어가 나올 확률을 예측해야 한다.
 >
-> > At each step the model is auto-regressive [10], consuming the previously generated symbols as additional input when generating the next.
+> > At each step the model is auto-regressive, consuming the previously generated symbols as additional input when generating the next.
 >
 > >  We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. 
 

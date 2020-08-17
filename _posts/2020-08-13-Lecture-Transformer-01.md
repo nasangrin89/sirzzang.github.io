@@ -21,7 +21,7 @@ last_modified_at: 2020-08-14
 
 <br>
 
-# *Transformer 이해하기_ 모델 아키텍쳐*
+# *Transformer 이해하기_모델 아키텍쳐*
 
 <br>
 

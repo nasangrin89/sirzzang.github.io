@@ -69,17 +69,17 @@ last_modified_at: 2020-08-14
 
 <br>
 
- 이를 통해 위의 두 조건에 더해, 각 Positional Encoding은 단어의 의미 정보와 함께 모델에 전달되더라도 **위치 정보를 부각할 수 있도록** ~~*(조금 더 쉽게 말하자면, 위치 정보가 묻히지 않도록)*~~ 이루어져야 한다는 조건을 알 수 있다. 이를 위해 **임베딩과 같은 차원의 벡터**로 단어의 순서 정보를 인코딩한다.  
+ 이를 통해 위의 두 조건에 더해, 각 Positional Encoding은 단어의 의미 정보와 함께 모델에 전달되더라도 **위치 정보를 부각할 수 있도록** ~~*(조금 더 쉽게 말하자면, 위치 정보가 묻히지 않도록)*~~ 이루어져야 한다는 것을 알 수 있다. 이를 위해 **임베딩과 같은 차원의 벡터**로 단어의 순서 정보를 인코딩한다.  
 
 <br>
 
- 그래서 벡터로 Positional Encoding을 구현하기 위해, 아래 그림에서와 같이 위치 정보를 찾아낼 수 있는 벡터를 찾아 나간다.
+ 그래서 단어 임베딩과 같은 차원의 벡터로 Positional Encoding을 구현하기 위해, 아래 그림에서와 같이 위치 정보를 찾아낼 수 있는 벡터를 찾아 나간다.
 
 ![positional encoding 2]({{site.url}}/assets/images/pos_enc_ex.png){: width="400"}{: .align-center} 
 
 
 
- 우선, 각 벡터 간 *거리가 일정해야*  한다. 이를 위해 원점으로부터 초기 벡터를 찾고, 원점과 초기 벡터 간 동일한 거리를 갖는 벡터를 찾는 방식을 택한다. 따라서 Positional Encoding된 각 벡터 간 **내적이 동일**해야 한다.
+ 우선, 각 벡터 간 *거리가 일정해야*  한다. 이를 위해 원점으로부터 초기 벡터를 찾고, 원점과 초기 벡터 간 동일한 거리를 갖는 벡터를 찾는 방식을 택한다. 따라서 Positional Encoding된 각 벡터 간 **거리가 동일**해야 한다. 동시에, 각 위치가 서로 다른 위치에 종속되면 안 되므로, 각 벡터 간 **내적이 동일**해야 한다. 위치 정보 벡터들이 서로 독립적이어야 함을 의미한다.
 
  또한, 각 벡터가 원점으로부터 발산하지 않아야 한다. 내적이 동일한 벡터를 찾아 나가기 위해 동일한 일직선 상에서 벡터를 선택한다고 생각해 보자. 나중에는 계산량이 무한히 커질 것이다. 따라서 모든 벡터의 **노름이 동일**하도록, 이전 벡터에서 다음 벡터를 선택할 때 일정 크기의 각 $$\theta$$을 줘서 선택한다.
 
@@ -89,7 +89,7 @@ last_modified_at: 2020-08-14
 
 <br>
 
- 정리하면 다음과 같다. 인코더 입력 문장이 $$d_{model}$$ 차원의 벡터로 임베딩된다고 하자. Positional Encoding은 **1)** 위와 같은 방법론을 따라 선택된, **2)** 임베딩된 벡터와 같은 $$d_{model}$$ 차원 공간에서의 벡터로서, **3)** 각 단어에의 뒤에 붙어 문장 내 위치 정보를 표현하게 된다. 
+ 정리하면 다음과 같다. 인코더 입력 문장이 $$d_{model}$$ 차원의 벡터로 임베딩된다고 하자. Positional Encoding은 **1)** 위와 같은 방법론을 따라 선택된, **2)** 임베딩된 벡터와 같은 $$d_{model}$$ 차원 공간에서의 벡터로서, **3)** 각 단어에의 뒤에 붙어 문장 내 위치 정보를 표현하게 된다. **임베딩 결과에 Positional Encoding을 통해 위치 정보를 추가**하는 것이다.
 
 > Similarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension $$d_{model}$$. (…) The positional encodings have the same dimension $$d_{model}$$ as the embeddings, so that the two can be summed.
 
@@ -108,6 +108,7 @@ $$
 PE_{(pos, 2i)} = sin(pos/10000 ^ {2i/d_{model}}) \\
 PE_{(pos, 2i+1)} = cos(pos/10000 ^ {2i/d_{model}})
 $$
+
 
 
  $$pos$$ 는 각 단어가 문장 내에서 몇 번째 단어인지를 의미하며, $$i$$ 는 임베딩 벡터의 차원에서의 순서를 나타낸다. 예컨대,  `"I love you so much"`의 문장 내 각 단어를 128차원으로 임베딩했다면 $$pos$$ 는 0부터 4까지,  $$i$$ 는 0부터 127까지가 될 것이다.
@@ -209,7 +210,9 @@ plt.show()
 
 <center><sup> 실제로 뺑글 뺑글 원을 그리며 돈다!</sup></center>
 
- 3차원으로도 나타내 보자.
+<br> 
+
+3차원으로도 나타내 보자.
 
 ```python
 fig = plt.figure()
@@ -228,3 +231,9 @@ plt.show()
 <center><sup> 실제로 뺑글 뺑글하게 입체 도형을 만들며 돈다!</sup></center>
 
 <br>
+
+
+
+> *참고* 
+>
+>  Positional Encoding을 반드시 위의 공식으로만 구현할 수 있는 것은 아니다. 또 다른 Positional Encoding에 대해 다른 논문들도 많이 있다. 기본적으로 각 벡터 간 등간격 거리(**equidistant**)가 되도록 하는 게 조건이다. 

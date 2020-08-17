@@ -42,7 +42,7 @@ last_modified_at: 2020-08-14
 
 
 
- Transformer 논문에서는 Attention 과정을 설명하기 위해 Query, Key, Value라는 개념을 도입한다. 이를 이해하기 위해 이전에  [Seq2Seq 모델](https://sirzzang.github.io/lecture/Lecture-Seq2Seq/){: .btn .btn--danger .btn--small} 에 Attention 메커니즘으로서 Dot-Product를 적용해 챗봇을 만들었던 내용을 돌이켜 보자.
+ Transformer 논문에서는 Attention 과정을 설명하기 위해 Query, Key, Value라는 개념을 사용한다. 이를 이해하기 위해 이전에  [Seq2Seq 모델](https://sirzzang.github.io/lecture/Lecture-Seq2Seq/){: .btn .btn--danger .btn--small} 에 Attention 메커니즘으로서 Dot-Product를 적용해 챗봇을 만들었던 내용을 돌이켜 보자.
 
  <br>
 
@@ -115,7 +115,7 @@ $$Attention(Q, K, V) = softmax(\frac {QK^T} {\sqrt {d_k}})V$$
 
 이제 Transformer 모델의 또 다른 핵심인 **Multi-head Attention** 개념이 등장한다. 위의 *Scaled Dot-Product Attention*을 여러 개의 **head**로 나누어 진행하는 것이다. **병렬 처리**를 통해 속도를 향상시키기 위함이다. 
 
- 교재의 예시에서와 같이 `"I love you so much"`라는 문장 Key에 대해 을 6차원으로 임베딩한 후, 3개의 head로 나누어 Attention을 진행한다고 하자. 
+ 교재의 예시에서와 같이 `"I love you so much"`라는 문장을 6차원으로 임베딩한 후, 3개의 head로 나누어 Attention을 진행한다고 하자. 
 
 <br>
 
@@ -123,7 +123,7 @@ $$Attention(Q, K, V) = softmax(\frac {QK^T} {\sqrt {d_k}})V$$
 
 <br>
 
- 임베딩 차원 $$d_{model}$$ 이 6이고, 이를 *head* 의 개수를 3이라고 하자. 이 때 각 임베딩 차원을 *head* 의 개수만큼 나누면, 2가 된다. 이렇게 나누어진 차원의 수를 $$d_k$$라고 하자. 그러면 각각의 *head*는 Query에서 $$(Vocab\_size, d_{k})$$ 만큼의 행렬을 처리하게 된다. 
+ 임베딩 차원 $$d_{model}$$ 이 6이고, 이를 *head* 의 개수를 3으로 나누었을 때, 나누어진 차원의 수를 $$d_k$$라고 하자. 그러면 각각의 *head*는 Query에서 $$(Vocab\_size, d_{k})$$ 만큼의 행렬을 처리하게 된다. 
 
 > 쉽게 이해하자면, 쪼개진 각각의 부분을 `1)`, `2)`, `3)`이라 했을 때 각각의 head는 Query에서 `1)`, `2)`, `3)`의 부분을 맡아 처리하는 것이라고 볼 수 있다.
 
@@ -145,7 +145,7 @@ $$Attention(Q, K, V) = softmax(\frac {QK^T} {\sqrt {d_k}})V$$
 >
 > > In this work we employ h = 8 parallel attention layers, or heads. For each of these we use dk = dv = dmodel/h = 64. Due to the reduced dimension of each head, the total computational cost is similar to that of single-head attention with full dimensionality.
 >
->  그러나 구글링해보니, 이 숫자가 꼭 작아야만 하는 것은 아니라고 한다. 그저 계산 상의 편의를 위해 이렇게 설정한 것이라고 하는데, 논문에서 관련한 구절을 정확하게 찾지는 못했다. 제대로 확인해 보자.
+>  그러나 구글링해보니, 이 숫자가 꼭 작아야만 하는 것은 아니라고 한다. multi-head attention의 계산 복잡도를 일정하게 만들고자 내린 구조적인 선택일 뿐이라고 하는데, 논문에서 관련한 구절을 정확하게 찾지는 못했다. 제대로 확인해 보자.
 
 
 

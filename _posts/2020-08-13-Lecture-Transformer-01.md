@@ -124,9 +124,9 @@ last_modified_at: 2020-08-14
 
 <br>
 
- 인코더에 문장이 입력되고, 각각의 레이어를 거쳐 나온 **인코더의 최종 출력이 각각의 디코더에 전달**된다. 정확하게는, 디코더의 레이어 중 **두 번째** 레이어인 *Encoder-Decoder-Attention* 레이어에 전달된다.
+ 인코더에 문장이 입력되고, 각각의 레이어를 거쳐 나온 **인코더의 최종 출력이 각각의 디코더에 전달**된다. 정확하게는, 디코더의 레이어 중 **두 번째** 레이어인 *Encoder-Decoder Attention* 레이어에 전달된다.
 
- 디코더 입력의 Self-Attention 값(Value)에 대해, 인코더의 결괏값을 Query, Key로 삼아 Attention Score를 계산하는 것이다. 논문에서는 이 과정을 통해 모든 디코더 레이어가 인코더에 입력된 문장의 각 부분(*RNN 네트워크의 타임 스텝에 비유할 수 있다*)에서 가장 주목해야 할 부분에 집중할 수 있도록 한다고 말한다.
+ 디코더로 입력된 값(Value)에 대해, 인코더의 결괏값을 Query, Key로 삼아 Attention Score를 계산하는 것이다. 논문에서는 이 과정을 통해 모든 디코더 레이어가 인코더에 입력된 문장의 각 부분(*RNN 네트워크의 타임 스텝에 비유할 수 있다*)에서 가장 주목해야 할 부분에 집중할 수 있도록 한다고 말한다.
 
 > In "encoder-decoder attention" layers, the queries come from the previous decoder layer, and the memory keys and values come from the output of the encoder. This allows every position in the decoder to attend over all positions in the input sequence.
 

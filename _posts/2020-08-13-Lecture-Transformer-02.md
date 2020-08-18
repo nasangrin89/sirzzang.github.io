@@ -89,7 +89,7 @@ last_modified_at: 2020-08-14
 
 <br>
 
- 정리하면 다음과 같다. 인코더 입력 문장이 $$d_{model}$$ 차원의 벡터로 임베딩된다고 하자. Positional Encoding은 **1)** 위와 같은 방법론을 따라 선택된, **2)** 임베딩된 벡터와 같은 $$d_{model}$$ 차원 공간에서의 벡터로서, **3)** 각 단어에의 뒤에 붙어 문장 내 위치 정보를 표현하게 된다. **임베딩 결과에 Positional Encoding을 통해 위치 정보를 추가**하는 것이다.
+ 정리하면 다음과 같다. 인코더 입력 문장이 $$d_{model}$$ 차원의 벡터로 임베딩된다고 하자. Positional Encoding은 **1)** 위와 같은 방법론을 따라 선택된, **2)** 임베딩된 벡터와 같은 $$d_{model}$$ 차원 공간에서의 벡터로서, **3)** 각 단어 임베딩과 합쳐져 문장 내 위치 정보를 표현하게 된다. **임베딩 결과에 Positional Encoding을 통해 위치 정보를 추가**하는 것이다.
 
 > Similarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension $$d_{model}$$. (…) The positional encodings have the same dimension $$d_{model}$$ as the embeddings, so that the two can be summed.
 

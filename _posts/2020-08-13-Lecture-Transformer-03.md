@@ -106,10 +106,10 @@ $$Attention(Q, K, V) = softmax(\frac {QK^T} {\sqrt {d_k}})V$$
 
 > *참고* : 디코더의 Q, K, V
 >
->  이후에 더 자세히 살펴보겠지만, 트랜스포머 모델에서는 Multi-head Attention 레이어의 종류가 2가지이다. Self-Attention을 하는 레이어와 Encoder-Decoder Attention을 수행하는 레이어이다. 인코더는 전자만 사용하지만, 디코더는 전자와 후자 모두를 사용한다. 이 때, **디코더에서는** 레이어별로 Query, Key, Value가 다음과 같이 달라진다.
+>  이후에 더 자세히 살펴보겠지만, 트랜스포머 모델에서는 Multi-head Attention 레이어의 종류가 2가지이다. Self-Attention을 하는 레이어와 Encoder-Decoder Attention을 수행하는 레이어이다. 인코더는 전자만 사용하지만, 디코더는 전자와 후자 모두를 사용한다. 이 때, **디코더에서는** 레이어별로 Q, K, V 가 다음과 같이 달라진다.
 >
-> * **Encoder-Decoder Attention**: Query는 디코더의 이전 레이어 output state, Key와 Value는 인코더의 output state.
-> * **Self-Attention**: Q, K, V 모두 인코더의 output state.
+> * **Encoder-Decoder Attention**: Q는 디코더의 이전 레이어 output, K와 V는 인코더의 output.
+> * **Self-Attention**: Q, K, V 모두 인코더의 output.
 
 <br>
 

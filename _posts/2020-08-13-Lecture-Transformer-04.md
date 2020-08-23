@@ -102,3 +102,26 @@ last_modified_at: 2020-08-14
 <center><sup>출처: Attention is All You Need 논문</sup></center>
 
 <br>
+
+## 4. Masking
+
+<br>
+
+ 이전까지의 과정을 요약해 Seq2Seq 모델과 트랜스포머 모델의 차이점을 생각해 보자. 트랜스포머 모델은 순환신경망 네트워크를 제거하고, Self-Attention 과정을 거쳐 문장의 정보를 효과적으로 추출해 낸다. 그런데 이 과정에서 문장 전체를 한번에 행렬 형태로 입력했다. 이 때문에 예측 과정에 문제가 발생할 수 있다. 학습 시에는 자기 자신보다 뒤에 있는 모든 위치의 단어들을 참고할 수 있었지만, 예측 시에는 입력되는 단어보다 **뒤에 있는 단어를 사용할 수 없기 때문**이다.
+
+ 따라서 *순차적으로* 결과를 만들어내야 하는 디코더의 경우에는 **Masking** 기법을 사용해 학습 및 예측하도록 한다. 특정 포지션 $$i$$에 단어가 들어 온다면, 그 뒤에 있는 위치의 단어들에 Attention을 주지 못하게 하는 것이다. 이미 알고 있는 결과를 활용하기만 해서 Attention을 주고 다음 단어를 예측하는 데에 활용하는 것이다. 특히 디코더에서 이렇게 학습한다. 
+
+> *참고* 
+>
+>  논문에서는 디코더에서는 Self-Attention 기법을 변형하여 적용한다고 표현되어 있다.
+>
+> > We also modify the self-attention
+> > sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This
+> > masking, combined with fact that the output embeddings are offset by one position, ensures that the
+> > predictions for position i can depend only on the known outputs at positions less than i.
+
+<br>
+
+아래 그림에서와 같이 상삼각행렬 부분에 마스킹을 씌우면 된다.
+
+![Masking]({{site.url}}/assets/images/transformer-masking.png){: width="400"}{: .align-center}

@@ -1,5 +1,5 @@
 ---
-title:  "[NLP] Trasnformer_2.Positional Encoding"
+title:  "[NLP] Transformer_2.Positional Encoding"
 excerpt: "<<Language Model>> Transformer 모델에 사용된 Positional Encoding을 알아 보자."
 toc: true
 toc_sticky: true

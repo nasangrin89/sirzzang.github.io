@@ -1,5 +1,5 @@
 ---
-title:  "[NLP] Trasnformer_3.Multi-head Attention_1"
+title:  "[NLP] Transformer_3.Multi-head Attention_1"
 excerpt: "<<Language Model>> Transformer 모델에 사용된 Multi-head Attention을 알아 보자."
 toc: true
 toc_sticky: true

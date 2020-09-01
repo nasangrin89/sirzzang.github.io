@@ -1,5 +1,5 @@
 ---
-title:  "[NLP] Trasnformer_1.모델 구조"
+title:  "[NLP] Transformer_1.모델 구조"
 excerpt: "<<Language Model>> Transformer 모델의 전체적인 구조를 알아 보자."
 toc: true
 toc_sticky: true

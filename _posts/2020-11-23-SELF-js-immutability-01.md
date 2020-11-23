@@ -21,8 +21,6 @@ use_math: true
 
  *mutable*이란 단어 자체가 갖는 뜻(*변화 가능한*)처럼, **mutability**란 **변화 가능함**을 의미한다. **정보 원본이 변경될 수 있음**을 의미한다.  *immutable*은 *변화 가능하지 않은* 이란 뜻이다. 따라서 **immutability**란, **정보 원본이 변경될 수 없음**을 의미한다. 
 
- React 스터디에서 immer, 데이터 불변성 등을 공부하며 JavaScript에서의 immutability에 대해 공부할 필요성을 느껴 정리하도록 한다. 
-
 <br>
 
 ## 0. 원본이란?
@@ -40,8 +38,6 @@ use_math: true
 
  이런 점에서 어떠한 정보 시스템을 만나든 가장 먼저 확인해야 할 것은, `이 분야에서 생성과 읽기는 어떠한 것인가`이다. 이것을 이해해야 해당 분야 정보 시스템의 핵심을 알 수 있다. 생성과 읽기를 이해한 후, 수정과 삭제를 이해해야 한다. 수정과 삭제가 자유로울 때 발생하는 여러 문제점을 해결하기 위해 **불변함**(*Immutability*)에 대한 요구가 점차 높아지고 있다. 원본에 가해지는 무질서한 변화를 막을 수 있다면 사고를 막을 수 있다.
 
-<br>
-
 > *참고* : mutability는 안 좋은 것인가?
 >
 >  오해하지 말자. 가변성이 나쁘다는 의미가 아니다. 가변은 디지털의 특권이기도 하다. 다만, 어플리케이션에서 변할 필요가 없는 부분을 확실하게 잡아 놓는다면, 훨씬 더 안심할 수 있을 것이다.
@@ -56,40 +52,17 @@ use_math: true
 
  불변함을 적용할 수 있는 대상은 크게 두 가지이다. 첫째, 값의 **이름**, 둘째, 값 **자체**이다.
 
-![immutable]({{site.url}}/assets/images/js-immutable-1.png)
+![immutable]({{site.url}}/assets/images/js-immutable-1.png){: .align-center}
 
-<center><sup>그림 출처: 생활코딩 JavaScript Immutability [2강](https://www.youtube.com/watch?v=IcTLV1TRgLU&list=PLuHgQVnccGMBxNK38TqfBWk-QpEI7UkY8&index=2)</sup></center>
+<center><sup>그림 출처: 생활코딩 JavaScript Immutability 2강</sup></center>
 
 <br>
 
 ### 이름
 
- 먼저 이름을 어떻게 불변하게 할 것인지부터 살펴 보자. 
+ `const`를 통해 변수를 선언하면, 변수의 값이 바뀌었을 때 아래와 같이 `TypeError`가 발생한다. 
 
-<br>
-
- `var` 키워드를 통해 `v`라는 변수를 선언한다. 그 변수는 `1`이라는 값의 이름이기도 하다. 
-
-```javascript
-var v = 1;
-```
-
- 극단적인 상황을 가정한다. 협업을 통해 함께 오픈소스 프로젝트를 개발하고 있다고 하자. 내가 선언한 `v`라는 변수 아래에 1억 줄의 코드가 있고, 누군가가 `v`라는 변수를 변경한다고 해 보자.
-
-```javascript
-var v = 1;
-// ~~ 1억줄의 코드
-v = 2; // 변수 변경
-console.log(v); // 2
-```
-
-<br>
-
- 이러한 상황을 예방하기 위해 ES6 버전부터 `const` 키워드가 도입되었다. `const`를 통해 변수를 선언하면, 변수의 값이 바뀌었을 때 아래와 같이 `TypeError`가 발생한다.
-
-![immutable-2]({{site.url}}/assets/images/js-immutable-2.png)
-
-<br>
+![immutable-2]({{site.url}}/assets/images/js-immutable-2.png){: .align-center}
 
  변수는 변수의 이름이 가리키는 값이 계속해서 다른 값으로 바뀔 수 있다. 그러나 상수 변수(`const`)는 한 번 어떤 값을 가리키게 되면, 상수 변수가 가리키는 값을 변경하는 것이 금지된다. 따라서 이것을 시도할 때 위와 같은 에러가 발생하며 프로그램이 종료된다. 이를 통해, **부주의하게 값을 바꾸려는 시도**를 할 수 없고, 그 시도를 했을 때 **문제가 되는 행위를 했음**을 파악할 수 있다. 
 
@@ -107,28 +80,26 @@ console.log(v); // 2
 
 <br>
 
-* 원시 데이터 타입
+1. 원시 데이터 타입
 
  더 이상 쪼갤 수 없는 최소한의 데이터 타입이라고 이해하자. 다음과 같은 것들이 있다.
 
-> * Number
->
-> * String
->
-> * Boolean
-> * Null
-> * Undefined
-> * Symbol
+* Number
+* String
+* Boolean
+* Null
+* Undefined
+* Symbol (ES6~)
 
 <br>
 
+2. Object
+
+ 포괄적으로 **객체**라고 부르는 것들이다. 원자적인 데이터 타입과는 *달리*, 복합적인 특성을 갖는, 연관되어 있는 정보를 정리정돈할 때 사용한다는 특성을 갖는다고 이해하자. 
+
 * Object
-
- 포괄적으로 객체라고 부르는 것들이다. 원자적인 데이터 타입과는 *달리*, 복합적인 특성을 갖는, 연관되어 있는 정보를 정리정돈할 때 사용한다는 특성을 갖는다고 이해하자. 
-
-> * Object
-> * Array: 객체의 기능 중 순서대로 정보를 정리정돈한다는 특성이 추가된 기능.
-> * Function: JavaScript에서는 함수도 값으로 사용될 수 있는 객체이다.
+* Array: 객체에서 순서대로 정보를 정리한다는 기능이 추가된 자료형
+* Function: JavaScript에서는 함수도 값으로 사용될 수 있는 객체
 
 <br>
 
@@ -148,7 +119,7 @@ var p1 = 1;
 
  위와 같이 `p1`이라는 변수를 선언 후, 이에 `1`이라는 값을 할당하면, 컴퓨터 내부적으로 다음과 같이 할당이 이루어지게 된다.
 
-![immutable-3]({{site.url}}/assets/images/js-immutable-3.png)
+![immutable-3]({{site.url}}/assets/images/js-immutable-3.png){: .align-center}
 
 <br>
 
@@ -160,7 +131,7 @@ var p2 = 1;
 
  이미 `1`이라는 값이 존재하므로, 아래와 같이 `p2`도 이미 있는 값을 가리키게 된다. *(또 다른 `1`이라는 값을 생성할 때보다 메모리를 ~~흥청망청~~ 쓰지 않게 된다고…)*
 
-![immutable-4]({{site.url}}/assets/images/js-immutable-4.png)
+![immutable-4]({{site.url}}/assets/images/js-immutable-4.png){: .align-center}
 
 <br>
 
@@ -184,7 +155,7 @@ console.log(p1 === p2); // true
 var o1 = {name:'kim'};
 ```
 
-![immutable-5]({{site.url}}/assets/images/js-immutable-5.png)
+![immutable-5]({{site.url}}/assets/images/js-immutable-5.png){: .align-center}
 
 <br>
 
@@ -196,7 +167,7 @@ var o2 = {name: 'kim'}
 
  이전에 원시 데이터 타입의 경우에는 값이 같으면 같은 곳을 가리킨다고 했으나, `Object`의 경우는 그렇지 않다. `o2`는 별도의 데이터를 새로 생성하고, 그 새로운 값을 가리킨다. 
 
-![immutable-6]({{site.url}}/assets/images/js-immutable-6.png)
+![immutable-6]({{site.url}}/assets/images/js-immutable-6.png){: .align-center}
 
 동등 비교 연산자를 통해 비교할 경우, `false`가 나온다. 각각이 각자의 데이터라는 의미이다.
 
@@ -232,7 +203,7 @@ console.log(o1 === o2); // false
 var p3 = p1;
 ```
 
-![immutable-7]({{site.url}}/assets/images/js-immutable-7.png)
+![immutable-7]({{site.url}}/assets/images/js-immutable-7.png){: .align-center}
 
 <br>
 
@@ -244,7 +215,7 @@ var p3 = 2;
 
  이 상태에서는 메모리 상에 `2`라는 값이 존재하지 않는다. 따라서 메모리 상 다른 어딘가에 `2`라는 값을 만들고, `p3`는 이제 새로 만들어진 `2`를 가리키게 된다.
 
-![immutable-8]({{site.url}}/assets/images/js-immutable-8.png)
+![immutable-8]({{site.url}}/assets/images/js-immutable-8.png){: .align-center}
 
  <br>
 
@@ -264,7 +235,7 @@ var o3 = o1;
 
  `o3`과 `o1`은 같은 값을 가리킨다.
 
-![immutable-9]({{site.url}}/assets/images/js-immutable-9.png)
+![immutable-9]({{site.url}}/assets/images/js-immutable-9.png){: .align-center}
 
 
 
@@ -276,7 +247,7 @@ o3.name = 'lee'; // o3의 name의 값을 바꾼다.
 
  그러면 `o3`가 가리키는 값이 그림에서처럼 바뀐다. 
 
-![immutable-10]({{site.url}}/assets/images/js-immutable-10.png)
+![immutable-10]({{site.url}}/assets/images/js-immutable-10.png){: .align-center}
 
  그런데 이 때, `o1`이라는 변수가 가리키는 값도 바뀐다. `o3`가 바뀌니 `o1`이 가리키는 데이터도 바뀐다. 의도한 것이라면 편리하지만, **의도하지 않았다면** 문제가 생길 수 있다. 
 
@@ -295,7 +266,7 @@ var o1 = {name:'kim'};
 var o2 = o1;
 ```
 
-![immutable-11]({{site.url}}/assets/images/js-immutable-11.png)
+![immutable-11]({{site.url}}/assets/images/js-immutable-11.png){: .align-center}
 
 <br>
 
@@ -309,7 +280,7 @@ console.log(o1 === o2); // false
 
  먼저, `Object.assign`을 사용한다. 빈 객체와 뒤에 나오는 객체들을 병합해서 하나의 객체로 만들어서 반환한다. 메모리 상에 `o1`과 똑같은 객체가 만들어지고, `o2`가 가리키는 값은 새롭게 만들어진 *그* 객체이다. 
 
-![immutable-12]({{site.url}}/assets/images/js-immutable-12.png)
+![immutable-12]({{site.url}}/assets/images/js-immutable-12.png){: .align-center}
 
  동등비교 연산자를 통해 `o1`과 `o2`가 같은지 확인해 보면, 새롭게 만들어진 객체이므로 다르다.
 
@@ -322,7 +293,7 @@ console.log(o1, o2, o1 === o2); // {name: 'kim'} {name: 'lee'} false
 
  이제 `o2`의 `name`을 바꿔 보자. `o2`가 가리키는 값만이 변경되고, 원본인 `o1`이 가리키는 값은 변경되지 않는다. 이를 통해 원본 데이터에 대해 **불변함**을 유지할 수 있고, 동시에 복제본의 변경을 통해 **가변성**을 달성할 수 있다.
 
-![immutable-13]({{site.url}}/assets/images/js-immutable-13.png)
+![immutable-13]({{site.url}}/assets/images/js-immutable-13.png){: .align-center}
 
 <br>
 
@@ -340,7 +311,7 @@ var o1 = {name: 'kim', score: [1, 2]};
 
  이 때, `score`의 값인 `[1, 2]`라는 배열은 어떤 식으로 메모리에 저장될까?
 
-![immutable-14]({{site.url}}/assets/images/js-immutable-14.png)
+![immutable-14]({{site.url}}/assets/images/js-immutable-14.png){: .align-center}
 
  원시 데이터 타입인 `String`은 그대로 저장되지만, `score`는 별도의 공간에 독립적으로 저장되고, `score`의 값은 그 배열의 **위치**를 저장한다. **reference**를 저장하고 있다고 한다.
 
@@ -357,7 +328,7 @@ console.log(o1.score === o2.score); // o1과 o2의 score는 같은 값을 가리
 
  이 때 컴퓨터 내부적으로 메모리에 어떻게 값이 할당되는지를 보자. 
 
-![immutable-15]({{site.url}}/assets/images/js-immutable-15.png)
+![immutable-15]({{site.url}}/assets/images/js-immutable-15.png){: .align-center}
 
  `Object.assign`을 통해 복제하면, 그 객체의 property들만 복사한다. 그런데, 그 property 중 value가 `Object`형인 경우, 그 값이 아니라 그 **위치**(*reference*)만을 복제한다. 
 
@@ -369,7 +340,7 @@ console.log(o1.score === o2.score); // o1과 o2의 score는 같은 값을 가리
 o2.score.push(3);
 ```
 
-![immutable-16]({{site.url}}/assets/images/js-immutable-16.png)
+![immutable-16]({{site.url}}/assets/images/js-immutable-16.png){: .align-center}
 
  `o2`의 입장에서는 `o2`의 `score`의 값을 잘 수정한다. 그런데, 그 `score`가 가리키는 게 `[1, 2]`라는 값이 아니라, 그 배열의 주소이기 때문에, 그 주소에 있는 값이 바뀌어 버린다. 즉, `o1`의 `score`가 가리키고 있는 배열도 바뀌어서, `o1`의 값도 바뀐다는 것이다.
 
@@ -382,7 +353,7 @@ o2.score = o2.score.concat(); // o2.score에 o2.score가 가리키는 값을 con
 console.log(o1.score === o2.score); // false: 이제 o1.score와 o2.score는 같은 값을 가리키지 않는다.
 ```
 
-![immutable-17]({{site.url}}/assets/images/js-immutable-17.png)
+![immutable-17]({{site.url}}/assets/images/js-immutable-17.png){: .align-center}
 
 <br>
 
@@ -401,4 +372,4 @@ o2.score.push(3); // o2.score가 가리키는 값 원본을 변경한다.
 // 그러나 이제 o1의 score가 가리키는 값과 다른 배열이기 때문에 괜찮다.
 ```
 
-![immutable-18]({{site.url}}/assets/images/js-immutable-18.png)
+![immutable-18]({{site.url}}/assets/images/js-immutable-18.png){: .align-center}

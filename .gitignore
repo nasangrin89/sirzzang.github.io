@@ -1,3 +1,6 @@
+# custom ignore folder
+/_archive
+
 # Vim
 *~
 *.sw[p_]

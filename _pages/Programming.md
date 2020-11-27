@@ -6,4 +6,6 @@ author_profile: true
 taxonomy: Programming
 ---
 
-파이썬 문제풀이 내용입니다.
+
+
+ 알고리즘, 자료구조, Problem Solving 관련 공부 내용입니다.

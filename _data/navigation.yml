@@ -1,27 +1,20 @@
 # main links
 main:
-  - title: "Programming"
-    url: /categories/Programming/
-  - title: "Python"
-    url: /categories/Python/
-  - title: "Lecture"
-    url: /categories/Lecture/
-  - title: "React"
-    url: /categories/React/
-  - title: "SELF"
-    url: /categories/SELF/
-  # - title: "Project"
-  #   url: /categories/Project/
-  - title: "Categories"
-    url: /categories/
-  #  - title: "All Tags"
-  #    url: /tags/
-  # - title: "CheckList"
-  #   url: https://sirzzang.github.io/checklist/
-  - title: "About"
-    url: /about/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
- 
+    - title: "AI"
+      url: /categories/AI/
+    - title: "Programming"
+      url: /categories/Programming/
+    - title: "Dev"
+      url: /categories/Dev/
+    - title: "Categories"
+      url: /categories/
+    - title: "All Tags"
+      url: /tags/
+    # - title: "CheckList"
+    #   url: https://sirzzang.github.io/checklist/
+    # - title: "About"
+    #   url: /about/
+    # - title: "Sample Collections"
+    #   url: /collection-archive/
+    # - title: "Sitemap"
+    #   url: /sitemap/

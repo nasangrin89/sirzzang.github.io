@@ -1,9 +1,9 @@
 ---
-title:  "[Python] super"
+title:  "[Python] super() vs. super(Class)"
 excerpt: 문득 궁금해진 super 사용법
 categories:
   - Dev
-toc : true
+toc: false
 header:
   teaser: /assets/images/blog-Dev.jpg
 tags:
@@ -15,10 +15,6 @@ tags:
 
 
 
-
-# _파이썬 super_
-
-<br>
 
  PyTorch의 class형 모델 코드를 살펴 보다가, `super([모델명], self).__init__()`이라는 코드를 보고 의문이 생겼다. `super`가 그 전에는 부모 클래스를 상속받는 것이라고 생각했었는데, 왜 그 인자로 자기 자신의 모델명을 넣는 것인가. ~~객체 무식자…~~
 

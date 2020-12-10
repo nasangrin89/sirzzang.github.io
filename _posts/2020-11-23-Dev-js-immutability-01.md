@@ -5,6 +5,8 @@ toc: true
 toc_sticky: true
 categories:
   - Dev
+header:
+  teaser: /assets/images/blog-Dev.jpg
 tags:
   - 자바스크립트
   - JavaScript

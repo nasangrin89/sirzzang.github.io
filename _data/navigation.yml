@@ -6,8 +6,8 @@ main:
       url: /categories/Programming/
     - title: "Dev"
       url: /categories/Dev/
-    # - title: "All Posts"
-    #   url: /categories/
+    - title: "All Posts"
+      url: /categories/
     # - title: "All Tags"
     #   url: /tags/
     # - title: "CheckList"

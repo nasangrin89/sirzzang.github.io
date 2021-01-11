@@ -1,6 +1,6 @@
 ---
-title:  "[Mean Variance] Portfolio Selection"
-excerpt: "MPT 이론의 기초가 된 마르코비츠의 생각을 알아 보자."
+title:  "Portfolio Selection"
+excerpt: "마르코비츠의 포트포리오 선택 이론은 Modern Portfolio Theory의 초석이 되었다."
 toc: true
 toc_sticky: true
 categories:
@@ -47,7 +47,7 @@ $$
 
  각 증권의 수익률 $R_i$가 확률 변수이므로, 그것들의 가중합인 $R$ 역시 확률 변수이다. 따라서 포트폴리오의 수익률을 최대화하고 싶다면, 그 기댓값 $E(R)$을 최대화하면 된다. 이것이 바로 E rule이다. 그리고 이러한 원칙에 따라 $E(R)$을 최대화하기 위해서, 투자자는 자신의 자산을 최대의 수익률을 갖는 자산에 모두 투자해야 한다. 만약, 최대의 수익률을 갖는 자산이 여러 개라면, 그 자산들만을 대상으로 분배 가중치 $X_i$의 합이 1이 되게만 투자하면 된다.
 
- 이러한 원칙 하에서는 다각화된 포트폴리오, 즉, 여러 개의 증권에 투자하는 포트폴리오가 다각화된 포트폴리오보다 그 어떤 경우에서도(*in no case*) 좋을 수 없다. 마르코비츠는 이러한 행위를 **'투자(*investment*)'가 아닌 '투기(*speculative behavior*)'**라고 본다. 
+ 이러한 원칙 하에서는 다각화된 포트폴리오, 즉, 여러 개의 증권에 투자하는 포트폴리오가 다각화된 포트폴리오보다 그 어떤 경우에서도(*in no case*) 좋을 수 없다. 마르코비츠는 이러한 행위를 **'투자(*investment*)'**가 아닌 **'투기(*speculative behavior*)'**라고 본다. 
 
 <br>
 
@@ -55,11 +55,11 @@ $$
 
 
 
- 이제 **포트폴리오를 다각화**하는 방식을 생각해 보자. 마르코비츠에 의하면 다각화는 실제 관찰(observed)되며, 이성적(sensible)한 행위이다.
+ 이제 **포트폴리오를 다각화**하는 방식을 생각해 보자. 마르코비츠에 의하면 다각화는 실제 관찰(observed)되며, 이성적(sensible)인 행위이다.
 
 > *참고* : 다각화 원칙의 도입
 >
->  포트폴리오 다각화 원칙을 도입하면서 마르코비츠는 "There is a rule which implies that the investor should diversify and that he should maximize expected return." 이라고만 서술한다. 그 당위성을 수학적으로 증명한 것은 아니다. 이전까지 통용되던 원칙에 의하면 포트폴리오를 다각화하는 것은 있을 수 없었으므로, 새로운 원칙을 도입해 포트폴리오 다각화 인식의 기반을 마련했다는 것이 이 논문의 의의일 것이다.
+>  포트폴리오 다각화 원칙을 도입하면서 마르코비츠는 "There is a rule which implies that the investor should diversify and that he should maximize expected return." 이라고만 서술한다. 그 당위성을 수학적으로 증명한 것은 아니다. 이전까지 통용되던 원칙에 의하면 포트폴리오를 다각화하는 것은 E rule의 지배 원리에 어긋났으므로, 그와 다른 새로운 원칙을 도입해 포트폴리오 다각화 인식의 기반을 마련했다는 것이 이 논문의 의의일 것이다.
 
 <br>
 

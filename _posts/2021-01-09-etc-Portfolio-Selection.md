@@ -4,7 +4,7 @@ excerpt: "마르코비츠의 포트포리오 선택 이론은 Modern Portfolio T
 toc: true
 toc_sticky: true
 categories:
-  - Finance
+  - etc
 tags:
   - MPT
   - Mean Variance

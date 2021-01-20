@@ -6,8 +6,8 @@ main:
       url: /categories/Programming/
     - title: "Dev"
       url: /categories/Dev/
-    - title: "Finance"
-      url: /categories/Finance/
+    - title: "etc"
+      url: /categories/etc/
     - title: "All Posts"
       url: /categories/
     # - title: "All Tags"

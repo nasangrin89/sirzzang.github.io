@@ -1,8 +1,8 @@
 ---
 title:  "3D, VR, AR"
 excerpt: "공간의 개념에서 3D, VR, AR를 정의해 보자."
-toc: true
-toc_sticky: true
+toc: false
+toc_sticky: false
 categories:
   - etc
 tags:
@@ -96,7 +96,7 @@ use_math: true
 
 
 
-![3d-graphics]({{site.url}}/assets/images/3d-graphics.png)
+![3d-graphics]({{site.url}}/assets/images/3d-graphics.png){: .align-center}
 
 <center><sup>이미지 출처: https://unity.com/kr/srp/High-Definition-Render-Pipeline</sup></center>
 
@@ -198,7 +198,7 @@ use_math: true
 >
 >  기술로서의 AR 개념은 점차 좁아져 왔다고 한다. 예전에는 현실 세계의 뷰에 3D 가상 물체를 입힌 것을 AR 기술이라고 하며 AR, VR이 `현실:가상`의 비율이 `50:50`, `0:100` 정도로 이해될 수 있었던 듯하다. 그러나 점차 혼합현실, 증강가상 등 AR과 VR 사이에 더 다양한 기술 개념들이 등장하며 AR 기술은 가상 물체를 활용해서 정보를 덧붙여 주는 기술 정도로만 이해되고 있다고 한다. 
 >
-> ![vr-ar-concept]({{site.url}}/assets/images/vr-ar-concept.png)
+> ![vr-ar-concept]({{site.url}}/assets/images/vr-ar-concept.png){: .align-center}
 >
 >  관련해서 위의 그림에서 왼쪽 두 개의 벤 다이어그램들처럼 각 기술의 포함관계를 나타내는 그림도 있으나, 나는 저 정도로 명확하게 개념을 아는 것은 아니어서 오른쪽처럼 일단 각 기술들의 포지션을 이해하기로 했다.
 
@@ -229,8 +229,8 @@ use_math: true
 
 # 4. 결론
 
+<br>
 
-
- 결과적으로 어떠한 기술을 바탕으로 `공간`을 설계할 것인지는 각 개념들이 갖는 키워드 중 어떤 것을 구현하고 싶은지에 따라 달라지는 게 아닐까 한다. 
+ 결과적으로 어떠한 기술을 바탕으로 `공간`을 설계할 것인지는 각 개념들이 갖는 키워드 중 어떤 것을 구현하고 싶은지에 따라 달라지는 게 아닐까 한다.  ~~*막상 정리하고 나니 별 거 없는 것 같다*~~
 
  입체감, 현실감을 갖는 공간을 보여주는 것만으로 충분하다면 **3D 기술**을, 그 중에서도 사용자 경험을 증진시키기 위한 모델링과 렌더링에 집중하면 될 것이다. 그에 더해 상호작용을 구현하고자 한다면, VR, AR 기술의 도입을 생각해 보아야 한다. 그 중에서도 가상 공간에서 사용자가 직접 상호작용하는 것을 더 중점을 두고 싶다면 **VR 기술**을, 실제 공간을 바탕으로 사용자가 어떠한 오브젝트를 통해 상상하고 생각해보는 것을 지원하는 공간을 구현하고 싶다면 **AR 기술**을 사용하면 될 것이다.

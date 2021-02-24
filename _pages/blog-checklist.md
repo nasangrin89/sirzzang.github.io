@@ -18,15 +18,28 @@ header:
 
 
 
-> 근데 가장 시급한 건, `checkbox` 만들고 싶다 ㅎㅎ;; 
+## 2021<sup> TmaxAI </sup>
 
- <br>
+* 개발
 
 
 
-## 수업 내용 관련
+* 추천시스템
+  * train vs. test : 
 
-1. ~~GET vs POST(크롤링할 때 차이까지 포함), lambda~~, 클래스 신윤수 강사님
+
+
+## 2020<sup> 멀티캠퍼스</sup>
+
+
+
+```
+- [ ] GET vs POST(크롤링할 때 차이까지 포함)
+- [x] lambda~~, 클래스 신윤수 강사님
+```
+
+
+
 2. MNIST DBSCAN
 3. 챗봇(seq2seq-transformer)
 4. NLP 논문정리: BERT, XLNET

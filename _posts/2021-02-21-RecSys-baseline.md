@@ -38,6 +38,9 @@ categories:
 
 ### Matrix Factorization
 
+* 개념
+* 관련 논문 리뷰: [Matrix Factorization Techniques for Recommender Systems](http://sirzzang.github.io/recsys/RecSys-MF-techniques/){: .btn .btn--primary .btn--small}
+
 
 
 <br>

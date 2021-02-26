@@ -1,6 +1,6 @@
 ---
 title:  "[RS] Matrix Factorization Techniques for Recommender Systems 리뷰"
-excerpt: "<<Recommender System>> Netflix Prize에서 우승한 MF 기법을 알아 보자."
+excerpt: "<<Recommender System>> Netflix Prize 우승 팀에게 MF 기법을 배워 보자."
 toc: true
 toc_sticky: true
 categories:
@@ -121,10 +121,8 @@ $$
 
 $$
 \
-	\min_{p*, q*} \Sigma_{(u, i)\in \kappa} (r_{ui}-q_i^Tp_u)^2 + \lambda(||q_i||^2 + ||p_u||^2)
+	\min_{p*, q*} \Sigma_{(u, i)\in \kappa} (r_{ui}-q_i^Tp_u)^2 + \lambda(||q_i||^2 + ||p_u||^2)
 $$
-
-
 <br>
 
 > *참고*: Matrix Factorization의 SVD
@@ -139,3 +137,83 @@ $$
 
 <br>
 
+### 학습 알고리즘
+
+ 위와 같은 Matrix Factorization을 수행하기 위한 알고리즘으로 다음의 두 가지가 있다.
+
+<br>
+
+**SGD**(_Stochastic Gradient Descent_)
+
+ 한 번 학습할 때 training set에 있는 모든 rating을 순회하면서 예측 오차를 계산하고, 가중치를 업데이트한다. 이 때 예측 오차는 다음과 같이 정의된다.
+
+
+$$
+e_{ui} = r_{ui} - q_i^T \cdot p_u
+$$
+
+ 학습률을 $$\gamma$$라고 할 때, 계산된 예측오차에 기반하여 그래디언트의 반대 방향으로 다음과 같이 각 파라미터를 업데이트한다.
+
+
+
+$$
+q_i \leftarrow q_i + \gamma \cdot(e_{ui}\cdot p_u - \gamma \cdot q_i) \\
+p_u \leftarrow p_u + \gamma \cdot(e_{ui}\cdot q_i - \gamma \cdot p_u)
+$$
+
+
+<br>
+
+**ALS**(_Alternating Least Squares_)
+
+ $$p_u$$와 $$q_i$$ 중 하나를 고정한다면, Matrix Factorization이 풀어야 할 문제는 quadratic optimization 문제가 된다. 따라서 ALS 알고리즘은  $$p_u$$와 $$q_i$$ 중 하나를 고정한 후, 나머지 한 변수에 대한 least squares 문제를 풀어 최적화한 뒤, 다른 변수에 대해 최적화하는 과정을 반복해 나간다. 
+
+ SGD보다 더 느리게 수렴하지만, 그럼에도 불구하고 다음의 두 가지 경우에는 ALS 방법이 좋은 것으로 알려져 있다.
+
+* parallelization이 가능할 때
+* implicit data의 활용이 중요할 때
+
+
+
+## 모델의 고도화
+
+
+
+ 이후 Basic Matrix Factorization에 사용되는 모델을 어떻게 구체화하며 다른 변수들을 고려할 수 있을지에 대한 내용이 나온다. *~~(사실 모든 내용이 다 하나의 소제목으로 다뤄지지만, 공통적으로 기본 모델에 어떻게 다른 데이터를 결합할 수 있을지의 이야기라는 측면에서 하나의 내용으로 간주하고 작성한다)~~*
+
+
+
+### Adding Bias
+
+
+
+ rating에 사용자와 아이템 각각에 bias가 있을 수 있다고 보고, rating을 순수한 interaction과 bias 부분으로 나눈다. 이 때, 사용자의 rating에 대한 예측값은 다음과 같이 정의할 수 있다.
+
+
+$$
+\hat {r_{ui}} = \mu + b_i + b_u + q_i^T \cdot p_u
+$$
+
+* $$\mu$$ : rating 평균
+* $$b_i$$ : item bias, 예컨대, 특정 영화가 전반적으로 낮은 평점을 받는 경우
+* $$b_u$$ : user bias, 예컨대, 모든 영화에 대해 다 낮은 평점을 주는 사용자
+* $$q_i^T \cdot p_u$$ : 사용자와 아이템 간 상호작용
+
+<br>
+
+ 이 때 Matrix Factorization 모델이 최소화해야 할 MSE 에러는 다음과 같아진다.
+
+
+$$
+\
+	\min_{p*, q*, b*} \Sigma_{(u, i)\in \kappa} (r_{ui}-\mu - b_i - b_u - q_i^T \cdot p_u)^2 + \lambda(||q_i||^2 + ||p_u||^2+{b_u}^2 +{b_i}^2)
+$$
+<br>
+
+### Additional Input Sources
+
+
+
+ rating 데이터가 적을 때 다른 데이터를 활용하여 모델을 구성할 수도 있다. 이 측면을 잘 활용하면 cold start problem을 해결할 수 있다.
+
+ 예컨대, 

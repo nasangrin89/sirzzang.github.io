@@ -1,5 +1,5 @@
 ---
-title:  "[RecSys] Training Deep AutoEncoders for Collaborative Filtering 리뷰"
+title:  "[RS] Training Deep AutoEncoders for Collaborative Filtering 리뷰"
 excerpt: "<<Collabortaive Filtering>> 협업 필터링을 위한 깊은 오토인코더 네트워크를 구성해 보자."
 toc: true
 toc_sticky: true
@@ -27,17 +27,17 @@ use_math: true
 
 <br>
 
-# 1. Model 
+# Model 
 
 
 
- [오토인코더](https://sirzzang.github.io/ai/AI-AE-01/){: .btn .btn--danger .btn--small}는 입력 데이터 $$x$$와 인코더와 디코더를 통과하여 나온 $$encoder(decoder(x))$$의 차이가 최소가 되도록 학습하는 네트워크이다. 주로 차원 축소의 목적으로 이용하는데, 인코더의 coding layer를 통과하여 나온 입력 데이터의 축소된 벡터를 얻으려 한다.
+ [오토인코더](https://sirzzang.github.io/ai/AI-AE-01/){: .btn .btn--danger .btn--small} 는 입력 데이터 $$x$$와 인코더와 디코더를 통과하여 나온 $$encoder(decoder(x))$$의 차이가 최소가 되도록 학습하는 네트워크이다. 주로 차원 축소의 목적으로 이용하는데, 인코더의 coding layer를 통과하여 나온 입력 데이터의 축소된 벡터를 얻으려 한다.
 
- 추천시스템에서는 협업 필터링의 rating prediction 태스크를 수행하기 위한 목적으로 오토인코더 네트워크를 사용한다. 이 때 입력으로 사용자의 모든 아이템에 대한 rating을 담은 벡터(*이하 사용자 벡터*) 를 사용할지, 아이템 백터를 사용할지에 따라 네트워크 구성이 달라지는데, 해당 논문은 전자의 네트워크<sup>원래 이러한 네트워크는 U-AutoRec이라고 불린다</sup> 를 사용한다. 즉, 논문의 오토인코더는 sparse한 사용자 벡터($$\in \mathbb{R}^n$$  <sup>: $n$은 아이템의 개수</sup>)를 입력으로 받아 $f(x)$를 출력하는데, 이 $f(x)$는 dense한 벡터로 사용자의 모든 아이템에 대한 rating 예측을 갖고 있다. 
+ 추천시스템에서는 협업 필터링의 rating prediction 태스크를 수행하기 위한 목적으로 오토인코더 네트워크를 사용한다. 즉, sparse한 사용자 벡터($$\in \mathbb{R}^n$$  <sup>: $n$은 아이템의 개수</sup>)를 입력으로 받아 $f(x)$를 출력하는데, 이 $f(x)$는 dense한 벡터로 사용자의 모든 아이템에 대한 rating 예측을 갖고 있다. 
 
 
 
-## 1.1. Loss Function
+## Loss Function
 
  오토인코더 네트워크가 유저 벡터에서 이미 0인 rating을 예측하는 것은 적절하지 않으므로, [U-Autorec 관련 연구](https://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf)에서 제안한 MMSE를 손실함수로 사용한다.
 
@@ -55,9 +55,9 @@ $$
 
 
 
-## 1.2. Dense Re-Feeding
+## 학습 알고리즘
 
- 논문이 제안한 새로운 학습 알고리즘이다. 기존의 forward pass, backward propagation이 한 번씩 이루어지던 과정을 re-feeding을 통해 여러 번 수행하도록 함으로써 예측 성능을 높였다. 
+ 해당 논문은 **dense re-feeding**이라는 새로운 학습 알고리즘을 사용한다. 기존의 forward pass, backward propagation이 한 번씩 이루어지던 과정을 re-feeding을 통해 여러 번 수행하도록 함으로써 예측 성능을 높였다. 
 
  아이디어는 다음과 같다. sparse한 입력을 받아 dense한 출력을 내는 오토인코더가 *만약*  완벽한 예측을 수행한다고 가정해 보자. 그렇다면 오토인코더가 sparse한 사용자 벡터 $$x$$를 입력으로 받아 출력으로 낸 새로운 사용자 벡터 $$f(x)$$는, 사용자가 기존에 평가를 하지 않았던 아이템에 대해 평가를 한 뒤 만들어지는 새로운 사용자 벡터와 같아야 한다. 즉, **이러한 이상적인 시나리오가 성립한다면, $$f(x)$$와 $$f(f(x))$$가 같아야 한다**. *(=논문에서는 이를 $$y=f(x)$$가 fixed point여야 한다고 기술한다)*
 
@@ -72,7 +72,7 @@ $$
 
 <br>
 
-# 2. Experiment and Results
+# Experiment and Results
 
 
 
@@ -82,7 +82,7 @@ $$
 
 
 
-## 2.1. Experiment Setup
+## Experiment Setup
 
 
 
@@ -94,7 +94,7 @@ $$
 
 
 
-## 2.2. Activation Type
+## Activation Type
 
 
 
@@ -127,7 +127,7 @@ $$
 
 
 
-## 2.3. Over-fitting the Data
+## Over-fitting the Data
 
  실험에서 사용할 수 있는 가장 큰 데이터인 *Netflix Full* 데이터의 경우도, 현대 딥러닝 알고리즘과 하드웨어 환경에서는 *small task*이다. 따라서 인코더와 디코더의 계층을 1개로 구성할 경우, 은닉 노드 수가 512만 되더라도 과적합이 일어난다. 아래 결과가 이를 증명한다.
 
@@ -137,7 +137,7 @@ $$
 
 
 
-## 2.4. Going Deeper
+## Going Deeper
 
 
 
@@ -157,8 +157,60 @@ $$
 
 
 
-## 2.5. Dropout
+## Dropout
 
   논문의 저자들은 위와 같은 작업을 다양한 하이퍼 파라미터(각 레이어의 은닉 노드 수, 레이어 수 등)에 대해 반복함으로써 모델 아키텍쳐가 $$n, 512, 512, 1024, 512, 512, n$$일 때 가장 좋다는 것을 발견했다. 이 모델에서는 인코더가 3계층을 가지며, 마지막 coding layer가 1024개의 은닉 노드를 갖는다.
 
- 해당 모델을 
+ 해당 모델은 빠르게 과적합되기 때문에, 이를 해결하기 위한 정규화 기술로 dropout을 적용했다. 여러 dropout 비율 중, 높은 편인 0.8이 제일 좋은 성능을 보였다. dropout 비율에 따른 성능은 다음과 같다.
+
+![nvidia-deepae-dropout]({{site.url}}/assets/images/nvidia-deepae-dropout.png){: width="400"}{: .align-center}
+
+ 그러나 모든 레이어에 dropout을 적용한다고 성능이 개선되는 것은 아니었다. 인코더의 출력(*=마지막 coding 레이어를 통과하여 나온 결과*)에만 dropout을 적용할 때 일반화 성능이 좋아졌다.
+
+
+
+## Dense re-feeding
+
+ `2.5.`까지의 결과에서 찾아낸 최적의 모델 구조는 6개의 레이어로 이루어진 $$n, 512, 512, 1024, dp(0.8), 512, 512, n$$이다. 이러한 모델 구조에 dense re-feeding 학습 알고리즘을 적용했다.
+
+ 결과적으로, dense re-feeding만을 적용하는 것으로는 성능이 향상되지 않았다. 그러나 **높은 학습률(0.5)과 함께 dense re-feeding 학습 알고리즘을 사용하면, 성능이 향상**되었다. 그러나 dense re-feeding 학습 알고리즘을 적용하지 않고 높은 학습률을 적용하면, 성능은 향상되지 않는다.
+
+![nvidia-deepae-refeeding]({{site.url}}/assets/images/nvidia-deepae-refeeding.png){: width="400"}{: .align-center}
+
+
+
+## Comparison with other methods
+
+
+
+ 논문의 저자들은 자신들이 찾아낸 best model을 다른 모델들과 비교한다. 다만, 이들의 모델은 temporal dynamics를 고려하지는 않았다. 그럼에도 불구하고 다른 모델보다 더 좋은 성능을 냈다. 
+
+![nvidia-deepae-comparison]({{site.url}}/assets/images/nvidia-deepae-comparison.png){: width="400"}{: .align-center}
+
+ 그러나 데이터의 양이 더 적은 *Netflix 3 months*의 경우, 과적합이 발생했다. 따라서 해당 데이터를 사용하는 경우 모델의 복잡도를 감소시켜야 했다.
+
+![nvidia-deepae-comparison-data]({{site.url}}/assets/images/nvidia-deepae-comparison-data.png){: width="400"}{: .align-center}
+
+
+
+# Conclusion
+
+
+
+ 결론적으로 해당 논문은 **굉장히 깊은 오토인코더가 적절한 딥러닝 기술 및** _(논문이 제안하는)_ **dense re-feeding 학습 알고리즘을 활용한다면, 적은 데이터에도 불구하고 잘 학습되고, 추천시스템의 rating prediction 태스크에서 좋은 성능을 나타낼 수 있음**을 보여준다. 
+
+ <br>
+
+# 결론
+
+  GPU의 대명사 NVIDIA답게, deep한 네트워크를 구성하기 위한 기술의 끝판왕을 다룬 느낌이다. 다른 논문들과 달리 novel한 네트워크 아키텍쳐를 제시하기보다는, 네트워크를 어떻게 더 깊이 만들 수 있을지에 집중했다는 점이 신선했다. 
+
+ 더 알아보고 싶거나 궁금했던 점은 다음과 같다.
+
+* context-based는 content-based 추천시스템일까?  *~~도대체 왜 논문마다 추천시스템을 소개하는 부분이 다른 건지..~~*
+
+* 오토인코더는 왜 PCA의 strict generalization인지?
+* 좋은 성능을 보인 활성화 함수들은 왜 그랬을까? 특히 이 데이터에 대해 그렇게 좋은 성능이 나타날 수 있는 이유가 있었을까?
+* 이 논문은 temporal dynamics를 고려하지 않았는데, [좋은 성적을 거둔 팀의 논문](https://sirzzang.github.io/recsys/RecSys-MF-techniques/){: .btn .btn--danger .btn--small} 에서는 그것을 고려하는 것이 중요하다고 했다.
+  * temporal dynamics를 고려하는 모델은 무엇인가? 굳이 딥러닝 기반이 아니더라도. 예컨대, TimeSVD++.
+  * 해당 논문의 네트워크를 구현한 공개된 코드에서 temporal dynamics를 추가하려면 어떻게 해야 할지?

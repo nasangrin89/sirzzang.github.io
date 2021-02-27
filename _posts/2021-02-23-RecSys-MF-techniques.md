@@ -1,6 +1,6 @@
 ---
 title:  "[RS] Matrix Factorization Techniques for Recommender Systems 리뷰"
-excerpt: "<<Recommender System>> Netflix Prize 우승 팀에게 MF 기법을 배워 보자."
+excerpt: "<<Matrix Factorization>> Netflix Prize 우승 팀에게 MF 기법을 배워 보자."
 toc: true
 toc_sticky: true
 categories:

@@ -127,7 +127,7 @@ $$
 
 > *참고*: Matrix Factorization의 SVD
 >
->  SVD를 사용할 수 없을까 생각했는데, 안 그래도 논문에 다음과 같은 내용이 있다. user-item matrix는 행렬이 비어 있어서 SVD를 적용할 수 없고, imputation을 해서 SVD하는 방법도 초기에는 연구되었으나 그 나름의 문제가 있다.
+>  SVD를 사용할 수 없을까 생각했는데, 안 그래도 논문에 다음과 같은 내용이 있다. 
 >
 > >  Such a model is closely related to singular value decomposition( [SVD](https://sirzzang.github.io/etc/etc-svd/){: .btn .btn--danger .btn--small}), a well-established technique for identifying latent semantic factors in information retrieval. Applying SVD in the collaborative filtering domain requires factoring the user-item rating matrix. This often raises difficulties due to the high portion of missing values caused by sparseness in the user-item ratings matrix. Conventional SVD is undefined when knowledge about the matrix is incomplete. (…)
 > >

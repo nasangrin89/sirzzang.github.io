@@ -1,5 +1,5 @@
 ---
-title:  "[Python] 모듈 설치 시 unicode 에러 해결"
+title:  "[Python] pip 이용 의존 라이브러리 설치 시 unicode 에러 해결"
 excerpt: unicode 에러가 날 때의 해결 방법
 categories:
   - Dev
@@ -14,7 +14,7 @@ tags:
 
 
 
- 오픈소스 ERP 플랫폼 [Odoo](https://github.com/odoo)을 설치해서 사용해 보려다, `python-stdnum==1.8` 버전이 설치되지 않았다. 에러 메시지를 자세히 살펴 보니, stdnum 1.8의 `setup.py` 파일에서 문자 디코드 에러가 난다. 구글링해 보니, stdnum 라이브러리 1.8 버전의 오래 된 버그라고 한다. stdnum [이슈](https://github.com/arthurdejong/python-stdnum/issues/59)에도 등록되었던 것을 보니 나만 겪은 문제는 아닌 듯?
+ 오픈소스 ERP 플랫폼 [Odoo](https://github.com/odoo/odoo)을 설치해서 사용해 보려다, `python-stdnum==1.8` 버전이 설치되지 않았다. 에러 메시지를 자세히 살펴 보니, stdnum 1.8의 `setup.py` 파일에서 문자 디코드 에러가 난다. 구글링해 보니, stdnum 라이브러리 1.8 버전의 오래 된 버그라고 한다. stdnum [이슈](https://github.com/arthurdejong/python-stdnum/issues/59)에도 등록되었던 것을 보니 나만 겪은 문제는 아닌 듯?
 
 <br>
 
@@ -33,11 +33,15 @@ tags:
 
 <center><sup>압축파일 다운받은 후 압축 해제하는 코드</sup></center>
 
-![odoo-stdnum-editsetup]({{site.url}}/assets/images/odoo-stdnum-editsetup)
+![odoo-stdnum-editsetup]({{site.url}}/assets/images/odoo-stdnum-editsetup.png)
 
 <center><sup>stdnum의 setup 파일에서 파일 읽는 부분 수정하는 코드</sup></center>
 
-![odoo-stdnum-absolutepathinstall]({{site.url}}/assets/images/odoo-stdnum-absolutepathinstall)
+![odoo-stdnum-maketarfile]({{site.url}}/assets/images/odoo-stdnum-maketarfile.png)
+
+<center><sup>setup 파일 수정 후 새로 압축하는 코드</sup></center>
+
+![odoo-stdnum-absolutepathinstall]({{site.url}}/assets/images/odoo-stdnum-absolutepathinstall.png)
 
 <center><sup>terminal에서 pip install</sup></center>
 

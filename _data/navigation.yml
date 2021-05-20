@@ -12,8 +12,8 @@ main:
       url: /categories/etc/
     # - title: "All Posts"
     #   url: /categories/
-    - title: "CheckList"
-      url: https://sirzzang.github.io/checklist/
+    # - title: "CheckList"
+    #   url: https://sirzzang.github.io/checklist/
     - title: "About"
       url: /about/
     # - title: "Sample Collections"

@@ -1,6 +1,6 @@
 ---
 title:  "[JavaScript] 원시값 vs. 레퍼런스"
-excerpt: 내가 선언한 변수가 원시값과 레퍼런스 중 무엇을 가리키는지가 중요하다 
+excerpt: 내가 선언한 변수가 원시값과 레퍼런스 중 무엇을 가리키는지가 중요하다.
 categories:
   - Dev
 header:

@@ -15,7 +15,7 @@ tags:
 
  회사에서 결제 내역을 보여주는 화면을 개발하다 결제 일시가 내가 원하는 방식대로 렌더링되지 않는다는 문제에 부딪혔다. 
 
-![date-render]({site.url}/assets/images/date-render-prob.png)
+![date-render]({{site.url}}/assets/images/date-render-prob.png)
 
 <center><sup> 위와 같이 이상한 형식의 문자열이 나타났다.</sup></center>
 

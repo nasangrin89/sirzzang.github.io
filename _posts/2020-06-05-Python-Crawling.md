@@ -4,7 +4,7 @@ excerpt: "Python을 이용하여 크롤링할 때의 팁"
 toc: true
 toc_sticky: true
 categories:
-  - Dev
+  - Python
 header:
   teaser: /assets/images/blog-Dev.jpg
 tags:

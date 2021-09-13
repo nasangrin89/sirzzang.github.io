@@ -4,7 +4,7 @@ excerpt: "<<JavaScript>> 자바스크립트에서의 데이터 불변성(immutab
 toc: true
 toc_sticky: true
 categories:
-  - Dev
+  - Javascript
 header:
   teaser: /assets/images/blog-Dev.jpg
 tags:

@@ -1,10 +1,10 @@
 ---
-title:  "[Python] DL GPU 개발환경 구축"
+title:  "[AI] DL GPU 개발환경 구축"
 excerpt: "GPU를 사용하는 Tensorflow, PyTorch 개발환경을 구축해 보자."
 toc: true
 toc_sticky: true
 categories:
-  - Dev
+  - AI
 tags:
   - DL
   - Python

@@ -4,7 +4,7 @@ excerpt: "Keras 기능을 이용해 Loss Function, Regularizer Function 커스�
 toc: true
 toc_sticky: true
 categories:
-  - Dev
+  - AI
 tags:
   - ML
   - DL

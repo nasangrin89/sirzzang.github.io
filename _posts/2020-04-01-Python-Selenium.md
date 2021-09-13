@@ -6,7 +6,7 @@ toc_sticky: true
 header:
   teaser: /assets/images/blog-Dev.jpg
 categories:
-  - Dev
+  - Python
 tags:
   - Python
   - Crawling

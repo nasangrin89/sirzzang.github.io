@@ -2,7 +2,7 @@
 title:  "[Python] raise vs. raise from e"
 excerpt: 예외가 어디서부터 발생했는지 알고 싶다면, raise from을 사용하자.
 categories:
-  - Dev
+  - Python
 toc: false
 header:
   teaser: /assets/images/blog-Dev.jpg
@@ -15,7 +15,7 @@ tags:
 
 
 
-  `except` 블록에서 예외를 처리하는 도중에 또 다른 예외가 발생할 수 있다. 이 때 예외를 처리하는 도중 발생한 에러가 어떤 예외로부터 파생되었는지 알고 싶다면, `raise from`을 사용하면 된다. 
+  파이썬 `except` 블록에서 예외를 처리하는 도중에 또 다른 예외가 발생할 수 있다. 이 때 예외를 처리하는 도중 발생한 에러가 어떤 예외로부터 파생되었는지 알고 싶다면, `raise from`을 사용하면 된다. 
 
 <br>
 

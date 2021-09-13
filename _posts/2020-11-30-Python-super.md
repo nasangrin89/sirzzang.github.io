@@ -2,7 +2,7 @@
 title:  "[Python] super() vs. super(Class)"
 excerpt: 문득 궁금해진 super 사용법
 categories:
-  - Dev
+  - Python
 toc: false
 header:
   teaser: /assets/images/blog-Dev.jpg

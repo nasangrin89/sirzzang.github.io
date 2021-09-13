@@ -2,7 +2,7 @@
 title:  "[Python] 파이썬 람다 함수"
 excerpt: 파이썬 lambda 표현식 사용법 이해하기
 categories:
-  - Dev
+  - Python
 toc : true
 tags:
   - Python

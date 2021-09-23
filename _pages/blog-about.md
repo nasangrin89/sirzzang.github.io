@@ -15,11 +15,7 @@ header:
 
 <br>
 
- 데이터 분석, AI(특히 자연어 처리) 수업을 계기로 프로그래밍 세계에 입문한 주니어 개발자입니다. 두 차례의 프로젝트를 통해 사용자들이 더 직관적으로 인공지능의 분석 결과를 받아들일 수 있도록 서비스할 수 있을까에 대해 고민했고, 현재는 입사 후 프런트엔드 개발 업무를 담당하고 있습니다.
-
-<br>
-
- 이 곳은 공부한 내용을 정리하는 [StudyLog](https://sirzzang.github.io/){: .btn .btn--inverse .btn--small} 입니다. 관심 있게 공부해 왔던 AI, 특히 자연어처리와 추천시스템 영역의 최신 논문들, 프로그래밍 공부 혹은 실무 과정에서 마주쳤던 어려움, 그것을 해결하기 위해 어떻게 공부했는지를 주로 작성하고자 합니다. 그 외에도 이것 저것 공부하며 깨달았던 것들을 꾸준히 써 내려 가고 싶습니다. 
+ 공부한 내용을 정리하는 [StudyLog](https://sirzzang.github.io/){: .btn .btn--inverse .btn--small} 입니다. 관심 있게 공부해 왔던 AI, 특히 자연어처리와 추천시스템 영역의 최신 논문들, 프로그래밍 공부 혹은 실무 과정에서 마주쳤던 어려움, 그것을 해결하기 위해 어떻게 공부했는지를 주로 작성하고자 합니다. 그 외에도 이것 저것 공부하며 깨달았던 것들을 꾸준히 써 내려 가고 싶습니다. 
 
  공모전 참가, 프로젝트 내용 등은  [Eraser's ProjectLog](https://projectlog-eraser.tistory.com/){: .btn .btn--inverse .btn--small} 에 기록합니다. 기타 코딩 연습을 위한 문제 풀이 내용은 [여기](https://pslog-eraser.tistory.com/){: .btn .btn--inverse .btn--small} 서 열심히​😃
 

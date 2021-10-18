@@ -34,11 +34,8 @@ tags:
 
 > *참고*: 궁금한 것
 >
->  사실, OSGi가 뭔지, `.fileTableLock`이 어떤 역할을 수행하는지 정확히 알지 못한다. 대강 리눅스 파일 시스템 상의 허가권한 때문에 문제가 발생했구나 하는 정도로만 이해하고 넘어가기로 했다. Java runtime과 관련된 듯한데, 나중에 기회가 되면 더 깊이 공부해 보도록 하자. ~~Java 무식자...~~
+> 사실, OSGi가 뭔지, `.fileTableLock`이 어떤 역할을 수행하는지 정확히 알지 못한다. 대강 리눅스 파일 시스템 상의 허가권한 때문에 문제가 발생했구나 하는 정도로만 이해하고 넘어가기로 했다. Java runtime과 관련된 듯한데, 나중에 기회가 되면 더 깊이 공부해 보도록 하자. ~~Java 무식자...~~
 >
-> * 이 사용자 권한 문제가 java를 설치할 때는 sudo 권한으로 설치했기 때문에 발생하는 일인가?
-> * eclipse는 어디서 튀어나온 놈인가? 
-> * osgi는 뭐지?
 
 <br>
 
@@ -80,9 +77,13 @@ tbAdmin
 
  각 단계별 명령어를 실행하는 과정은 다음 사진에서와 같다.
 
-{: .align-center}![tbadmin-filetablelock-chmod]({{site.url}}/assets/images/tbadmin-filetablelock-chmod.png)
+![tbadmin-filetablelock-chmod]({{site.url}}/assets/images/tbadmin-filetablelock-chmod.png){: .align-center}
 
-{: .align-center}![tbadmin-chmod-configuration]({{site.url}}/assets/images/tbadmin-chmod-configuration.png)
+
+
+![tbadmin-chmod-configuration]({{site.url}}/assets/images/tbadmin-chmod-configuration.png){: .align-center}
+
+
 
 ![tbadmin-chgrp-configuration]({{site.url}}/assets/images/tbadmin-chgrp-configuration.png){: .align-center}
 
@@ -94,7 +95,7 @@ tbAdmin
 
  
 
-<br> 문제를 해결하긴 했으나, 중간 중간에 적어 놓은 의문점과 같이 아직도 궁금한 것이 많다. 나중에 여유가 생길 때, 리눅스 파일 시스템 허가권, 소유권 및 Java 기반 프로그램 런타임 환경에 대해 조금 더 알아보아야 할 듯하다. 일단, 지금 상황에서는 리눅스 기반 운영체제에서 프로그램을 실행했을 때 *Permission Denied 에러가 발생한다면*, **소유자와 소유그룹, 허가권을 살펴 보는 것**이 에러 해결을 위한 하나의 방법이 될 수 있음을 깨달았음에 의의를 둔다.
+<br> 문제를 해결하긴 했으나, 중간 중간에 적어 놓은 의문점과 같이 아직도 궁금한 것이 많다. 나중에 여유가 생길 때, 리눅스 파일 시스템 허가권, 소유권 및 Java 기반 프로그램 런타임 환경에 대해 조금 더 알아보아야 할 듯하다. 일단, 리눅스 기반 운영체제에서 프로그램을 실행했을 때 *Permission Denied 에러가 발생한다면*, **소유자와 소유그룹, 허가권을 살펴 보는 것**이 에러 해결을 위한 하나의 방법이 될 수 있다는 것을 알고 넘어가도록 하자.
 
 
 

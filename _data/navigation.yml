@@ -4,12 +4,10 @@ main:
       url: /categories/AI/
     - title: "Programming"
       url: /categories/Programming/
+    - title: "Language"
+      url: /categories/Language/
     - title: "Dev"
       url: /categories/Dev/
-    - title: "Python"
-      url: /categories/Python/
-    - title: "Javascript"
-      url: /categories/Javascript/
     - title: "etc"
       url: /categories/etc/
     # - title: "All Posts"

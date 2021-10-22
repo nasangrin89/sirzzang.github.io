@@ -1,8 +1,8 @@
 ---
 title:  "[JavaScript] this 이해하기"
-excerpt: 어쩌다 마주친 this. 자바스크립트에서는 this가 중요하다.
+excerpt: 어쩌다 마주친 자바스크립트에서의 this
 categories:
-  - Javascript
+  - Language
 header:
   teaser: /assets/images/blog-Dev.jpg
 tags:

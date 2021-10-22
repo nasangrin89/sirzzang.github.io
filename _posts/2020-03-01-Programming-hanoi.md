@@ -4,7 +4,7 @@ excerpt:
 header:
   teaser: /assets/images/blog-Programming.jpg
 categories:
-  - Python
+  - Programming
 tags:
   - Python
   - 재귀

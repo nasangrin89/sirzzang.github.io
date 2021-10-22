@@ -1,12 +1,12 @@
 ---
-title:  "[Python] Selenium"
-excerpt : "파이썬에서의 Selenium 사용법을 알아 보자."
+title:  "[Crawling] Selenium"
+excerpt : "웹 크롤링을 위해 알아 본 파이썬에서의 Selenium 사용법"
 toc: true
 toc_sticky: true
 header:
   teaser: /assets/images/blog-Dev.jpg
 categories:
-  - Python
+  - Dev
 tags:
   - Python
   - Crawling

@@ -1,9 +1,9 @@
 ---
-title:  "[React] children props를 이용해 공통 컴포넌트 분리하기"
+title:  "[React.js] children props를 이용해 공통 컴포넌트 분리하기"
 excerpt: 여러 개의 컴포넌트가 동일한 구조를 갖는 경우에는 로직을 분리하는 것이 좋다.
 toc: true
 categories:
-  - Javascript
+  - Dev
 header:
   teaser: /assets/images/blog-Dev.jpg
 tags:

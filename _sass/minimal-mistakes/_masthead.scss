@@ -2,6 +2,11 @@
    MASTHEAD
    ========================================================================== */
 
+.masthead#site-nav.greedy-nav{
+  background-color: #E9DBBE;
+
+}
+
 .masthead {
   position: relative;
   border-bottom: 1px solid $border-color;
@@ -28,6 +33,8 @@
     font-family: $sans-serif-narrow;
     font-size: $type-size-4;
     font-weight: bold;
+    background-color: #E9DBBE;
+
 
     @include breakpoint($x-large) {
       max-width: $max-width;
@@ -71,7 +78,6 @@
 
   .site-nav {
     margin-left: 0;
-    background-color: #E9DBBE;
 
     @include breakpoint($small) {
       float: right;

@@ -55,7 +55,7 @@ tags:
   - 여는 괄호: stack에 push
   - 닫는 괄호: stack에 여는 괄호가 나올 때까지 stack에서 pop
 - 연산자
-  - stack이 빈 경우: push
+  - stack이 빈 경우: stack에 push
   - stack이 비어있지 않은 경우
     - stack의 top보다 우선순위가 더 높으면 push
     - stack의 top보다 우선순위가 작거나 같으면 스택의 top을 pop한 뒤 현재 연산자를 push
@@ -108,30 +108,29 @@ def infix_to_postfix(arr: List[str]) -> List[str]:
 * stack에 마지막에 남는 값이 답
 
 ```python
-def infix_to_postfix(arr: List[str]) -> List[str]:
+from typing import List
+
+def calculate_postfix(postfix_arr: List[str]) -> int:
     stack = []
-    postfix = []
-    ranks = {'(': 0, '+': 1, '-': 1, '*': 2, '/':2}
-    for elem in arr:
+    for elem in postfix_arr:
         if elem.isdigit():
-            postfix.append(elem)
-        elif elem == '(':
-            stack.append(elem)
-        elif elem == ')':
-            while stack and stack[-1] != '(':
-                postfix.append(stack.pop())
-            stack.pop()
+            stack.append(int(elem))
         else:
-            while stack and ranks[elem] <= ranks[stack[-1]]:
-                postfix.append(stack.pop())
-                stack.append(elem)
-            stack.append(elem)
-    while stack:
-        postfix.append(stack.pop())
-    return postfix
+            b = stack.pop()
+            a = stack.pop()
+            if elem == '+':
+                stack.append(a+b)
+            elif elem == '-':
+                stack.append(a-b)
+            elif elem == '*':
+                stack.append(a*b)
+            else:
+                stack.append(a/b)
+    return stack[-1]
+
 ```
 
-
+<br>
 
 # 기타
 

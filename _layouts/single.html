@@ -42,7 +42,7 @@ layout: default
 		
 	
       <section class="page__content" itemprop="text">
-        {% if page.toc or page.toc_ads %}
+        {% if page.toc %}
           <aside class="sidebar__right {% if page.toc_sticky %}sticky{% endif %}">
             <nav class="toc">
               {% if page.toc %}
@@ -52,9 +52,6 @@ layout: default
           </nav>
           <!-- right-sidebar ads -->
           <nav class="toc-custom">
-            {% if page.toc_ads %}
-              {% include GoogleAdSenseSidbar.html %}
-            {% endif %}
           </nav>
           </aside>
         {% endif %}{{ content }}

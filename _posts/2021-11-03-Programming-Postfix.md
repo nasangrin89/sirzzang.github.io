@@ -66,7 +66,7 @@ tags:
 
  그림으로 표현하면 다음과 같다.
 
-![postfix-image]({{site.url}}/assets/images/postfix-gif.png){: .align-center}
+![postfix-image]({{site.url}}/assets/images/postfix-gif.gif){: .align-center}
 
 
 

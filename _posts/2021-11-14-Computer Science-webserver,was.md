@@ -1,5 +1,5 @@
 ---
-title:  "[Backend] 웹 서버, 웹 어플리케이션 서버"
+title:  "[Backend] 웹 서버, CGI, 웹 어플리케이션 서버"
 excerpt: 웹 서비스에서 클라이언트의 요청을 처리하기 위한 기술의 변화
 categories:
   - Computer Science
@@ -50,7 +50,7 @@ tags:
 
 # 정적 요청 처리: 웹 서버
 
-![web-server]({{site.url}}/assets/images/web-server.png)
+![web-server]({{site.url}}/assets/images/web-server.jpg)
 
 <center><sup>그림 출처: https://opentutorials.org/course/3084/18890</sup></center>
 

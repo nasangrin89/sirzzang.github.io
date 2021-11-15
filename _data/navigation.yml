@@ -2,7 +2,7 @@
 main:
     - title: "Programming"
       url: /categories/Programming/
-    - title: "Computer Science"
+    - title: "CS"
       url: /categories/CS/
     - title: "Dev"
       url: /categories/Dev/

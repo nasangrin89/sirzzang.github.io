@@ -2,7 +2,7 @@
 title:  "[Backend] 웹 서버, CGI, 웹 어플리케이션 서버"
 excerpt: 웹 서비스에서 클라이언트의 요청을 처리하기 위한 기술의 변화
 categories:
-  - Computer Science
+  - CS
 toc: true
 header:
   teaser: /assets/images/blog-Dev.jpg

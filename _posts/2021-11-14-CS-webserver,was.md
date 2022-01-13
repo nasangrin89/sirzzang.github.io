@@ -16,7 +16,7 @@ tags:
 
 
 
- 개발을 하며 가장 많이 접하면서도, 그만큼 이해하기 힘든 용어를 꼽아 보라면 '서버'일 듯하다. 클라이언트에게 정보나 서비스를 제공(*serve*)하는 프로그램이라는 것에서 나아가, 회사에서 웹 개발을 경험하며 접했던 웹 서버, 웹 어플리케이션 서버 등의 개념을 어떻게 이해하면 좋을지 고민한 결과를 정리해 보고자 한다.
+ 백엔드 개발을 하면서 가장 많이 접하면서도 이해하기 어려웠던 용어가 '서버'였다. 클라이언트에게 정보나 서비스를 제공(*serve*)하는 프로그램이라는 것에서 나아가, 회사에서 웹 개발을 경험하며 접했던 웹 서버, 웹 어플리케이션 서버 등의 개념을 어떻게 이해하면 좋을지 고민한 결과를 정리해 보고자 한다.
 
 > 사실 서버는 소프트웨어로서의 프로그램과 하드웨어로서의 장치를 모두 의미하는데, 여기서는 전자의 개념에 한정한다.
 
@@ -123,8 +123,9 @@ tags:
 ![cgi-2]({{site.url}}/assets/images/cgi-2.png)
 
 * 웹 서버로 동적 처리가 필요한 요청이 오면,
-* 웹 서버는 CGI 스크립트가 저장되어 있는 곳에서 알맞은 CGI 스크립트를 찾아 실행한 뒤,
-* CGI 프로그램이 반환한 결과를 클라이언트에게 응답으로 전환한다.
+* 웹 서버는 CGI 스크립트가 저장되어 있는 곳에서 알맞은 CGI 스크립트를 찾아 실행하는데,
+* 해당 CGI 프로그램은 요청에 맞는 HTML을 생성한 다음 웹 서버로 돌려 보내고,
+* 웹 서버는 CGI 프로그램이 반환한 결과를 클라이언트에게 응답으로 반환하게 되는 것이다.
 
 <br>
 
@@ -146,17 +147,15 @@ tags:
 
 ## WAS
 
- 이후 동적 요청을 처리하기 위한 웹 어플리케이션 서버(**WAS**: *Web Application Server*, 영어권에서는 주로 어플리케이션 서버)가 등장하게 되었다. CGI 프로그램 방식의 대안 중 CGI 프로세스를 데몬으로 띄우는 방식이 동적 요청을 처리하기 위한 애플리케이션 전용 데몬 프로세스를 띄우는 방식으로 발전한 것이다. 
+ 이후 동적 요청을 처리하기 위한 웹 어플리케이션 서버(**WAS**: *Web Application Server*, 영어권에서는 주로 어플리케이션 서버)가 등장하게 되었다. 위키피디아에서는 **웹 어플리케이션과 서버 환경을 만들어 동작시키는 기능을 하는 소프트웨어 프레임워크**라고 정의한다.
 
 <br>
 
- 결과적으로, 웹 어플리케이션 서버는 **웹 서버에 오는 동적 요청을 처리하고, 그 결과를 웹 서버로 반환하는 서버**라고 할 수 있다. 위키피디아에서는 **웹 어플리케이션과 서버 환경을 만들어 동작시키는 기능을 하는 소프트웨어 프레임워크**라고 정의한다.
-
-<br>
+ CGI 프로그램은 요청을 처리할 때마다 프로세스가 실행되는 반면, 어플리케이션 서버의 경우 어플리케이션 프로세스가 항상 실행되고 있다는 점에서 차이가 있다. 즉, **항상 실행되고 있는 프로세스**가 웹 서버로부터 요청을 받아 요청을 처리한 뒤 결과를 반환하는 것이다. CGI 프로그램 방식의 대안 중 CGI 프로세스를 데몬으로 띄우는 방식이 동적 요청을 처리하기 위한 애플리케이션 전용 데몬 프로세스를 띄우는 방식으로 발전한 것이라고도 한다. 
 
 ![web-application-server]({{site.url}}/assets/images/web-application-server.jpg)
 
- 이 때 동적 요청이 처리되는 과정은 다음과 같다.
+ 이 때 WAS에서 동적 요청이 처리되는 과정은 다음과 같다.
 
 * 웹 서버로 동적 처리가 필요한 요청이 오면,
 * 웹 서버는 웹 어플리케이션 서버에 요청 처리를 위임하고,
@@ -165,30 +164,65 @@ tags:
 
 <br>
 
- 웹 서버 뒷단에, 동적 요청을 처리하는 서버를 하나 더 두는 것이라고 생각하면 편하다. 주로 다음과 같은 기능을 한다.
+ 결과적으로, 웹 어플리케이션 서버는 **웹 서버에 오는 동적 요청을 처리하고, 그 결과를 웹 서버로 반환하는 서버**라고 할 수 있다. 웹 서버 뒷단에, 동적 요청을 처리하는 서버를 하나 더 두는 것이다. 주로 다음과 같은 기능을 한다.
 
-* DB 접속
+- DB 접속
+
 * 트랜잭션 관리
 * 데이터 가공 등 비즈니스 로직 수행
 
- 주요 제품으로는 Tmax JEUS, IBM Websphere, Redhat JBoss 등이 있다.
+
+
+ 웹 어플리케이션의 주요 제품을 찾아 보면, ~~*주요 헷갈림 포인트였는데*~~  주로 Java 진영에서 사용되는 웹 어플리케이션 서버들이 언급되곤 한다. 그렇다고 웹 어플리케이션 서버 개념이 Java 진영에만 사용되는 개념은 아니고,웹 어플리케이션 서버에는 다양한 것이 있지만, WAS라고 하면, 주로 Java 진영에서 사용되는 웹 어플리케이션 서버들이 언급되곤 한다. 주요 제품으로는 Tmax JEUS, IBM Websphere, Redhat JBoss 등이 있다. 
 
 <br>
+
+ 
+
+
 
 # 결론
 
  그렇다면, 지금까지 등장했던 웹 서버, CGI, 웹 어플리케이션 서버 등을 어떻게 이해해야 할까. 
 
+
+
  일단, 모두 다 클라이언트의 요청을 처리하기 위해 등장한 기술이지만,
 
 * 초창기 정적 페이지만으로 이루어지는 웹 서비스의 경우 웹 서버가 정적인 페이지를 반환하기만 하면 되었고, 
 * 점차 웹 서비스가 발전하며 동적인 페이지를 반환할 필요성이 생겼고, 이를 위해 CGI 규약(및 그 대안들), WAS가 등장했다
+  * 초창기 웹 서버는 CGI로 동적 요청을 처리했다.
+  * 이후 CGI의 단점으로 인해 FastCGI, WAS 등이 등장했다.
 
 고 이해할 수 있을 것이다.
 
 <br>
 
- 다만, 현대 웹 서비스의 경우 정적 요청 혹은 동적 요청 중 하나만 처리하는 경우는 거의 없다. 이 때문에, 여태까지 등장했던 개념들 중 웹 서버와 웹 어플리케이션 서버의 개념은, 어느 하나에 끼워 맞춰서 이해하기보다는 다음과 같이 **클라이언트의 요청을 처리하기 위한 3계층 구조** 중 어디에 해당하는지에 맞춰 이해하는 것이 더 맞다는 생각이 든다.
+ 다만, 현대 웹 서비스의 경우 정적 요청 혹은 동적 요청 중 하나만 처리하는 경우는 거의 없다. 어떻게 보면, 이 시점에서 웹 서버와 웹 어플리케이션 서버에 대한 확실한(누가 봐도 명확하게 선을 그을 수 있다고 할 만한) 정의는 **없다**고 보는 게 맞지 않을까. 
+
+> cf. Web Server vs. Application Server ㅡ [IBM](https://www.ibm.com/cloud/learn/web-server-vs-application-server)
+>
+> By strict definition, a web server is a common subset of an application server. A web server delivers static web content—e.g., HTML pages, files, images, video—primarily in response to hypertext transfer protocol (HTTP) requests from a web browser.
+>
+> An application server typically can deliver web content too, but its primary job is to enable interaction between end-user clients and server-side application code—the code representing what is often called *business logic*—to generate and deliver dynamic content, such as transaction results, decision support, or real-time analytics. The client for an application server can be the application’s own end-user UI, a web browser, or a mobile app, and the client-server interaction can occur via any number of communication protocols.
+>
+> **In practice, however, the line between web servers and application servers has become fuzzier, particularly as the web browser has emerged as the application client of choice and as user expectations of web applications and web application performance have grown.**
+>
+> Most web servers support plug-ins for scripting languages (e.g., ASP, JSP, PHP, Perl) that enable the web server to generate dynamic content based on server-side logic. And an increasing number of application servers not only incorporate web server capabilities, but use HTTP as their primary protocol and support other protocols (e.g., CGI and CGI variants) for interfacing with web servers. They also allow web applications to leverage services like reverse proxy, clustering, redundancy, and [load balancing](https://www.ibm.com/cloud/learn/load-balancing)—services that improve performance and reliability and allow developers to focus less on infrastructure and more on coding.
+>
+> **To make matters more confusing, many web servers and some application servers are referred to, or refer to themselves, as *web application servers.**
+>
+> The bottom line is that today’s most popular web servers and application servers are hybrids of both. Most of the increasingly rich applications you use today feature a combination of static web content and dynamic application content, delivered via a combination of web server and application server technologies.
+
+<br>
+
+> *cf. 어플리케이션 서버와 웹 어플리케이션 서버*
+>
+>  위에서는 전혀 언급하지 않았지만, 웹 애플리케이션 서버를 공부하다 보면, 애플리케이션 서버라는 말도 많이 등장한다. '웹'이 앞에 붙어서 헷갈리기는 한데, 웹 어플리케이션 서버는 어플리케이션 서버라고 보는 게 맞는 듯하다. 위키피디아의 [웹 어플리케이션 서버 문서](https://ko.wikipedia.org/wiki/%EC%9B%B9_%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98_%EC%84%9C%EB%B2%84)를 보면, 한국에서 일반적으로 통용되는 명칭이 WAS일 뿐, 영어권에서는 어플리케이션 서버라고 부르는 것이 일반적이라고 한다. 
+
+
+
+이 때문에, 여태까지 등장했던 개념들 중 웹 서버와 웹 어플리케이션 서버의 개념은, 어느 하나에 끼워 맞춰서 이해하기보다는 다음과 같이 **클라이언트의 요청을 처리하기 위한 3계층 구조** 중 어디에 해당하는지에 맞춰 이해하는 것이 더 맞다는 생각이 든다.
 
 ![web-3-tier]({{site.url}}/assets/images/web-3-tier.jpg)
 
@@ -202,6 +236,16 @@ tags:
  사실 이러한 계층 구조로 이해할 때, 굳이 웹 서버와 웹 어플리케이션 서버가 분리되어야 하는지에 대해서 의문이 있을 수도 있다. 실제 웹 어플리케이션 서버가 웹 서버의 기능까지 할 수 있기 때문에, 굳이 둘을 분리하지 않아도 되고 그렇게 웹 서비스를 제공해도 된다고 한다. 그러나 이러한 경우, 굳이 개념적인 문제를 떠나 모든 부하가 하나의 서버에 집중될 수 있고, 보안 상의 문제도 있기 때문에 웹 서버와 웹 어플리케이션 서버를 분리하는 것이 좋다고 한다.
 
 <br>
+
+ 한편, 웹 어플리케이션 서버가 등장했다고 해서 CGI 방식이 쓰이지 않는 것은 아니다. Python 언어를 사용해 백엔드를 구축할 때는 웹 서버가 웹 서버가 Python 어플리케이션을 쉽게 호출할 수 있도록 하는 WSGI 인터페이스를 사용한다. Python에서 사용할 수 있도록 CGI의 단점을 개선한 인터페이스라고 보면 될 듯. 실제 Python 웹 프레임워크(Django, Flask)는 WSGI 서버(WSGI 구현체)인 uwsgi를 내장하고 있다. 
+
+<br>
+
+
+
+
+
+
 
 
 

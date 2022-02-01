@@ -30,11 +30,11 @@ tags:
 
  자바 진영에서의 WAS가 지켜야 할 Jakarta EE의 주요 규약으로는 아래 그림에서와 같은 것들이 있다. 
 
-![servlet-jakarta-ee-apis]({{site.url}}/assets/images/servlet-01.png){: .align-center}
+![servlet-jakarta-ee-apis]({{site.url}}/assets/images/servlet-01.png){: .align-center width="500"}
 
 <br>
 
- 그 중에서도 WAS의 핵심 역할은 *동적 요청을 처리하는 것이므로*, 동적 페이지에 대한 요청이 왔을 때, 요청에 맞는 페이지를 생성해 응답할 수 있도록 하는 자바 서버 측 프로그램 기술인 Servlet이 핵심이라 판단해, 이에 대해 정리해 보고자 한다. 서블릿이 요청을 처리하는 과정을 단계별로 톺아 보며, WAS의 핵심 역할인 **동적 요청 처리**가 어떻게 이루어지는지 확인해 보고자 한다.
+ 그 중에서도 WAS의 핵심 역할은 *동적 요청을 처리하는 것*이다. 따라서 Jakarta EE 기술 중에서도 동적 페이지에 대한 요청이 왔을 때, 요청에 맞는 페이지를 생성해 응답할 수 있도록 하는 자바 서버 측 프로그램 기술인 Servlet이 핵심이라 판단해, 이에 대해 정리해 보고자 한다. 서블릿이 요청을 처리하는 과정을 단계별로 톺아 보며, WAS의 핵심 역할인 **동적 요청 처리**가 어떻게 이루어지는지 확인해 보고자 한다.
 
 <br>
 
@@ -49,8 +49,6 @@ tags:
  편의상 아래 글에서는 서블릿 명세에 맞게 구현한 서블릿 프로그램을 서블릿이라 지칭하도록 하겠다. 서블릿은 추상 클래스 `javax.servlet.http.HttpServlet`을 상속해 구현한다.  
 
 <br>
-
-
 
 ## 상속 구조
 
@@ -76,11 +74,11 @@ javax.servlet.Servlet(인터페이스)
   - 서블릿의 핵심인 요청 처리 시 호출되는 메소드
 - `destroy`: 서블릿 객체를 제거한다. 서블릿 컨테이너에 의해 호출된다.
 
-<br>
-
  Apache Tomcat의 구현체를 살펴 보면 다음과 같다.
 
 ![javax.servlet.Servlet]({{site.url}}/assets/images/servlet-06.png){: .align-center}
+
+
 
 
 
@@ -89,8 +87,6 @@ javax.servlet.Servlet(인터페이스)
 ### javax.servlet.GenericServlet
 
  `javax.servlet.Servlet` 인터페이스를 구현한 추상 클래스로, `service`만 제외하고, 서블릿에 필요한 모든 메소드를 재정의한다.
-
-<br>
 
  Apache Tomcat의 구현체를 살펴 보면 다음과 같다.
 
@@ -106,8 +102,6 @@ javax.servlet.Servlet(인터페이스)
 
  `javax.servlet.GenericServlet` 클래스를 상속하여 `service` 메소드를 재정의한 추상 클래스이다. `HttpServlet`이기 때문에, HTTP 요청 방법에 따라 수행해야 할 작업이 `doGet`, `doPost` 등의 메소드로 정의되어 있고, `service` 메소드에서는 요청 방법에 따라 알맞은 메소드를 수행하도록 구현되어 있다.
 
-<br>
-
  Apache Tomcat의 구현체를 살펴보면 다음과 같다.
 
 ![javax.servlet.http.HttpServlet]({{site.url}}/assets/images/servlet-08.png){: .align-center}
@@ -116,7 +110,7 @@ javax.servlet.Servlet(인터페이스)
 
 
 
-
+<br>
 
 # 서블릿 컨테이너
 
@@ -157,15 +151,13 @@ javax.servlet.Servlet(인터페이스)
 
 ![servlet-mapping]({{site.url}}/assets/images/servlet-05.png){: .align-center}
 
-<center><sup>배포 서술자 파일을 통해 서블릿을 매핑하는 예</sup></center>
+<center><sup>배포 서술자 파일을 통해 서블릿을 매핑(좌), annotation을 통해 서블릿을 매핑(우)</sup></center>
 
 <br>
 
 ## Request, Response
 
  서블릿 컨테이너는 웹 서버에서 요청을 위임 받은 후, `HttpServletRequest`, `HttpServletResponse` 객체를 생성한다. 그리고 두 객체는 서블릿이 수행할 메소드의 인자로 전달된다.
-
-<br>
 
  `HttpServletRequest`는 클라이언트의 요청 정보를, `HttpServletResponse`는 클라이언트에게 응답으로 반환할 정보를 가지고 있는 객체이다. Apache Tomcat의 구현체를 살펴 보면 다음과 같다.
 
@@ -211,7 +203,7 @@ javax.servlet.Servlet(인터페이스)
 
  위의 과정을 참고해 서블릿 컨테이너에서 요청이 처리되는 과정 중 `2`와 `3`을 구체화해 보면 다음과 같다.
 
-![servlet-lifecycle-request-response]({{site.url}}/assets/images/servlet-10.png){: .align-center}
+![servlet-lifecycle-request-response]({{site.url}}/assets/images/servlet-10.png){: .align-center width="400"}
 
 - 2.1. 요청과 매핑된 서블릿 인스턴스가 없으면 생성
 
@@ -221,8 +213,6 @@ javax.servlet.Servlet(인터페이스)
 <br>
 
 ## Thread Pool
-
-<br>
 
  서블릿 컨테이너는 하나의 요청 처리 과정을 하나의 **스레드**로 관리한다. 즉, 요청 하나 당 스레드 하나가 할당되며, 각 스레드는 요청을 처리하기 위해 서블릿의 `service` 메소드를 호출하고 그 결과를 반환하며, 결과가 반환되면 작업이 종료된다. 
 

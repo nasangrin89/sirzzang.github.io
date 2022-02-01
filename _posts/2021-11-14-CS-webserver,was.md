@@ -207,7 +207,7 @@ tags:
 
  다만, 현대 웹 서비스의 경우 정적 요청 혹은 동적 요청 중 하나만 처리하는 경우는 거의 없다. 어떻게 보면, 이 시점에서 웹 서버와 웹 어플리케이션 서버에 대한 확실한(누가 봐도 명확하게 선을 그을 수 있다고 할 만한) 정의는 **없다**고 보는 게 맞지 않을까. 
 
-> cf. Web Server vs. Application Server ㅡ [IBM](https://www.ibm.com/cloud/learn/web-server-vs-application-server)
+> *참고*: [Web Server vs. Application Server ㅡ IBM](https://www.ibm.com/cloud/learn/web-server-vs-application-server)
 >
 > By strict definition, a web server is a common subset of an application server. A web server delivers static web content—e.g., HTML pages, files, images, video—primarily in response to hypertext transfer protocol (HTTP) requests from a web browser.
 >
@@ -221,7 +221,7 @@ tags:
 
 <br>
 
-> *cf. 어플리케이션 서버와 웹 어플리케이션 서버*
+> *참고*: 어플리케이션 서버와 웹 어플리케이션 서버
 >
 >   위에서는 전혀 언급하지 않았지만, 웹 애플리케이션 서버를 공부하다 보면, 애플리케이션 서버라는 말도 많이 등장한다. '웹'이 앞에 붙어서 헷갈리기는 한데, 웹 어플리케이션 서버는 어플리케이션 서버라고 보는 게 맞는 듯하다. 위키피디아의 [웹 어플리케이션 서버 문서](https://ko.wikipedia.org/wiki/%EC%9B%B9_%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98_%EC%84%9C%EB%B2%84)를 보면, 한국에서 일반적으로 통용되는 명칭이 WAS일 뿐, 영어권에서는 어플리케이션 서버라고 부르는 것이 일반적이라고 한다. 
 
@@ -242,8 +242,8 @@ tags:
 
 <br>
 
- 한편, 웹 어플리케이션 서버가 등장했다고 해서 CGI 방식이 쓰이지 않는 것은 아니다. Python 언어를 사용해 백엔드를 구축할 때는 웹 서버가 웹 서버가 Python 어플리케이션을 쉽게 호출할 수 있도록 하는 WSGI 인터페이스를 사용한다. Python에서 사용할 수 있도록 CGI의 단점을 개선한 인터페이스라고 보면 될 듯. 실제 Python 웹 프레임워크(Django, Flask)는 WSGI 서버(WSGI 구현체)인 uwsgi를 내장하고 있다. 
+ 한편, 웹 어플리케이션 서버가 등장했다고 해서 CGI 방식이 쓰이지 않는 것은 아니다. Python으로 백엔드를 구축할 때는 웹 서버가 Python 어플리케이션을 쉽게 호출할 수 있도록 하는 WSGI 인터페이스를 사용한다. Python에서 사용할 수 있도록 CGI의 단점을 개선한 인터페이스라고 보면 될 듯하다. 실제 Python 웹 프레임워크(Django, Flask)는 WSGI 서버(WSGI 구현체)인 uwsgi를 내장하고 있다. 
 
 <br>
 
- 결론적으로, 웹 서버와 웹 어플리케이션 서버를 이해할 때는 **정적 요청과 동적 요청의 처리**, **동적 요청을 처리하기 위한 백엔드 기술의 변화**(웹 서버의 한계 → CGI의 한계 → WAS의 등장)를 기억하는 것이 좋을 듯하다.ㄴ
+ 결론적으로, 웹 서버와 웹 어플리케이션 서버를 이해할 때는 **정적 요청과 동적 요청의 처리**, **동적 요청을 처리하기 위한 백엔드 기술의 변화**(웹 서버의 한계 → CGI의 한계 → WAS의 등장)를 기억해야 한다.

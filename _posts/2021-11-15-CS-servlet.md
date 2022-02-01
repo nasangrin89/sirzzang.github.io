@@ -76,7 +76,7 @@ javax.servlet.Servlet(인터페이스)
 
  Apache Tomcat의 구현체를 살펴 보면 다음과 같다.
 
-![javax.servlet.Servlet]({{site.url}}/assets/images/servlet-06.png){: .align-center}
+![javax.servlet.Servlet]({{site.url}}/assets/images/servlet-06.png){: .align-center width="500"}
 
 
 
@@ -185,7 +185,7 @@ javax.servlet.Servlet(인터페이스)
 
  서블릿 객체의 생명 주기는 다음과 같다.
 
-![servlet-lifecycle]({{site.url}}/assets/images/servlet-09.png){: .align-center}
+![servlet-lifecycle]({{site.url}}/assets/images/servlet-09.png){: .align-center width="400"}
 
 1. `init()`: 서블릿 인스턴스 생성
    - 서블릿 인스턴스가 메모리에 있는지 확인
@@ -203,7 +203,7 @@ javax.servlet.Servlet(인터페이스)
 
  위의 과정을 참고해 서블릿 컨테이너에서 요청이 처리되는 과정 중 `2`와 `3`을 구체화해 보면 다음과 같다.
 
-![servlet-lifecycle-request-response]({{site.url}}/assets/images/servlet-10.png){: .align-center width="400"}
+![servlet-lifecycle-request-response]({{site.url}}/assets/images/servlet-10.png){: .align-center}
 
 - 2.1. 요청과 매핑된 서블릿 인스턴스가 없으면 생성
 

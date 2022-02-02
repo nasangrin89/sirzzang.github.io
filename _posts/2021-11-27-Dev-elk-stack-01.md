@@ -225,4 +225,4 @@ $ echo "logstash pipeline message" | nc localhost 5000 -w0
 
  예컨대, (개념적으로) 다음 그림과 같이 구성할 수 있다.
 
-![elk-ai-visualization]({{site.url}}/assets/images/elk-stack-08.png){: .align-center width="400"}
+![elk-ai-visualization]({{site.url}}/assets/images/elk-stack-08.png){: .align-center}

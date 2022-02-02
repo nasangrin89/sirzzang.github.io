@@ -32,11 +32,9 @@ tags:
 
  <br>
 
- # ELK stack
+# ELK stack
 
  ELK stack을 이루는 각각에 대해 간단하게 살펴 보자.
-
-<br>
 
 ## Elasticsearch
 
@@ -120,7 +118,7 @@ tags:
 
 <br>
 
- 데이터 유입, 변형, 전송까지 다양한 기능을 지원하는데, 이 기능들은 모두 [Logstash 플러그인 문서](https://www.elastic.co/guide/en/logstash/current/input-plugins.html)를 보며 확인해야 한다(*링크는 input plugin*). 또한, 사용할 플러그인을 설치해야 한다. 아래는 간단한 플러그인을 통해 파이프라인을 구성한 간단한 예시이다. 
+ 데이터 유입, 변형, 전송까지 다양한 기능을 지원하는데, 이 기능들은 모두 [Logstash 플러그인 문서](https://www.elastic.co/guide/en/logstash/current/input-plugins.html)를 보며 확인해야 한다(*링크는 input plugin*). 또한, 사용할 플러그인을 설치해야 한다. 아래는 간단한 플러그인을 통해 파이프라인을 구성한 예시이다. 
 
 - Logstash가 tcp 5000 포트를 통해 전송되는 데이터를 수집한다.
 - 수집한 데이터를 json 형태로 변형하고, 필드를 추가한다.
@@ -192,7 +190,7 @@ $ echo "logstash pipeline message" | nc localhost 5000 -w0
 
  ELK stack을 활용할 수 있는 분야는 다음과 같다.
 
-<br>
+
 
 ## 로그 모니터링
 
@@ -223,7 +221,7 @@ $ echo "logstash pipeline message" | nc localhost 5000 -w0
 
 ## 머신러닝 데이터 시각화
 
- 머신러닝에 활용된 데이터를 분석하고 시각화할 수 있는 용도로도 사용할 수 있다. 머신러닝에 활용되는 데이터가 저장된 데이터 소스로부터 데이터를 추출하고, 머신러닝 inference data를 시각화하는 것이다.
+ 머신러닝에 활용된 데이터를 분석하고 시각화할 수 있는 용도로도 사용할 수 있다. 데이터 소스로부터 데이터를 추출하고, 머신러닝 inference data를 시각화하는 것이다.
 
  예컨대, (개념적으로) 다음 그림과 같이 구성할 수 있다.
 

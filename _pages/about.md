@@ -1,4 +1,21 @@
-# Welcome to Eraser's Github
+---
+title: "About"
+permalink: /about/
+header:
+  overlay_image: /assets/images/sunset.jpg
+  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
+  caption: "Photo credit: [**Eraser**](https://www.instagram.com/ieere_123/)"
+
+---
+
+
+
+
+
+
+
+
+
 <br>
 
 뭐든지 배우고 싶은 주니어 백엔드 개발자 송이레입니다. 찾아 주셔서 감사합니다🙇‍♀️

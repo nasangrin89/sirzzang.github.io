@@ -1,11 +1,11 @@
 ---
-title: "About"
+title: "About Me"
 permalink: /about/
 ---
 
-뭐든지 배우고 싶은 주니어 백엔드 개발자 송이레입니다. 찾아 주셔서 감사합니다🙇‍♀️
 <br>
-Hi, I'm Ieere Song(a.k.a Eraser). Thank you for visiting👋
+
+뭐든지 배우고 싶은 주니어 백엔드 개발자 송이레입니다. 찾아 주셔서 감사합니다🙇‍♀️ Hi, I'm Ieere Song(a.k.a Eraser). Thank you for visiting👋
 <br>
 
 
@@ -17,13 +17,11 @@ Hi, I'm Ieere Song(a.k.a Eraser). Thank you for visiting👋
 - 배우고 경험한 내용을 글과 그림으로 정리하기
 - 서비스에 대한 철학을 갖기
 
-
+<br>
 
 # Experience
 
-{: .notice--warning}
-
-**Project Blog** [Eraser's Projectlog](https://projectlog-eraser.tistory.com/)
+> **Project Blog** [Eraser's Projectlog](https://projectlog-eraser.tistory.com/)
 
 
 
@@ -46,8 +44,6 @@ Hi, I'm Ieere Song(a.k.a Eraser). Thank you for visiting👋
   * **백엔드 개발**
 
     * ELK stack 기반 Springboot Application 로그 모니터링 시스템 구축 및 사내 데이터센터 클라우드 환경에 배포
-
-<br>
 
 ## Projects
 

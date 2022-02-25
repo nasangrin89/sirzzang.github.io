@@ -1,22 +1,7 @@
 ---
 title: "About"
 permalink: /about/
-header:
-  overlay_image: /assets/images/sunset.jpg
-  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-  caption: "Photo credit: [**Eraser**](https://www.instagram.com/ieere_123/)"
-
 ---
-
-
-
-
-
-
-
-
-
-<br>
 
 뭐든지 배우고 싶은 주니어 백엔드 개발자 송이레입니다. 찾아 주셔서 감사합니다🙇‍♀️
 <br>
@@ -25,24 +10,22 @@ Hi, I'm Ieere Song(a.k.a Eraser). Thank you for visiting👋
 
 
 
-## Interests
+# Interests
 
 - Clean Architecture, Clean Code
 - Pipeline: ML/DL, 서비스 백엔드에서 발생하는 대용량 데이터 처리
 - 배우고 경험한 내용을 글과 그림으로 정리하기
 - 서비스에 대한 철학을 갖기
 
-<br>
 
 
-
-## Experience
+# Experience
 
 {: .notice--warning}
 
 **Project Blog** [Eraser's Projectlog](https://projectlog-eraser.tistory.com/)
 
-<br>
+
 
 ## Work
 
@@ -55,10 +38,9 @@ Hi, I'm Ieere Song(a.k.a Eraser). Thank you for visiting👋
     
   * **「유통이력 관리 및 제품 인증 서비스를 위한 블록체인 플랫폼 개발」 프로젝트 참여**
 
+    ![keit-backend]({{site.url}}/assets/images/keit.png){: width="500"}{: .align-center}
+
     * Flask 기반 AI 모델링 서버 개발
-
-      ![keit-backend]({{site.url}}/assets/images/keit.png){: width="500"}{: .align-center}
-
     * ELK stack 기반 AI 모델링 시각화 대시보드 개발
 
   * **백엔드 개발**
@@ -67,7 +49,7 @@ Hi, I'm Ieere Song(a.k.a Eraser). Thank you for visiting👋
 
 <br>
 
-## Personal Projects
+## Projects
 
 * **웹 반응 데이터를 활용한 주 52시간 근무제 영향평가 분석**(2020.03.~2020.04.)
   * BeautifulSoup, Selenium 라이브러리를 이용한 네이버 뉴스 기사 및 댓글, 커뮤니티 글 및 댓글 웹 크롤링

@@ -13,7 +13,7 @@ permalink: /about/
 # Interests
 
 - Clean Architecture, Clean Code
-- Pipeline: ML/DL, 서비스 백엔드에서 발생하는 대용량 데이터 처리
+- Pipeline: ML/DL Pipeline, 서비스 백엔드에서 발생하는 대용량 데이터 처리
 - 배우고 경험한 내용을 글과 그림으로 정리하기
 - 서비스에 대한 철학을 갖기
 
@@ -32,12 +32,12 @@ permalink: /about/
   * **웹앱 개발**
     
     * React.js 기반 디지털 마케팅 플랫폼 버튼 디자인 템플릿, 테이블 템플릿 개발
-  * React.js, Electron 기반 사내 카페 POS 앱 현장 주문 기능, 결제 내역 조회 기능, 영수증 출력 기능 개발
+    * React.js, Electron 기반 사내 카페 POS 앱 현장 주문 기능, 결제 내역 조회 기능, 영수증 출력 기능 개발
     
   * **「유통이력 관리 및 제품 인증 서비스를 위한 블록체인 플랫폼 개발」 프로젝트 참여**
 
-    ![keit-backend]({{site.url}}/assets/images/keit.png){: width="500"}{: .align-center}
-
+    ![keit-backend]({{site.url}}/assets/images/keit.png){: .align-center}
+    
     * Flask 기반 AI 모델링 서버 개발
     * ELK stack 기반 AI 모델링 시각화 대시보드 개발
 
